@@ -38,9 +38,9 @@ def getDocuments(dbName):
     print('\n3:')
     collectionName = input() #'customers'
     collection = client[dbName][collectionName]
-    if collection not in client[dbName].list_collection_names():
-        print('press any button to return')
-        return
+    # if collection not in client[dbName].list_collection_names():
+    #     print('press any button to return')
+    #     return
     print('Db: ' + dbName)
     print('Collection: ' + collectionName)
     print('Documents')
