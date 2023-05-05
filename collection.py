@@ -36,20 +36,22 @@ def getCollection(dbName):
 # 3
 def getDocuments(dbName):
     print('\n3:')
-    collectionName = 'customers'
+    collectionName = input() #'customers'
     collection = client[dbName][collectionName]
+    if collection not in client[dbName].list_collection_names():
+        print('press any button to return')
+        return
     print('Db: ' + dbName)
     print('Collection: ' + collectionName)
     print('Documents')
     for document in collection.find():
     	print(document['_id'])
     print('Select Document:')
-    getIds(dbName)
+    getIds(dbName, collectionName)
 
 # 4
-def getIds(dbName):
+def getIds(dbName,collectionName):
     print('\n4:')
-    collectionName = 'customers'
     collection = client[dbName][collectionName]
     print('Db: ' + dbName)
     print('Collection: ' + collectionName)
