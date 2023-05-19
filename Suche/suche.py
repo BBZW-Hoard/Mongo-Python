@@ -96,5 +96,4 @@ def find_nearest_restaurant_withSameCuisine():
 find_nearest_restaurant()
 find_nearest_restaurant_withSameCuisine()
 # Env
-os.environ["MongoEnvString"] = "mongodb+srv://<User>:<Password>@cluster0.ndaadhc.mongodb.net/"
-print(os.environ["MongoEnvString"])
+print(os.environ["MongoConnection"])
