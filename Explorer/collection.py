@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import bson
 
 connectionString = "mongodb://localhost:27017/"
 client = MongoClient(connectionString)
@@ -38,9 +39,8 @@ def getDocuments(dbName):
     print('\n3:')
     collectionName = input() #'customers'
     collection = client[dbName][collectionName]
-    # if collection not in client[dbName].list_collection_names():
-    #     print('press any button to return')
-    #     return
+    if collectionName not in client[dbName].list_collection_names():
+        RestartProgram()
     print('Db: ' + dbName)
     print('Collection: ' + collectionName)
     print('Documents')
@@ -56,10 +56,20 @@ def getIds(dbName,collectionName):
     print('Db: ' + dbName)
     print('Collection: ' + collectionName)
     print('Document:')
-    query = { "username": "ecasey" }
+    queryId = input()
+    query = { "_id": bson.ObjectId(queryId) }
     document = collection.find_one(query)
+    if document is None:
+        RestartProgram()
     for k, v in document.items():
         print(k,':', v)
     print('Press any button to return:')
+    input()
+    getDatabase()
+
+def RestartProgram():
+    print('Press any button to return:')
+    input()
+    getDatabase()
 
 getDatabase()
