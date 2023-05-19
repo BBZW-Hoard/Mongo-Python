@@ -84,11 +84,7 @@ def find_nearest_restaurant_withSameCuisine():
             },
             "distanceField": "distance",
             "spherical": True,
-	        "$filter": {
-                "input": "$near",
-               "as": "item",
-               "cond": { "cuisine": "french" }
-            }
+            "query": { "cuisine": "French" }
         }
     },
     {
