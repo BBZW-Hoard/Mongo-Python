@@ -14,6 +14,10 @@ class MongoDb():
 		print('Databases')
 		for db in dblist:
 			print('-', db)
+		return
+
+	def setDatabase(self):
+		dblist = self.client.list_database_names()
 		print('Select Database:')
 		validInput = True
 		dbName = ''
@@ -30,26 +34,24 @@ class MongoDb():
 		print('Collections')
 		for collection in db:
 			print('-' + collection)
+
+	def setCollection(self, dbName):
 		print('Select Collections:')
 		collectionName = input()
-		return collectionName
-
-	def getDocuments(self, dbName, collectionName):
 		collection = self.client[dbName][collectionName]
 		if collectionName not in self.client[dbName].list_collection_names():
 			self.RestartProgram()
 		print('Db: ' + dbName)
 		print('Collection: ' + collectionName)
+		return collection
+
+	def getDocuments(self, collection):
 		print('Documents')
 		for document in collection.find():
 			print(document['_id'])
-		print('Select Document:')
-		return collectionName
 	
-	def getIds(self, dbName,collectionName):
-		collection = self.client[dbName][collectionName]
-		print('Db: ' + dbName)
-		print('Collection: ' + collectionName)
+	def getIds(self, collection):
+		print('Select Document:')
 		print('Document:')
 		queryId = input()
 		query = { "_id": bson.ObjectId(queryId) }

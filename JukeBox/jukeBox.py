@@ -1,6 +1,9 @@
 from modules.MongoDb import MongoDb
 
 db = MongoDb("mongodb://localhost:27017/")
-dbName = db.getDatabase()
-collectionName = db.getCollection(dbName)
-db.getDocuments(dbName, collectionName)
+db.getDatabase()
+dbName = db.setDatabase()
+db.getCollection(dbName)
+collection = db.setCollection(dbName)
+db.getDocuments(collection)
+db.getIds(collection)
