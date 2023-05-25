@@ -1,4 +1,3 @@
-from modules.MongoDb import MongoDb
 from pymongo import MongoClient
 from fastapi import FastAPI
 from routes import router as book_router
