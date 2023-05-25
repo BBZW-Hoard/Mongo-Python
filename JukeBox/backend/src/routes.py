@@ -2,7 +2,7 @@ from fastapi import APIRouter, Body, Request, Response, HTTPException, status
 from fastapi.encoders import jsonable_encoder
 from typing import List
 
-from models import Song
+from src.models import Song
 router = APIRouter()
 
 @router.post("/", response_description="Create a new song", status_code=status.HTTP_201_CREATED, response_model=Song)
