@@ -1,5 +1,4 @@
-from modules.MongoDb import MongoDb
-
+from modules.MongoDb import MongoDb    
 db = MongoDb("mongodb://localhost:27017/")
 db.getDatabase()
 dbName = db.setDatabase()
