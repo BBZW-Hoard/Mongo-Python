@@ -1,5 +1,9 @@
 # Mongo-Python
 ## Installation
+npm install
+## Start programm
+docker compose up
+## Manualy start
 ### On Windows
 python -m venv env-pymongo-fastapi-crud
 
@@ -7,8 +11,6 @@ python -m venv env-pymongo-fastapi-crud
 
 ### Install Dependencies
 pip install -r requirements.txt
-
-## Start programm
 python -m uvicorn main:app --reload
 ### Check entries on Database
 python DBTerminal.py
