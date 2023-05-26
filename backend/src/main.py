@@ -1,20 +1,17 @@
 from pymongo import MongoClient
 from fastapi import FastAPI
-from dotenv import dotenv_values
 from src.routes import router as book_router
+import os
 
-
-
-config = dotenv_values(".env")
+connectionString = os.environ["DB_CONNECTION"] if "DB_CONNECTION" in os.environ  else "mongoDb"
+dbName = os.environ["DB_NAME"] if "DB_NAME" in os.environ  else "JukeBox"
 
 app = FastAPI()
 
 @app.on_event("startup")
 def startup_db_client():
-    # app.mongodb_client = MongoClient(config["DB_CONNECTION"])
-    # app.database = app.mongodb_client[config["DB_NAME"]]
-    app.mongodb_client = MongoClient("mongoDb")
-    app.database = app.mongodb_client["JukeBox"]
+    app.mongodb_client = MongoClient(connectionString)
+    app.database = app.mongodb_client[dbName]
     print("Connected to the MongoDB database!")
 
 @app.on_event("shutdown")
