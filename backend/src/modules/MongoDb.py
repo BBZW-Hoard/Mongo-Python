@@ -6,7 +6,12 @@ class MongoDb():
 		if(_id is not None):
 			self._id = _id
 		connectionString = connectionString
-		self.client = MongoClient(connectionString)
+		client = MongoClient(connectionString)
+		self.client = client
+		self.database = client["JukeBox"]
+
+	def InsertToDB(self, collection, document):
+		self.client[collection].insert_one(document)
 
 	def getDatabase(self):
 		dblist = self.client.list_database_names()
@@ -67,3 +72,6 @@ class MongoDb():
 		print('Press any button to return:')
 		input()
 		self.getDatabase()
+	
+	def Close(self):
+		self.client.close()
