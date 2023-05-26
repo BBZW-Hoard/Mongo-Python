@@ -10,8 +10,16 @@ class MongoDb():
 		self.client = client
 		self.database = client["JukeBox"]
 
+	def findDocument(self, collection, document):
+		return self.database[collection].find_one(
+        {"_id": document.inserted_id}
+    	)
+
 	def InsertToDB(self, collection, document):
-		self.client[collection].insert_one(document)
+		return self.database[collection].insert_one(document)
+
+	def UpdateDB(self, collection, document):
+		self.database[collection].update_one(document)
 
 	def getDatabase(self):
 		dblist = self.client.list_database_names()
@@ -32,21 +40,24 @@ class MongoDb():
 				print("No Database.")
 				continue
 			validInput = False
-		return dbName
+		self.database = self.client[dbName]
+		return
 	
-	def getCollection(self, dbName):
-		db = self.client[dbName].list_collection_names()
+	def getCollection(self):
+		collections = self.database.list_collection_names()
 		print('Collections')
-		for collection in db:
+		for collection in collections:
 			print('-' + collection)
+		return collections
 
-	def setCollection(self, dbName):
+	def setCollection(self):
 		print('Select Collections:')
 		collectionName = input()
-		collection = self.client[dbName][collectionName]
-		if collectionName not in self.client[dbName].list_collection_names():
+		collection = self.database[collectionName]
+		if collectionName not in self.database.list_collection_names():
 			self.RestartProgram()
-		print('Db: ' + dbName)
+			return
+		print('Db: ' + self.database.name)
 		print('Collection: ' + collectionName)
 		return collection
 
@@ -54,24 +65,27 @@ class MongoDb():
 		print('Documents')
 		for document in collection.find():
 			print(document['_id'])
+		return collection.find()
 	
-	def getIds(self, collection):
+	def getDocumentFromId(self, collection):
 		print('Select Document:')
 		print('Document:')
+		documentDict = []
 		queryId = input()
 		query = { "_id": bson.ObjectId(queryId) }
 		document = collection.find_one(query)
 		if document is None:
 			self.RestartProgram()
+			return
 		for k, v in document.items():
+			output = k,':', v
+			documentDict.append(output)
 			print(k,':', v)
-		print('Press any button to return:')
-		input()
+		return documentDict
 
 	def RestartProgram(self):
 		print('Press any button to return:')
 		input()
-		self.getDatabase()
 	
 	def Close(self):
 		self.client.close()

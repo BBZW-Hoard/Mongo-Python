@@ -8,9 +8,6 @@ router = APIRouter()
 @router.post("/", response_description="Create a new song", status_code=status.HTTP_201_CREATED, response_model=Song)
 def create_book(request: Request, song: Song = Body(...)):
     song = jsonable_encoder(song)
-    new_song = request.app.MongoDb.database["songs"].insert_one(song)
-    created_song = request.app.MongoDb.database["songs"].find_one(
-        {"_id": new_song.inserted_id}
-    )
-
+    new_song = request.app.MongoDb.InsertToDB("songs", song)
+    created_song = request.app.MongoDb.findDocument("songs", new_song)
     return created_song
