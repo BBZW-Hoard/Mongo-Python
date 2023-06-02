@@ -12,7 +12,7 @@ class MongoDb():
 		self.collection = self.setCollection("songs")
 		
 
-	def findDocument(self, collection, document):
+	def findDocument(self, document):
 		return self.collection.find_one(
         {"_id": document.inserted_id}
     	)
@@ -27,66 +27,35 @@ class MongoDb():
 
 	def getDatabase(self):
 		dblist = self.client.list_database_names()
-		print('\n1:')
-		print('Databases')
-		for db in dblist:
-			print('-', db)
-		return
+		return dblist
 
-	def setDatabase(self):
-		dblist = self.client.list_database_names()
-		print('Select Database:')
-		validInput = True
-		dbName = ''
-		while validInput:
-			dbName = input()
-			if dbName not in dblist:
-				print("No Database.")
-				continue
-			validInput = False
+	def setDatabase(self, dbName):
 		self.database = self.client[dbName]
 		return
 	
 	def getCollection(self):
-		collections = self.database.list_collection_names()
-		print('Collections')
-		for collection in collections:
-			print('-' + collection)
-		return collections
+		return self.database.list_collection_names()
 
 	def setCollection(self, collectionName):
 		self.collection = self.database[collectionName]
-		if collectionName not in self.database.list_collection_names():
-			return None
-		print('Db: ' + self.database.name)
-		print('Collection: ' + collectionName)
 		return self.collection
 
-	def getDocuments(self, collection):
+	def getDocuments(self):
 		print('Documents')
 		for document in self.collection.find(limit=100):
 			print(document['_id'])
 		return list(self.collection.find(limit=100))
 	
-	def getDocumentFromId(self, collection):
-		print('Select Document:')
-		print('Document:')
+	def getDocumentFromId(self, id):
 		documentDict = []
-		queryId = input()
-		query = { "_id": bson.ObjectId(queryId) }
+		query = { "_id": bson.ObjectId(id) }
 		document = self.collection.find_one(query)
 		if document is None:
-			self.RestartProgram()
-			return
+			return None
 		for k, v in document.items():
 			output = k,':', v
 			documentDict.append(output)
-			print(k,':', v)
 		return documentDict
-
-	def RestartProgram(self):
-		print('Press any button to return:')
-		input()
 	
 	def Close(self):
 		self.client.close()
