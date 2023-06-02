@@ -1,5 +1,6 @@
 import uuid
 from pydantic import BaseModel, Field
+from typing import Optional
 
 
 class Song(BaseModel):
@@ -16,5 +17,19 @@ class Song(BaseModel):
                 "title": "Don Quixote",
                 "author": "Miguel de Cervantes",
                 "synopsis": "..."
+            }
+        }
+
+class SongUpdate(BaseModel):
+    title: Optional[str]
+    author: Optional[str]
+    synopsis: Optional[str]
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "title": "Don Quixote",
+                "author": "Miguel de Cervantes",
+                "synopsis": "Don Quixote is a Spanish novel by Miguel de Cervantes..."
             }
         }
