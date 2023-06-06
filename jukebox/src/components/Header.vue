@@ -18,7 +18,7 @@ import { ref } from 'vue'
                 </RouterLink>
             </div>
             <div class="search-container">
-                <input type="text" placeholder="Song suchen..." class="search-bar" @keypress="searchSong(this.value)">
+                <input type="text" placeholder="Song suchen..." class="search-bar">
             </div>
         </div>
         <div class="shine-animation"></div>

@@ -60,11 +60,11 @@ const songs = ref([
 
 // return the duration in h or m format
 function durationValue(duration) {
-  if (duration >= 60) {
-    let hours = Math.floor(duration / 60);
-    let minutes = duration % 60;
-    return hours + " h " + minutes + " min";
-  } else return duration + " min";
+    if (duration >= 60) {
+        let hours = Math.floor(duration / 60);
+        let minutes = duration % 60;
+        return hours + " h " + minutes + " min";
+    } else return duration + " min";
 }
 
 function addToPlaylist(song) {
