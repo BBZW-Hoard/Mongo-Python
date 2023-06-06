@@ -8,8 +8,8 @@ import { ref } from 'vue'
         <div class="header-content flex items-center justify-between px-4 py-2">
             <div class="logo-container flex items-center">
                 <img src="../assets/logo.png" alt="Logo" class="logo h-16 w-16 m-2">
-                <button class="header-button">Meine Liste</button>
-                <button class="header-button">Song suchen</button>
+                <button class="headerBtn header-button">Meine Liste</button>
+                <button class="headerBtn header-button">Song suchen</button>
             </div>
             <div class="search-container">
                 <input type="text" placeholder="Song suchen..." class="search-bar">

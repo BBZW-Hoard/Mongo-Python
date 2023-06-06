@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-button {
+.headerBtn {
     @apply mr-6 text-sm bg-gray-700 hover:bg-yellow-700 text-white py-2 px-4 rounded;
 }
