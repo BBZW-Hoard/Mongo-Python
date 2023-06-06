@@ -7,12 +7,18 @@ import { ref } from 'vue'
     <header class="header bg-gray-800 text-white">
         <div class="header-content flex items-center justify-between px-4 py-2">
             <div class="logo-container flex items-center">
-                <img src="../assets/logo.png" alt="Logo" class="logo h-16 w-16 m-2">
-                <button class="headerBtn header-button">Meine Liste</button>
-                <button class="headerBtn header-button">Song suchen</button>
+                <RouterLink to="">
+                    <img src="../assets/logo.png" alt="Logo" class="logo h-16 w-16 m-2">
+                </RouterLink>
+                <RouterLink to="/lists">
+                    <button class="headerBtn header-button">Meine Liste</button>
+                </RouterLink>
+                <RouterLink to="/">
+                    <button class="headerBtn header-button">Song suchen</button>
+                </RouterLink>
             </div>
             <div class="search-container">
-                <input type="text" placeholder="Song suchen..." class="search-bar">
+                <input type="text" placeholder="Song suchen..." class="search-bar" @keypress="searchSong(this.value)">
             </div>
         </div>
         <div class="shine-animation"></div>
