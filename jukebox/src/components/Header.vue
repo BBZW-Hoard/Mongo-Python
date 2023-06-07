@@ -18,7 +18,7 @@ import { ref } from 'vue'
                 </RouterLink>
             </div>
             <div class="search-container">
-                <input type="text" placeholder="Song suchen..." class="search-bar">
+                <input type="text" placeholder="Song suchen..." class="search-bar search">
             </div>
         </div>
         <div class="shine-animation"></div>
@@ -48,11 +48,9 @@ import { ref } from 'vue'
 }
 
 .search-bar {
-    padding: 0.5rem 1rem;
     background-color: #2d3748;
     color: #fff;
     border: none;
-    border-radius: 0.25rem;
     width: 200px;
     transition: width 0.5s;
 }
