@@ -9,7 +9,7 @@
         <!--  -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div v-for="song in filteredSongs" :key="song.id" class="bg-white rounded-md shadow p-4">
-                <Song :song="song" />
+                <Song :song="song" :showCRUDButtons="true" />
             </div>
         </div>
     </div>

@@ -11,7 +11,7 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[405px] overflow-y-auto border-2 border-gray-500 px-2" :class="filteredSongs == null ? 'py-1' : ''">
             <div v-for="song in filteredSongs" :key="song.id" class="bg-white rounded-md shadow p-4">
-                <Song :song="song" />
+                <Song :song="song" :showCRUDButtons="false" />
             </div>
         </div>
     </div>
