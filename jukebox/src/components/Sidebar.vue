@@ -39,7 +39,7 @@
             <div>
                 <button class="flex items-center justify-between w-full mb-2 focus:outline-none" @click="togglePlaylist1">
                     <span class="truncate text-xl">
-                        Playlist 1
+                        Playlist 1 <i>{{ isPlaylist1Open ? '(ausgewählt)' : ''  }}</i>
                     </span>
                     <svg :class="{ 'rotate-180': isPlaylist1Open }" xmlns="http://www.w3.org/2000/svg" width="16"
                         height="16" viewBox="0 0 55.655 31.657">
