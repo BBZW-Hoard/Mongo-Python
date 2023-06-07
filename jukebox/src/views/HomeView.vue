@@ -7,7 +7,7 @@
             <input v-model="inputSearch" type="text" class="search w-full sm:w-auto sm:mx-4" placeholder="Song suchen...">
         </div>
         <!--  -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div v-for="song in filteredSongs" :key="song.id" class="bg-white rounded-md shadow p-4">
                 <Song :song="song" />
             </div>
