@@ -8,7 +8,7 @@ import { ref } from 'vue'
         <div class="header-content flex items-center justify-between px-4 py-2">
             <div class="logo-container flex items-center">
                 <RouterLink to="/">
-                    <img src="../assets/logo.png" alt="Logo" class="logo h-16 w-16 m-2">
+                    <img src="../assets/logo.png" alt="Logo" class="logo h-20 w-20 m-2">
                 </RouterLink>
                 <RouterLink to="/lists">
                     <button class="headerBtn header-button">Meine Liste</button>
