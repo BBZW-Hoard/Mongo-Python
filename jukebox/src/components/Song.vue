@@ -8,8 +8,8 @@
                     <path d="M12 5v14m-7-7h14"></path>
                 </svg>
             </button>
-            <button class="text-blue-600" @click="editSong(song)">Bearbeiten</button>
-            <button class="text-red-600" @click="deleteSong(song)">Löschen</button>
+            <button v-if="showCRUDButtons" class="text-blue-600" @click="editSong(song)">Bearbeiten</button>
+            <button v-if="showCRUDButtons" class="text-red-600" @click="deleteSong(song)">Löschen</button>
         </div>
     </div>
     <div class="text-gray-600 mb-2">
@@ -30,6 +30,10 @@ defineProps({
         duration: Number,
         rating: String,
         required: true,
+    },
+    showCRUDButtons: {
+        type: Boolean,
+        required: true
     },
 })
 
