@@ -18,32 +18,10 @@
 <script setup>
 import { ref, computed } from 'vue'
 import Song from '../components/Song.vue';
+import jsonSongs from '../assets/json/songs.json';
 
 const inputSearch = ref('');
-const songs = ref([
-    {
-        id: 1,
-        name: 'Forest of Jnana and Vidya',
-        // Author, Interpret (publisher), Album
-        attributes: ['Genshin Impact'],
-        duartion: 65,
-        rating: 4.5
-    },
-    {
-        id: 2,
-        name: 'We Named Her Ku',
-        attributes: ['Ori and the Will of the Wisps'],
-        duartion: 4,
-        rating: 5
-    },
-    {
-        id: 3,
-        name: 'Dovahkiin',
-        attributes: ['Jeremy Soule', 'London Music Works', 'The Song Of The Dragonborn'],
-        duartion: 4,
-        rating: 4.8
-    },
-])
+const songs = ref(jsonSongs);
 
 const filteredSongs = computed(() => {
     return songs.value.filter(x => x.name.toLowerCase().includes(inputSearch.value.toLowerCase()))
