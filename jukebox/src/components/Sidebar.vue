@@ -11,7 +11,7 @@
                             fill="none" stroke="#fff" stroke-linecap="round" stroke-width="4" />
                     </svg>
                 </button>
-                <span class="font-semibold text-lg">Playlists</span>
+                <span class="font-semibold text-2xl">Playlists</span>
                 <span class="mx-2 mt-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 15.944 15.266">
                         <g id="Komponente_1_1" data-name="Komponente 1 – 1" transform="translate(0.5 0.5)">
@@ -36,12 +36,12 @@
                     </svg>
                 </span>
             </div>
-            <div>
-                <button class="flex items-center justify-between w-full mb-2 focus:outline-none" @click="togglePlaylist1">
+            <div v-for="playlist in playlists" :key="playlist.id">
+                <button class="flex items-center justify-between w-full mb-2 focus:outline-none" @click="togglePlaylist(playlist.id)">
                     <span class="truncate text-xl">
-                        Playlist 1 <i>{{ isPlaylist1Open ? '(ausgewählt)' : ''  }}</i>
+                        {{ playlist.name}} <i>{{ isPlaylistOpen[playlist.id - 1] ? '(ausgewählt)' : ''  }}</i>
                     </span>
-                    <svg :class="{ 'rotate-180': isPlaylist1Open }" xmlns="http://www.w3.org/2000/svg" width="16"
+                    <svg :class="{ 'rotate-180': isPlaylistOpen[playlist.id - 1] }" xmlns="http://www.w3.org/2000/svg" width="16"
                         height="16" viewBox="0 0 55.655 31.657">
                         <line id="Linie_3" data-name="Linie 3" x2="24" y2="26" transform="translate(28.828 2.828)"
                             fill="none" stroke="#fff" stroke-linecap="round" stroke-width="4" />
@@ -50,9 +50,9 @@
                     </svg>
 
                 </button>
-                <div v-show="isPlaylist1Open">
-                    <div class="flex items-center mb-2">
-                        <span class="truncate">> Item 2 with a very long title that gets cut off with three dots</span>
+                <div v-show="isPlaylistOpen[playlist.id - 1]">
+                    <div v-for="song in playlist.songs" class="flex items-center mb-2">
+                        <span class="truncate">> {{ song.name }}</span>
                         <div class="ml-auto flex">
                             <button class="p-1 hover:bg-green-500 rounded-full" title="Play">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 36.266 36.896">
@@ -91,13 +91,20 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import jsonPlaylists from '../assets/json/playlists.json'
 
 const sidebarOpen = ref(true);
-const isPlaylist1Open = ref(true);
+const isPlaylistOpen = ref(new Array(jsonPlaylists.length));
+const playlists = ref(jsonPlaylists);
 
-function togglePlaylist1() {
-    isPlaylist1Open.value = !isPlaylist1Open.value;
+
+onMounted(() => {
+    for(let i = 0; i < isPlaylistOpen.length; i++) isPlaylistOpen[i] = false;
+})
+
+function togglePlaylist(id) {
+    isPlaylistOpen.value[id - 1] = !isPlaylistOpen.value[id - 1];
 }
 </script>
 
