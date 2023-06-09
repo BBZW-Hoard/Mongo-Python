@@ -1,3 +1,21 @@
+<script setup>
+import { onMounted, ref } from 'vue';
+import jsonPlaylists from '../assets/json/playlists.json'
+
+const sidebarOpen = ref(true);
+const isPlaylistOpen = ref(new Array(jsonPlaylists.length));
+const playlists = ref(jsonPlaylists);
+
+onMounted(() => {
+    for(let i = 0; i < isPlaylistOpen.length; i++) isPlaylistOpen[i] = false;
+})
+
+function togglePlaylist(id) {
+    isPlaylistOpen.value[id - 1] = !isPlaylistOpen.value[id - 1];
+    // LS: Update LocalStorage entry
+}
+</script>
+
 <template>
     <div class="flex min-h-screen">
         <!-- no v-if because songs will -->
@@ -89,24 +107,5 @@
         </div>
     </div>
 </template>
-
-<script setup>
-import { onMounted, ref } from 'vue';
-import jsonPlaylists from '../assets/json/playlists.json'
-
-const sidebarOpen = ref(true);
-const isPlaylistOpen = ref(new Array(jsonPlaylists.length));
-const playlists = ref(jsonPlaylists);
-
-
-onMounted(() => {
-    for(let i = 0; i < isPlaylistOpen.length; i++) isPlaylistOpen[i] = false;
-})
-
-function togglePlaylist(id) {
-    isPlaylistOpen.value[id - 1] = !isPlaylistOpen.value[id - 1];
-    // LS: Update LocalStorage entry
-}
-</script>
 
 <style scoped></style>

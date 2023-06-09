@@ -1,20 +1,3 @@
-<template>
-    <div class="container mx-auto p-4">
-        <div class="sm:flex justify-start mb-4">
-            <button @click="addSong()" class="btn w-full my-4 sm:w-auto sm:my-0 sm:mx-4">
-                Song hinzufügen
-            </button>
-            <input v-model="inputSearch" type="text" class="search w-full sm:w-auto sm:mx-4" placeholder="Song suchen...">
-        </div>
-        <!--  -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div v-for="song in filteredSongs" :key="song.id" class="bg-white rounded-md shadow p-4">
-                <Song :song="song" :showCRUDButtons="true" />
-            </div>
-        </div>
-    </div>
-</template>
-
 <script setup>
 import { ref, computed } from 'vue'
 import Song from '../components/Song.vue';
@@ -41,5 +24,22 @@ function addSong() {
     songs.value.push(song);
 }
 </script>
+
+<template>
+    <div class="container mx-auto p-4">
+        <div class="sm:flex justify-start mb-4">
+            <button @click="addSong()" class="btn w-full my-4 sm:w-auto sm:my-0 sm:mx-4">
+                Song hinzufügen
+            </button>
+            <input v-model="inputSearch" type="text" class="search w-full sm:w-auto sm:mx-4" placeholder="Song suchen...">
+        </div>
+        <!--  -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div v-for="song in filteredSongs" :key="song.id" class="bg-white rounded-md shadow p-4">
+                <Song :song="song" :showCRUDButtons="true" />
+            </div>
+        </div>
+    </div>
+</template>
 
 <style scoped></style>
