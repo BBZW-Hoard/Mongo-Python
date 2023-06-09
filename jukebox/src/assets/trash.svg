@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 55.657 55.657">
+    <line id="Linie_1" data-name="Linie 1" x2="50" y2="50"
+        transform="translate(2.828 2.828)" fill="none" stroke="#fff" stroke-linecap="round"
+        stroke-width="4" />
+    <line id="Linie_2" data-name="Linie 2" x2="50" y2="50"
+        transform="translate(52.828 2.828) rotate(90)" fill="none" stroke="#fff"
+        stroke-linecap="round" stroke-width="4" />
+</svg>
