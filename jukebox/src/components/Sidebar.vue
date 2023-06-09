@@ -15,8 +15,9 @@ function closeAllPlaylists() {
 }
 
 function togglePlaylist(id) {
+    // skip if user wants to close active playlist
     if(isPlaylistOpen.value[id - 1] != true) closeAllPlaylists();
-    
+
     isPlaylistOpen.value[id - 1] = !isPlaylistOpen.value[id - 1];
     // LS: Update LocalStorage entry
 }
