@@ -38,8 +38,8 @@
             </div>
             <div v-for="playlist in playlists" :key="playlist.id">
                 <button class="flex items-center justify-between w-full mb-2 focus:outline-none" @click="togglePlaylist(playlist.id)">
-                    <span class="truncate text-xl">
-                        {{ playlist.name}} <i>{{ isPlaylistOpen[playlist.id - 1] ? '(ausgewählt)' : ''  }}</i>
+                    <span class="truncate text-md font-bold">
+                        {{ playlist.name }} <i>{{ isPlaylistOpen[playlist.id - 1] ? '(ausgewählt)' : ''  }}</i>
                     </span>
                     <svg :class="{ 'rotate-180': isPlaylistOpen[playlist.id - 1] }" xmlns="http://www.w3.org/2000/svg" width="16"
                         height="16" viewBox="0 0 55.655 31.657">
@@ -105,6 +105,7 @@ onMounted(() => {
 
 function togglePlaylist(id) {
     isPlaylistOpen.value[id - 1] = !isPlaylistOpen.value[id - 1];
+    // LS: Update LocalStorage entry
 }
 </script>
 
