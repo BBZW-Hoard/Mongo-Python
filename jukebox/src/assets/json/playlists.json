@@ -1,0 +1,428 @@
+[
+    {
+        "id": 1,
+        "name": "Mystic Melodies",
+        "songs": [
+            {
+                "id": 1,
+                "name": "Forest of Jnana and Vidya"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Harmonic Moonlight",
+        "songs": [
+            {
+                "id": 2,
+                "name": "The Melancholy Moon"
+            },
+            {
+                "id": 3,
+                "name": "Echoes of Eternity"
+            },
+            {
+                "id": 4,
+                "name": "Harmonic Dreams"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Whispering Serenade",
+        "songs": [
+            {
+                "id": 5,
+                "name": "Whispering Winds"
+            },
+            {
+                "id": 6,
+                "name": "Serenade of Solitude"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Mystic Reflections",
+        "songs": [
+            {
+                "id": 7,
+                "name": "Mystic Reflections"
+            },
+            {
+                "id": 8,
+                "name": "Harmony's Embrace"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Enchanted Reverie",
+        "songs": [
+            {
+                "id": 9,
+                "name": "Silent Whispers"
+            },
+            {
+                "id": 10,
+                "name": "Enchanted Reverie"
+            },
+            {
+                "id": 11,
+                "name": "Lullaby of Serenity"
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Celestial Harmony",
+        "songs": [
+            {
+                "id": 12,
+                "name": "Celestial Harmony"
+            },
+            {
+                "id": 13,
+                "name": "Whispers of Wisdom"
+            },
+            {
+                "id": 14,
+                "name": "Harmonic Fusion"
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Moonlight Serenade",
+        "songs": [
+            {
+                "id": 15,
+                "name": "Serenade in Moonlight"
+            },
+            {
+                "id": 16,
+                "name": "Melodies of Tranquility"
+            },
+            {
+                "id": 17,
+                "name": "Whispers in the Breeze"
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Ethereal Harmony",
+        "songs": [
+            {
+                "id": 18,
+                "name": "Ethereal Reverie"
+            },
+            {
+                "id": 19,
+                "name": "Enchanted Echoes"
+            },
+            {
+                "id": 20,
+                "name": "Harmony of the Soul"
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "name": "Harmonic Dreams",
+        "songs": [
+            {
+                "id": 1,
+                "name": "Forest of Jnana and Vidya"
+            },
+            {
+                "id": 2,
+                "name": "The Melancholy Moon"
+            },
+            {
+                "id": 3,
+                "name": "Echoes of Eternity"
+            },
+            {
+                "id": 4,
+                "name": "Harmonic Dreams"
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Serenade of Solitude",
+        "songs": [
+            {
+                "id": 5,
+                "name": "Whispering Winds"
+            },
+            {
+                "id": 6,
+                "name": "Serenade of Solitude"
+            },
+            {
+                "id": 7,
+                "name": "Mystic Reflections"
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "name": "Harmony's Lullaby",
+        "songs": [
+            {
+                "id": 8,
+                "name": "Harmony's Embrace"
+            },
+            {
+                "id": 9,
+                "name": "Silent Whispers"
+            },
+            {
+                "id": 10,
+                "name": "Enchanted Reverie"
+            },
+            {
+                "id": 11,
+                "name": "Lullaby of Serenity"
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "name": "Celestial Fusion",
+        "songs": [
+            {
+                "id": 12,
+                "name": "Celestial Harmony"
+            },
+            {
+                "id": 13,
+                "name": "Whispers of Wisdom"
+            },
+            {
+                "id": 14,
+                "name": "Harmonic Fusion"
+            },
+            {
+                "id": 15,
+                "name": "Serenade in Moonlight"
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "name": "Tranquil Melodies",
+        "songs": [
+            {
+                "id": 16,
+                "name": "Melodies of Tranquility"
+            },
+            {
+                "id": 17,
+                "name": "Whispers in the Breeze"
+            },
+            {
+                "id": 18,
+                "name": "Ethereal Reverie"
+            },
+            {
+                "id": 19,
+                "name": "Enchanted Echoes"
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "name": "Soulful Harmony",
+        "songs": [
+            {
+                "id": 20,
+                "name": "Harmony of the Soul"
+            },
+            {
+                "id": 1,
+                "name": "Forest of Jnana and Vidya"
+            },
+            {
+                "id": 2,
+                "name": "The Melancholy Moon"
+            },
+            {
+                "id": 3,
+                "name": "Echoes of Eternity"
+            },
+            {
+                "id": 4,
+                "name": "Harmonic Dreams"
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "name": "Whispering Harmony",
+        "songs": [
+            {
+                "id": 5,
+                "name": "Whispering Winds"
+            },
+            {
+                "id": 6,
+                "name": "Serenade of Solitude"
+            },
+            {
+                "id": 7,
+                "name": "Mystic Reflections"
+            },
+            {
+                "id": 8,
+                "name": "Harmony's Embrace"
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "name": "Enchanted Lullabies",
+        "songs": [
+            {
+                "id": 9,
+                "name": "Silent Whispers"
+            },
+            {
+                "id": 10,
+                "name": "Enchanted Reverie"
+            },
+            {
+                "id": 11,
+                "name": "Lullaby of Serenity"
+            },
+            {
+                "id": 12,
+                "name": "Celestial Harmony"
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "name": "Harmonic Serenade",
+        "songs": [
+            {
+                "id": 13,
+                "name": "Whispers of Wisdom"
+            },
+            {
+                "id": 14,
+                "name": "Harmonic Fusion"
+            },
+            {
+                "id": 15,
+                "name": "Serenade in Moonlight"
+            },
+            {
+                "id": 16,
+                "name": "Melodies of Tranquility"
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "name": "Breezy Echoes",
+        "songs": [
+            {
+                "id": 17,
+                "name": "Whispers in the Breeze"
+            },
+            {
+                "id": 18,
+                "name": "Ethereal Reverie"
+            },
+            {
+                "id": 19,
+                "name": "Enchanted Echoes"
+            },
+            {
+                "id": 20,
+                "name": "Harmony of the Soul"
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "name": "Breezy Echoes",
+        "songs": [
+            {
+                "id": 17,
+                "name": "Whispers in the Breeze"
+            },
+            {
+                "id": 18,
+                "name": "Ethereal Reverie"
+            },
+            {
+                "id": 19,
+                "name": "Enchanted Echoes"
+            },
+            {
+                "id": 20,
+                "name": "Harmony of the Soul"
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "name": "Harmonic Forest",
+        "songs": [
+            {
+                "id": 1,
+                "name": "Forest of Jnana and Vidya"
+            },
+            {
+                "id": 2,
+                "name": "The Melancholy Moon"
+            },
+            {
+                "id": 3,
+                "name": "Echoes of Eternity"
+            },
+            {
+                "id": 4,
+                "name": "Harmonic Dreams"
+            },
+            {
+                "id": 5,
+                "name": "Whispering Winds"
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "name": "Melodic Solitude",
+        "songs": [
+            {
+                "id": 6,
+                "name": "Serenade of Solitude"
+            },
+            {
+                "id": 7,
+                "name": "Mystic Reflections"
+            },
+            {
+                "id": 8,
+                "name": "Harmony's Embrace"
+            },
+            {
+                "id": 9,
+                "name": "Silent Whispers"
+            },
+            {
+                "id": 10,
+                "name": "Enchanted Reverie"
+            },
+            {
+                "id": 11,
+                "name": "Lullaby of Serenity"
+            }
+        ]
+    }
+]
