@@ -6,6 +6,26 @@
             {
                 "id": 1,
                 "name": "Forest of Jnana and Vidya"
+            },
+            {
+                "id": 16,
+                "name": "Melodies of Tranquility"
+            },
+            {
+                "id": 2,
+                "name": "The Melancholy Moon"
+            },
+            {
+                "id": 17,
+                "name": "Whispers in the Breeze"
+            },
+            {
+                "id": 3,
+                "name": "Echoes of Eternity"
+            },
+            {
+                "id": 4,
+                "name": "Harmonic Dreams"
             }
         ]
     },
@@ -34,6 +54,10 @@
             {
                 "id": 5,
                 "name": "Whispering Winds"
+            },
+            {
+                "id": 18,
+                "name": "Ethereal Reverie"
             },
             {
                 "id": 6,
