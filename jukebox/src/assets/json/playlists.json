@@ -5,27 +5,62 @@
         "songs": [
             {
                 "id": 1,
-                "name": "Forest of Jnana and Vidya"
+                "name": "Forest of Jnana and Vidya",
+                "attributes": [
+                    "Genshin Impact"
+                ],
+                "duartion": 65,
+                "rating": 4.5
             },
             {
                 "id": 16,
-                "name": "Melodies of Tranquility"
+                "name": "Melodies of Tranquility",
+                "attributes": [
+                    "Artist",
+                    "Composer",
+                    "Year"
+                ],
+                "duration": 63,
+                "rating": 4.4
             },
             {
                 "id": 2,
-                "name": "The Melancholy Moon"
+                "name": "The Melancholy Moon",
+                "attributes": [
+                    "Composer",
+                    "Genre"
+                ],
+                "duartion": 142,
+                "rating": 3.8
             },
             {
                 "id": 17,
-                "name": "Whispers in the Breeze"
+                "name": "Whispers in the Breeze",
+                "attributes": [
+                    "Author"
+                ],
+                "duration": 57,
+                "rating": 4.6
             },
             {
                 "id": 3,
-                "name": "Echoes of Eternity"
+                "name": "Echoes of Eternity",
+                "attributes": [
+                    "Artist",
+                    "Year"
+                ],
+                "duration": 78,
+                "rating": 4.2
             },
             {
                 "id": 4,
-                "name": "Harmonic Dreams"
+                "name": "Harmonic Dreams",
+                "attributes": [
+                    "Composer",
+                    "Album"
+                ],
+                "duration": 53,
+                "rating": 4.2
             }
         ]
     },
@@ -35,15 +70,33 @@
         "songs": [
             {
                 "id": 2,
-                "name": "The Melancholy Moon"
+                "name": "The Melancholy Moon",
+                "attributes": [
+                    "Composer",
+                    "Genre"
+                ],
+                "duartion": 142,
+                "rating": 3.8
             },
             {
                 "id": 3,
-                "name": "Echoes of Eternity"
+                "name": "Echoes of Eternity",
+                "attributes": [
+                    "Artist",
+                    "Year"
+                ],
+                "duration": 78,
+                "rating": 4.2
             },
             {
                 "id": 4,
-                "name": "Harmonic Dreams"
+                "name": "Harmonic Dreams",
+                "attributes": [
+                    "Composer",
+                    "Album"
+                ],
+                "duration": 53,
+                "rating": 4.2
             }
         ]
     },
@@ -53,15 +106,33 @@
         "songs": [
             {
                 "id": 5,
-                "name": "Whispering Winds"
+                "name": "Whispering Winds",
+                "attributes": [
+                    "Artist"
+                ],
+                "duration": 72,
+                "rating": 4.7
             },
             {
                 "id": 18,
-                "name": "Ethereal Reverie"
+                "name": "Ethereal Reverie",
+                "attributes": [
+                    "Composer",
+                    "Year"
+                ],
+                "duration": 67,
+                "rating": 4.1
             },
             {
                 "id": 6,
-                "name": "Serenade of Solitude"
+                "name": "Serenade of Solitude",
+                "attributes": [
+                    "Composer",
+                    "Year",
+                    "Album"
+                ],
+                "duartion": 23,
+                "rating": 4.1
             }
         ]
     },
@@ -71,11 +142,26 @@
         "songs": [
             {
                 "id": 7,
-                "name": "Mystic Reflections"
+                "name": "Mystic Reflections",
+                "attributes": [
+                    "Author",
+                    "Genre",
+                    "Duration"
+                ],
+                "duartion": 24,
+                "rating": 4.0
             },
             {
                 "id": 8,
-                "name": "Harmony's Embrace"
+                "name": "Harmony's Embrace",
+                "attributes": [
+                    "Artist",
+                    "Composer",
+                    "Year",
+                    "Album"
+                ],
+                "duration": 60,
+                "rating": 4.4
             }
         ]
     },
@@ -85,15 +171,33 @@
         "songs": [
             {
                 "id": 9,
-                "name": "Silent Whispers"
+                "name": "Silent Whispers",
+                "attributes": [
+                    "Composer"
+                ],
+                "duration": 45,
+                "rating": 4.6
             },
             {
                 "id": 10,
-                "name": "Enchanted Reverie"
+                "name": "Enchanted Reverie",
+                "attributes": [
+                    "Artist",
+                    "Year"
+                ],
+                "duration": 68,
+                "rating": 4.3
             },
             {
                 "id": 11,
-                "name": "Lullaby of Serenity"
+                "name": "Lullaby of Serenity",
+                "attributes": [
+                    "Composer",
+                    "Genre",
+                    "Album"
+                ],
+                "duartion": 212,
+                "rating": 4.5
             }
         ]
     },
@@ -103,15 +207,34 @@
         "songs": [
             {
                 "id": 12,
-                "name": "Celestial Harmony"
+                "name": "Celestial Harmony",
+                "attributes": [
+                    "Author",
+                    "Interpret"
+                ],
+                "duration": 55,
+                "rating": 4.7
             },
             {
                 "id": 13,
-                "name": "Whispers of Wisdom"
+                "name": "Whispers of Wisdom",
+                "attributes": [
+                    "Artist",
+                    "Year",
+                    "Duration"
+                ],
+                "duration": 94,
+                "rating": 3.9
             },
             {
                 "id": 14,
-                "name": "Harmonic Fusion"
+                "name": "Harmonic Fusion",
+                "attributes": [
+                    "Composer",
+                    "Album"
+                ],
+                "duration": 70,
+                "rating": 4.8
             }
         ]
     },
@@ -121,15 +244,34 @@
         "songs": [
             {
                 "id": 15,
-                "name": "Serenade in Moonlight"
+                "name": "Serenade in Moonlight",
+                "attributes": [
+                    "Author",
+                    "Genre",
+                    "Duration"
+                ],
+                "duartion": 24,
+                "rating": 4.2
             },
             {
                 "id": 16,
-                "name": "Melodies of Tranquility"
+                "name": "Melodies of Tranquility",
+                "attributes": [
+                    "Artist",
+                    "Composer",
+                    "Year"
+                ],
+                "duration": 63,
+                "rating": 4.4
             },
             {
                 "id": 17,
-                "name": "Whispers in the Breeze"
+                "name": "Whispers in the Breeze",
+                "attributes": [
+                    "Author"
+                ],
+                "duration": 57,
+                "rating": 4.6
             }
         ]
     },
@@ -139,15 +281,35 @@
         "songs": [
             {
                 "id": 18,
-                "name": "Ethereal Reverie"
+                "name": "Ethereal Reverie",
+                "attributes": [
+                    "Composer",
+                    "Year"
+                ],
+                "duration": 67,
+                "rating": 4.1
             },
             {
                 "id": 19,
-                "name": "Enchanted Echoes"
+                "name": "Enchanted Echoes",
+                "attributes": [
+                    "Artist",
+                    "Genre",
+                    "Album"
+                ],
+                "duartion": 140,
+                "rating": 4.3
             },
             {
                 "id": 20,
-                "name": "Harmony of the Soul"
+                "name": "Harmony of the Soul",
+                "attributes": [
+                    "Author",
+                    "Interpret",
+                    "Duration"
+                ],
+                "duartion": 42,
+                "rating": 4.9
             }
         ]
     },
@@ -157,19 +319,42 @@
         "songs": [
             {
                 "id": 1,
-                "name": "Forest of Jnana and Vidya"
+                "name": "Forest of Jnana and Vidya",
+                "attributes": [
+                    "Genshin Impact"
+                ],
+                "duartion": 65,
+                "rating": 4.5
             },
             {
                 "id": 2,
-                "name": "The Melancholy Moon"
+                "name": "The Melancholy Moon",
+                "attributes": [
+                    "Composer",
+                    "Genre"
+                ],
+                "duartion": 142,
+                "rating": 3.8
             },
             {
                 "id": 3,
-                "name": "Echoes of Eternity"
+                "name": "Echoes of Eternity",
+                "attributes": [
+                    "Artist",
+                    "Year"
+                ],
+                "duration": 78,
+                "rating": 4.2
             },
             {
                 "id": 4,
-                "name": "Harmonic Dreams"
+                "name": "Harmonic Dreams",
+                "attributes": [
+                    "Composer",
+                    "Album"
+                ],
+                "duration": 53,
+                "rating": 4.2
             }
         ]
     },
@@ -179,15 +364,34 @@
         "songs": [
             {
                 "id": 5,
-                "name": "Whispering Winds"
+                "name": "Whispering Winds",
+                "attributes": [
+                    "Artist"
+                ],
+                "duration": 72,
+                "rating": 4.7
             },
             {
                 "id": 6,
-                "name": "Serenade of Solitude"
+                "name": "Serenade of Solitude",
+                "attributes": [
+                    "Composer",
+                    "Year",
+                    "Album"
+                ],
+                "duartion": 23,
+                "rating": 4.1
             },
             {
                 "id": 7,
-                "name": "Mystic Reflections"
+                "name": "Mystic Reflections",
+                "attributes": [
+                    "Author",
+                    "Genre",
+                    "Duration"
+                ],
+                "duartion": 24,
+                "rating": 4.0
             }
         ]
     },
@@ -197,19 +401,45 @@
         "songs": [
             {
                 "id": 8,
-                "name": "Harmony's Embrace"
+                "name": "Harmony's Embrace",
+                "attributes": [
+                    "Artist",
+                    "Composer",
+                    "Year",
+                    "Album"
+                ],
+                "duration": 60,
+                "rating": 4.4
             },
             {
                 "id": 9,
-                "name": "Silent Whispers"
+                "name": "Silent Whispers",
+                "attributes": [
+                    "Composer"
+                ],
+                "duration": 45,
+                "rating": 4.6
             },
             {
                 "id": 10,
-                "name": "Enchanted Reverie"
+                "name": "Enchanted Reverie",
+                "attributes": [
+                    "Artist",
+                    "Year"
+                ],
+                "duration": 68,
+                "rating": 4.3
             },
             {
                 "id": 11,
-                "name": "Lullaby of Serenity"
+                "name": "Lullaby of Serenity",
+                "attributes": [
+                    "Composer",
+                    "Genre",
+                    "Album"
+                ],
+                "duartion": 212,
+                "rating": 4.5
             }
         ]
     },
@@ -219,19 +449,45 @@
         "songs": [
             {
                 "id": 12,
-                "name": "Celestial Harmony"
+                "name": "Celestial Harmony",
+                "attributes": [
+                    "Author",
+                    "Interpret"
+                ],
+                "duration": 55,
+                "rating": 4.7
             },
             {
                 "id": 13,
-                "name": "Whispers of Wisdom"
+                "name": "Whispers of Wisdom",
+                "attributes": [
+                    "Artist",
+                    "Year",
+                    "Duration"
+                ],
+                "duration": 94,
+                "rating": 3.9
             },
             {
                 "id": 14,
-                "name": "Harmonic Fusion"
+                "name": "Harmonic Fusion",
+                "attributes": [
+                    "Composer",
+                    "Album"
+                ],
+                "duration": 70,
+                "rating": 4.8
             },
             {
                 "id": 15,
-                "name": "Serenade in Moonlight"
+                "name": "Serenade in Moonlight",
+                "attributes": [
+                    "Author",
+                    "Genre",
+                    "Duration"
+                ],
+                "duartion": 24,
+                "rating": 4.2
             }
         ]
     },
@@ -241,19 +497,44 @@
         "songs": [
             {
                 "id": 16,
-                "name": "Melodies of Tranquility"
+                "name": "Melodies of Tranquility",
+                "attributes": [
+                    "Artist",
+                    "Composer",
+                    "Year"
+                ],
+                "duration": 63,
+                "rating": 4.4
             },
             {
                 "id": 17,
-                "name": "Whispers in the Breeze"
+                "name": "Whispers in the Breeze",
+                "attributes": [
+                    "Author"
+                ],
+                "duration": 57,
+                "rating": 4.6
             },
             {
                 "id": 18,
-                "name": "Ethereal Reverie"
+                "name": "Ethereal Reverie",
+                "attributes": [
+                    "Composer",
+                    "Year"
+                ],
+                "duration": 67,
+                "rating": 4.1
             },
             {
                 "id": 19,
-                "name": "Enchanted Echoes"
+                "name": "Enchanted Echoes",
+                "attributes": [
+                    "Artist",
+                    "Genre",
+                    "Album"
+                ],
+                "duartion": 140,
+                "rating": 4.3
             }
         ]
     },
@@ -263,23 +544,53 @@
         "songs": [
             {
                 "id": 20,
-                "name": "Harmony of the Soul"
+                "name": "Harmony of the Soul",
+                "attributes": [
+                    "Author",
+                    "Interpret",
+                    "Duration"
+                ],
+                "duartion": 42,
+                "rating": 4.9
             },
             {
                 "id": 1,
-                "name": "Forest of Jnana and Vidya"
+                "name": "Forest of Jnana and Vidya",
+                "attributes": [
+                    "Genshin Impact"
+                ],
+                "duartion": 65,
+                "rating": 4.5
             },
             {
                 "id": 2,
-                "name": "The Melancholy Moon"
+                "name": "The Melancholy Moon",
+                "attributes": [
+                    "Composer",
+                    "Genre"
+                ],
+                "duartion": 142,
+                "rating": 3.8
             },
             {
                 "id": 3,
-                "name": "Echoes of Eternity"
+                "name": "Echoes of Eternity",
+                "attributes": [
+                    "Artist",
+                    "Year"
+                ],
+                "duration": 78,
+                "rating": 4.2
             },
             {
                 "id": 4,
-                "name": "Harmonic Dreams"
+                "name": "Harmonic Dreams",
+                "attributes": [
+                    "Composer",
+                    "Album"
+                ],
+                "duration": 53,
+                "rating": 4.2
             }
         ]
     },
@@ -289,19 +600,46 @@
         "songs": [
             {
                 "id": 5,
-                "name": "Whispering Winds"
+                "name": "Whispering Winds",
+                "attributes": [
+                    "Artist"
+                ],
+                "duration": 72,
+                "rating": 4.7
             },
             {
                 "id": 6,
-                "name": "Serenade of Solitude"
+                "name": "Serenade of Solitude",
+                "attributes": [
+                    "Composer",
+                    "Year",
+                    "Album"
+                ],
+                "duartion": 23,
+                "rating": 4.1
             },
             {
                 "id": 7,
-                "name": "Mystic Reflections"
+                "name": "Mystic Reflections",
+                "attributes": [
+                    "Author",
+                    "Genre",
+                    "Duration"
+                ],
+                "duartion": 24,
+                "rating": 4.0
             },
             {
                 "id": 8,
-                "name": "Harmony's Embrace"
+                "name": "Harmony's Embrace",
+                "attributes": [
+                    "Artist",
+                    "Composer",
+                    "Year",
+                    "Album"
+                ],
+                "duration": 60,
+                "rating": 4.4
             }
         ]
     },
@@ -311,19 +649,43 @@
         "songs": [
             {
                 "id": 9,
-                "name": "Silent Whispers"
+                "name": "Silent Whispers",
+                "attributes": [
+                    "Composer"
+                ],
+                "duration": 45,
+                "rating": 4.6
             },
             {
                 "id": 10,
-                "name": "Enchanted Reverie"
+                "name": "Enchanted Reverie",
+                "attributes": [
+                    "Artist",
+                    "Year"
+                ],
+                "duration": 68,
+                "rating": 4.3
             },
             {
                 "id": 11,
-                "name": "Lullaby of Serenity"
+                "name": "Lullaby of Serenity",
+                "attributes": [
+                    "Composer",
+                    "Genre",
+                    "Album"
+                ],
+                "duartion": 212,
+                "rating": 4.5
             },
             {
                 "id": 12,
-                "name": "Celestial Harmony"
+                "name": "Celestial Harmony",
+                "attributes": [
+                    "Author",
+                    "Interpret"
+                ],
+                "duration": 55,
+                "rating": 4.7
             }
         ]
     },
@@ -333,19 +695,46 @@
         "songs": [
             {
                 "id": 13,
-                "name": "Whispers of Wisdom"
+                "name": "Whispers of Wisdom",
+                "attributes": [
+                    "Artist",
+                    "Year",
+                    "Duration"
+                ],
+                "duration": 94,
+                "rating": 3.9
             },
             {
                 "id": 14,
-                "name": "Harmonic Fusion"
+                "name": "Harmonic Fusion",
+                "attributes": [
+                    "Composer",
+                    "Album"
+                ],
+                "duration": 70,
+                "rating": 4.8
             },
             {
                 "id": 15,
-                "name": "Serenade in Moonlight"
+                "name": "Serenade in Moonlight",
+                "attributes": [
+                    "Author",
+                    "Genre",
+                    "Duration"
+                ],
+                "duartion": 24,
+                "rating": 4.2
             },
             {
                 "id": 16,
-                "name": "Melodies of Tranquility"
+                "name": "Melodies of Tranquility",
+                "attributes": [
+                    "Artist",
+                    "Composer",
+                    "Year"
+                ],
+                "duration": 63,
+                "rating": 4.4
             }
         ]
     },
@@ -355,19 +744,44 @@
         "songs": [
             {
                 "id": 17,
-                "name": "Whispers in the Breeze"
+                "name": "Whispers in the Breeze",
+                "attributes": [
+                    "Author"
+                ],
+                "duration": 57,
+                "rating": 4.6
             },
             {
                 "id": 18,
-                "name": "Ethereal Reverie"
+                "name": "Ethereal Reverie",
+                "attributes": [
+                    "Composer",
+                    "Year"
+                ],
+                "duration": 67,
+                "rating": 4.1
             },
             {
                 "id": 19,
-                "name": "Enchanted Echoes"
+                "name": "Enchanted Echoes",
+                "attributes": [
+                    "Artist",
+                    "Genre",
+                    "Album"
+                ],
+                "duartion": 140,
+                "rating": 4.3
             },
             {
                 "id": 20,
-                "name": "Harmony of the Soul"
+                "name": "Harmony of the Soul",
+                "attributes": [
+                    "Author",
+                    "Interpret",
+                    "Duration"
+                ],
+                "duartion": 42,
+                "rating": 4.9
             }
         ]
     },
@@ -377,19 +791,44 @@
         "songs": [
             {
                 "id": 17,
-                "name": "Whispers in the Breeze"
+                "name": "Whispers in the Breeze",
+                "attributes": [
+                    "Author"
+                ],
+                "duration": 57,
+                "rating": 4.6
             },
             {
                 "id": 18,
-                "name": "Ethereal Reverie"
+                "name": "Ethereal Reverie",
+                "attributes": [
+                    "Composer",
+                    "Year"
+                ],
+                "duration": 67,
+                "rating": 4.1
             },
             {
                 "id": 19,
-                "name": "Enchanted Echoes"
+                "name": "Enchanted Echoes",
+                "attributes": [
+                    "Artist",
+                    "Genre",
+                    "Album"
+                ],
+                "duartion": 140,
+                "rating": 4.3
             },
             {
                 "id": 20,
-                "name": "Harmony of the Soul"
+                "name": "Harmony of the Soul",
+                "attributes": [
+                    "Author",
+                    "Interpret",
+                    "Duration"
+                ],
+                "duartion": 42,
+                "rating": 4.9
             }
         ]
     },
@@ -399,23 +838,51 @@
         "songs": [
             {
                 "id": 1,
-                "name": "Forest of Jnana and Vidya"
+                "name": "Forest of Jnana and Vidya",
+                "attributes": [
+                    "Genshin Impact"
+                ],
+                "duartion": 65,
+                "rating": 4.5
             },
             {
                 "id": 2,
-                "name": "The Melancholy Moon"
+                "name": "The Melancholy Moon",
+                "attributes": [
+                    "Composer",
+                    "Genre"
+                ],
+                "duartion": 142,
+                "rating": 3.8
             },
             {
                 "id": 3,
-                "name": "Echoes of Eternity"
+                "name": "Echoes of Eternity",
+                "attributes": [
+                    "Artist",
+                    "Year"
+                ],
+                "duration": 78,
+                "rating": 4.2
             },
             {
                 "id": 4,
-                "name": "Harmonic Dreams"
+                "name": "Harmonic Dreams",
+                "attributes": [
+                    "Composer",
+                    "Album"
+                ],
+                "duration": 53,
+                "rating": 4.2
             },
             {
                 "id": 5,
-                "name": "Whispering Winds"
+                "name": "Whispering Winds",
+                "attributes": [
+                    "Artist"
+                ],
+                "duration": 72,
+                "rating": 4.7
             }
         ]
     },
@@ -425,27 +892,67 @@
         "songs": [
             {
                 "id": 6,
-                "name": "Serenade of Solitude"
+                "name": "Serenade of Solitude",
+                "attributes": [
+                    "Composer",
+                    "Year",
+                    "Album"
+                ],
+                "duartion": 23,
+                "rating": 4.1
             },
             {
                 "id": 7,
-                "name": "Mystic Reflections"
+                "name": "Mystic Reflections",
+                "attributes": [
+                    "Author",
+                    "Genre",
+                    "Duration"
+                ],
+                "duartion": 24,
+                "rating": 4.0
             },
             {
                 "id": 8,
-                "name": "Harmony's Embrace"
+                "name": "Harmony's Embrace",
+                "attributes": [
+                    "Artist",
+                    "Composer",
+                    "Year",
+                    "Album"
+                ],
+                "duration": 60,
+                "rating": 4.4
             },
             {
                 "id": 9,
-                "name": "Silent Whispers"
+                "name": "Silent Whispers",
+                "attributes": [
+                    "Composer"
+                ],
+                "duration": 45,
+                "rating": 4.6
             },
             {
                 "id": 10,
-                "name": "Enchanted Reverie"
+                "name": "Enchanted Reverie",
+                "attributes": [
+                    "Artist",
+                    "Year"
+                ],
+                "duration": 68,
+                "rating": 4.3
             },
             {
                 "id": 11,
-                "name": "Lullaby of Serenity"
+                "name": "Lullaby of Serenity",
+                "attributes": [
+                    "Composer",
+                    "Genre",
+                    "Album"
+                ],
+                "duartion": 212,
+                "rating": 4.5
             }
         ]
     }
