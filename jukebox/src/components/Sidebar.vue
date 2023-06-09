@@ -1,5 +1,5 @@
 <template>
-    <div class="flex h-screen">
+    <div class="flex min-h-screen">
         <!-- no v-if because songs will -->
         <div class="w-72 bg-gray-800 text-white p-4" :class="{ 'hidden': !sidebarOpen }">
             <div class="flex items-center mb-4">
