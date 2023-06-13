@@ -8,6 +8,8 @@ const playlists = ref(jsonPlaylists);
 
 onMounted(() => {
     closeAllPlaylists();
+    let selectedPlaylistId = localStorage.getItem("selectedPlaylist") == "0" ? null : parseInt(localStorage.getItem("selectedPlaylist")); 
+    isPlaylistOpen.value[selectedPlaylistId] = !isPlaylistOpen.value[selectedPlaylistId];
 })
 
 function closeAllPlaylists() {
@@ -19,7 +21,9 @@ function togglePlaylist(id) {
     if(isPlaylistOpen.value[id - 1] != true) closeAllPlaylists();
 
     isPlaylistOpen.value[id - 1] = !isPlaylistOpen.value[id - 1];
+    
     // LS: Update LocalStorage entry
+    localStorage.setItem("selectedPlaylist", id);
 }
 </script>
 
