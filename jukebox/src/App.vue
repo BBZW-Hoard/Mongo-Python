@@ -5,6 +5,7 @@ import Sidebar from './components/Sidebar.vue';
 
 <template>
   <div>
+    <MangeLS />
     <Header />
     <div class="flex">
       <Sidebar />
