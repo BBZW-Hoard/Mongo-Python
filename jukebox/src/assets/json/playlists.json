@@ -786,53 +786,6 @@
         ]
     },
     {
-        "id": 18,
-        "name": "Breezy Echoes",
-        "songs": [
-            {
-                "id": 17,
-                "name": "Whispers in the Breeze",
-                "attributes": [
-                    "Author"
-                ],
-                "duration": 57,
-                "rating": 4.6
-            },
-            {
-                "id": 18,
-                "name": "Ethereal Reverie",
-                "attributes": [
-                    "Composer",
-                    "Year"
-                ],
-                "duration": 67,
-                "rating": 4.1
-            },
-            {
-                "id": 19,
-                "name": "Enchanted Echoes",
-                "attributes": [
-                    "Artist",
-                    "Genre",
-                    "Album"
-                ],
-                "duartion": 140,
-                "rating": 4.3
-            },
-            {
-                "id": 20,
-                "name": "Harmony of the Soul",
-                "attributes": [
-                    "Author",
-                    "Interpret",
-                    "Duration"
-                ],
-                "duartion": 42,
-                "rating": 4.9
-            }
-        ]
-    },
-    {
         "id": 19,
         "name": "Harmonic Forest",
         "songs": [
