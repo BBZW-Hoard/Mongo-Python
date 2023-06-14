@@ -29,7 +29,9 @@ function handleScreenWidthChange() {
     else isMobileView.value = false;
 }
 
-// return the duration in h or m format
+/**
+ * return the duration in h or m format
+ * */
 function durationValue(duration) {
     if (duration >= 60) {
         let hours = Math.floor(duration / 60);
@@ -58,6 +60,8 @@ function isLastAttribute(attribute, attributes) {
     return attribute === attributes[attributes.length - 1];
 }
 
+
+/* even listeners */
 window.addEventListener('resize', handleScreenWidthChange);
 </script>
 
