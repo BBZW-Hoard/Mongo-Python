@@ -30,7 +30,7 @@ function togglePlaylist(id) {
 <template>
     <div class="flex min-h-screen">
         <!-- no v-if because songs will -->
-        <div class="w-72 bg-gray-800 text-white p-4" :class="{ 'hidden': !sidebarOpen }">
+        <div class="w-screen sm:w-72 bg-gray-800 text-white p-4" :class="{ 'hidden': !sidebarOpen }">
             <div class="flex items-center mb-4">
                 <button class="mr-2 text-white hover:text-gray-300" title="Seitenleiste schliessen" @click="sidebarOpen = false">
                     <img src="../assets/arrowRight.svg" alt=">" />
