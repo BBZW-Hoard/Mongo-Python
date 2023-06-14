@@ -1,4 +1,6 @@
 <script setup>
+import { onMounted, ref } from 'vue'
+
 defineProps({
     song: {
         name: String,
@@ -13,7 +15,25 @@ defineProps({
     },
 })
 
+const isMobileView = ref(false);
+
+onMounted(() => {
+    handleScreenWidthChange();
+})
+
 /* functions */
+
+
+function handleScreenWidthChange() {
+    let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    console.log(screenWidth);
+
+    if (screenWidth < 768) isMobileView.value = true;
+    else isMobileView.value = false;
+
+    console.log(isMobileView.value);
+}
+
 // return the duration in h or m format
 function durationValue(duration) {
     if (duration >= 60) {
@@ -43,6 +63,7 @@ function isLastAttribute(attribute, attributes) {
     return attribute === attributes[attributes.length - 1];
 }
 
+window.addEventListener('resize', handleScreenWidthChange);
 </script>
 
 <template>
@@ -55,8 +76,10 @@ function isLastAttribute(attribute, attributes) {
                     <path d="M12 5v14m-7-7h14"></path>
                 </svg>
             </button>
-            <button v-if="showCRUDButtons" class="text-blue-600" @click="editSong(song)">Bearbeiten</button>
-            <button v-if="showCRUDButtons" class="text-red-600" @click="deleteSong(song)">Löschen</button>
+            <span v-if="!isMobileView">
+                <button v-if="showCRUDButtons" class="text-blue-600 mx-1" @click="editSong(song)">Bearbeiten</button>
+                <button v-if="showCRUDButtons" class="text-red-600 mx-1" @click="deleteSong(song)">Löschen</button>
+            </span>
         </div>
     </div>
     <div class="text-gray-600 mb-2">
@@ -67,6 +90,10 @@ function isLastAttribute(attribute, attributes) {
         </span>
     </div>
     <div class="text-gray-500" :class="song.rating >= 4 ? 'text-green-600' : ''">{{ song.rating }} Rating</div>
+    <div v-if="isMobileView">
+        <button class="text-blue-600 mx-1" @click="editSong(song)">Bearbeiten</button>
+        <button class="text-red-600 mx-1" @click="deleteSong(song)">Löschen</button>
+    </div>
 </template>
 
 <style scoped></style>
