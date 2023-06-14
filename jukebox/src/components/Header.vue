@@ -95,6 +95,7 @@ import { ref } from 'vue'
 }
 
 @media (max-width: 768px) {
+
     /* all hover class active on mobile */
     .header .logo {
         transform: scale(1.2);
