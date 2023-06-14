@@ -67,7 +67,7 @@ function togglePlaylist(id) {
         </div>
         <div v-if="!sidebarOpen" class="flex-grow bg-gray-800">
             <button class="mr-2 text-white hover:text-gray-300 p-2" title="Sidebar öffnen" @click="sidebarOpen = true">
-                <img src="../assets/arrowRight.svg" alt=">" class="w-12 p-1 rotate-180 hover:bg-gray-500 rounded-full" />
+                <img src="../assets/arrowRight.svg" alt=">" class="w-8 p-1 rotate-180 hover:bg-gray-500 rounded-full" />
             </button>
         </div>
     </div>
