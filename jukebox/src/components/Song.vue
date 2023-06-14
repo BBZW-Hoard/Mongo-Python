@@ -22,16 +22,11 @@ onMounted(() => {
 })
 
 /* functions */
-
-
 function handleScreenWidthChange() {
     let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    console.log(screenWidth);
 
     if (screenWidth < 768) isMobileView.value = true;
     else isMobileView.value = false;
-
-    console.log(isMobileView.value);
 }
 
 // return the duration in h or m format
