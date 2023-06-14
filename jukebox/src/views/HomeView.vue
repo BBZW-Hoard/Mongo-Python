@@ -12,15 +12,15 @@ const filteredSongs = computed(() => {
 
 /* functions */
 
-// adds a song to songs array (HArdcoded)
+// adds a song to songs array (Hardcoded)
 function addSong() {
     let song = {
-        id: Math.random() * 4249,
+        id: Math.floor(Math.random() * 4242),
         name: 'new Song',
         attributes: ['new Attribute'],
-        duration: 424,
-        rating: 2.8
-    }
+        duration: Math.floor(Math.random() * 424),
+        rating: (Math.random() * 5).toFixed(1)
+    };
     songs.value.push(song);
 }
 </script>
