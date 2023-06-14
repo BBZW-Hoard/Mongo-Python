@@ -36,7 +36,7 @@
             "Album"
         ],
         "duration": 53,
-        "rating": 4.2
+        "rating": 3.2
     },
     {
         "id": 5,
@@ -45,7 +45,7 @@
             "Artist"
         ],
         "duration": 72,
-        "rating": 4.7
+        "rating": 2.7
     },
     {
         "id": 6,
@@ -79,7 +79,7 @@
             "Album"
         ],
         "duration": 60,
-        "rating": 4.4
+        "rating": 2.4
     },
     {
         "id": 9,
@@ -88,7 +88,7 @@
             "Composer"
         ],
         "duration": 45,
-        "rating": 4.6
+        "rating": 1.6
     },
     {
         "id": 10,
@@ -109,7 +109,7 @@
             "Album"
         ],
         "duartion": 212,
-        "rating": 4.5
+        "rating": 3.9
     },
     {
         "id": 12,
@@ -130,7 +130,7 @@
             "Duration"
         ],
         "duration": 94,
-        "rating": 3.9
+        "rating": 3.1
     },
     {
         "id": 14,
@@ -140,7 +140,7 @@
             "Album"
         ],
         "duration": 70,
-        "rating": 4.8
+        "rating": 3.0
     },
     {
         "id": 15,
@@ -151,7 +151,7 @@
             "Duration"
         ],
         "duartion": 24,
-        "rating": 4.2
+        "rating": 3.1
     },
     {
         "id": 16,
@@ -162,7 +162,7 @@
             "Year"
         ],
         "duration": 63,
-        "rating": 4.4
+        "rating": 2.4
     },
     {
         "id": 17,
