@@ -26,7 +26,7 @@ function addSong() {
 </script>
 
 <template>
-    <div class="container mx-auto p-4">
+    <div class=" mx-auto p-4">
         <div class="sm:flex justify-start mb-4">
             <button @click="addSong()" class="btn w-full my-4 sm:w-auto sm:my-0 sm:mx-4">
                 Song hinzufügen
@@ -34,7 +34,7 @@ function addSong() {
             <input v-model="inputSearch" type="text" class="search w-full sm:w-auto sm:mx-4" placeholder="Song suchen...">
         </div>
         <!--  -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             <div v-for="song in filteredSongs" :key="song.id" class="bg-white rounded-md shadow p-4">
                 <Song :song="song" :showCRUDButtons="true" />
             </div>

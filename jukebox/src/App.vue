@@ -9,7 +9,9 @@ import Sidebar from './components/Sidebar.vue';
     <Header />
     <div class="flex">
       <Sidebar />
-      <router-view />
+      <div class="flex-grow">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
