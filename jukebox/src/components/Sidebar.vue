@@ -46,7 +46,7 @@ function togglePlaylist(id) {
                     <span class="truncate text-md font-bold">
                         {{ playlist.name }} <i>{{ isPlaylistOpen[playlist.id - 1] ? '(ausgewählt)' : '' }}</i>
                     </span>
-                    <img :class="{ 'rotate-180': isPlaylistOpen[playlist.id - 1] }" src="../assets/arrowDown.svg" alt="" />
+                    <img :class="{ 'rotate-180': isPlaylistOpen[playlist.id - 1] }" src="../assets/arrowDown.svg" alt="" :title="!isPlaylistOpen[playlist.id - 1] ? 'Playlist öffnen' : 'Playlist schliessen'" />
                 </button>
                 <div v-show="isPlaylistOpen[playlist.id - 1]">
                     <div v-for="song in playlist.songs" class="flex items-center mb-2">
