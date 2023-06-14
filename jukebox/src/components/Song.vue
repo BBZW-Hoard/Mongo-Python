@@ -96,7 +96,7 @@ window.addEventListener('resize', handleScreenWidthChange);
     </div>
     <div class="text-gray-500" :class="song.rating >= 4 ? 'text-green-600' : ''">{{ song.rating }} Rating</div>
     <div v-if="isMobileView">
-        <button class="text-blue-900 mx-1" @click="editSong(song)">Bearbeiten</button>
+        <button class="text-blue-900 mr-1" @click="editSong(song)">Bearbeiten</button>
         <button class="text-red-600 mx-1" @click="deleteSong(song)">Löschen</button>
     </div>
 </template>
