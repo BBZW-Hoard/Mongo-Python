@@ -8,7 +8,7 @@ const playlists = ref(jsonPlaylists);
 
 onMounted(() => {
     closeAllPlaylists();
-    let selectedPlaylistId = localStorage.getItem("selectedPlaylist") == "0" ? null : parseInt(localStorage.getItem("selectedPlaylist")); 
+    let selectedPlaylistId = localStorage.getItem("selectedPlaylist") == "0" ? null : parseInt(localStorage.getItem("selectedPlaylist"));
     isPlaylistOpen.value[selectedPlaylistId] = !isPlaylistOpen.value[selectedPlaylistId];
 })
 
@@ -18,10 +18,10 @@ function closeAllPlaylists() {
 
 function togglePlaylist(id) {
     // skip if user wants to close active playlist
-    if(isPlaylistOpen.value[id - 1] != true) closeAllPlaylists();
+    if (isPlaylistOpen.value[id - 1] != true) closeAllPlaylists();
 
     isPlaylistOpen.value[id - 1] = !isPlaylistOpen.value[id - 1];
-    
+
     // LS: Update LocalStorage entry
     localStorage.setItem("selectedPlaylist", id);
 }
@@ -32,7 +32,7 @@ function togglePlaylist(id) {
         <!-- no v-if because songs will -->
         <div class="w-72 bg-gray-800 text-white p-4" :class="{ 'hidden': !sidebarOpen }">
             <div class="flex items-center mb-4">
-                <button class="mr-2 text-white hover:text-gray-300" @click="sidebarOpen = false">
+                <button class="mr-2 text-white hover:text-gray-300" title="Sidebar schliessen" @click="sidebarOpen = false">
                     <img src="../assets/arrowRight.svg" alt=">" />
                 </button>
                 <span class="font-semibold text-2xl">Playlists</span>
@@ -41,9 +41,10 @@ function togglePlaylist(id) {
                 </span>
             </div>
             <div v-for="playlist in playlists" :key="playlist.id">
-                <button class="flex items-center justify-between w-full mb-2 focus:outline-none" @click="togglePlaylist(playlist.id)">
+                <button class="flex items-center justify-between w-full mb-2 focus:outline-none"
+                    @click="togglePlaylist(playlist.id)">
                     <span class="truncate text-md font-bold">
-                        {{ playlist.name }} <i>{{ isPlaylistOpen[playlist.id - 1] ? '(ausgewählt)' : ''  }}</i>
+                        {{ playlist.name }} <i>{{ isPlaylistOpen[playlist.id - 1] ? '(ausgewählt)' : '' }}</i>
                     </span>
                     <img :class="{ 'rotate-180': isPlaylistOpen[playlist.id - 1] }" src="../assets/arrowDown.svg" alt="" />
                 </button>
@@ -64,8 +65,10 @@ function togglePlaylist(id) {
             </div>
             <!-- Add more playlists here -->
         </div>
-        <div class="flex-grow bg-gray-100">
-            <!-- Content of your website -->
+        <div v-if="!sidebarOpen" class="flex-grow bg-gray-800">
+            <button class="mr-2 text-white hover:text-gray-300 p-2" title="Sidebar öffnen" @click="sidebarOpen = true">
+                <img src="../assets/arrowRight.svg" alt=">" class="w-12 p-1 rotate-180 hover:bg-gray-500 rounded-full" />
+            </button>
         </div>
     </div>
 </template>
