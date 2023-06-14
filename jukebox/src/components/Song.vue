@@ -16,6 +16,7 @@ defineProps({
 })
 
 const isMobileView = ref(false);
+const isDropdownOpen = ref(false);
 
 onMounted(() => {
     handleScreenWidthChange();
@@ -68,7 +69,7 @@ window.addEventListener('resize', handleScreenWidthChange);
 <template>
     <div class="flex justify-between mb-2">
         <div class="font-semibold">{{ song.name }}</div>
-        <div class="space-x-2">
+        <div class="space-x-2 relative">
             <button class="text-green-600" @click="addToPlaylist(song)">
                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -76,8 +77,13 @@ window.addEventListener('resize', handleScreenWidthChange);
                 </svg>
             </button>
             <span v-if="!isMobileView">
-                <button v-if="showCRUDButtons" class="text-blue-600 mx-1" @click="editSong(song)">Bearbeiten</button>
-                <button v-if="showCRUDButtons" class="text-red-600 mx-1" @click="deleteSong(song)">Löschen</button>
+                <button class="rounded-full p-1" @click="isDropdownOpen = !isDropdownOpen">
+                    <img src="../assets/threeDots.svg" alt="" />
+                </button>
+                <div v-if="showCRUDButtons && isDropdownOpen">
+                    <button class="dropdown rounded-t-sm mt-8" @click="editSong(song)">Bearbeiten</button>
+                    <button class="dropdown rounded-b-sm mt-16" @click="deleteSong(song)">Löschen</button>
+                </div>
             </span>
         </div>
     </div>

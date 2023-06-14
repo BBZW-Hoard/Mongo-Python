@@ -13,3 +13,7 @@
 .search {
     @apply border border-gray-300 rounded-md px-4 py-2;
 }
+
+.dropdown {
+    @apply absolute min-w-[100px] z-10 -left-1 top-0 text-white mx-1 p-1 bg-gray-800 hover:bg-slate-600;
+}
