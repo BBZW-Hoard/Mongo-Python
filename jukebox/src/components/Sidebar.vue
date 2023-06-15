@@ -101,7 +101,7 @@ async function changeUrl(url) {
                     <span class="font-semibold">Laufendes Lied:</span>
                     <ul class="mt-2">
                         <!-- <li v-for="song in currentlyPlayedSongs" :key="song.id">{{ song.name }}</li> -->
-                        <audio controls>
+                        <audio controls autoplay="true">
                             <source :src="currentlyPlayedSongUrl" type="audio/mpeg" />
                             Your browser does not support the audio player.
                         </audio>
