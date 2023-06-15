@@ -93,7 +93,9 @@ function getSongLength(str) {
                         <span class="truncate flex-grow">> {{ getSongLength(song.name) }}</span>
                         <div class="ml-auto flex">
                             <button class="p-1 hover:bg-gray-500 rounded-full" title="Download">
-                                <img src="../assets/download.svg" alt="download" />
+                                <a :href="song.url" download target="_blank" class="w-full h-full">
+                                    <img src="../assets/download.svg" alt="download" />
+                                </a>
                             </button>
                             <button @click="playSong(song.url)" class="p-1 hover:bg-green-500 rounded-full ml-1"
                                 title="Play">
