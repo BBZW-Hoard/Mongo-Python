@@ -82,10 +82,13 @@ async function changeUrl(url) {
                     <div v-for="song in playlist.songs" class="flex items-center mb-2">
                         <span class="truncate">> {{ song.name }}</span>
                         <div class="ml-auto flex">
-                            <button @click="playSong(song.url)" class="p-1 hover:bg-green-500 rounded-full" title="Play">
+                            <button class="p-1 hover:bg-gray-500 rounded-full" title="Download">
+                                <img src="../assets/download.svg" alt="download" />
+                            </button>
+                            <button @click="playSong(song.url)" class="p-1 hover:bg-green-500 rounded-full ml-1" title="Play">
                                 <img src="../assets/play.svg" alt="play" />
                             </button>
-                            <button class="p-1 hover:bg-red-500 rounded-full ml-2" title="Delete">
+                            <button class="p-1 hover:bg-red-500 rounded-full ml-1" title="Delete">
                                 <img src="../assets/trash.svg" alt="trash" />
                             </button>
                         </div>
