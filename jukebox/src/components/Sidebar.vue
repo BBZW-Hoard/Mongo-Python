@@ -40,9 +40,12 @@ async function playSong(url) {
     }, await changeUrl(url));
 }
 
+/**
+ * changes the url link from the song
+ * @param {string} url url to song mp3 file 
+ */
 async function changeUrl(url) {
     currentlyPlayedSongUrl.value = url;
-    console.log(currentlyPlayedSongUrl.value);
     return true;
 }
 </script>
