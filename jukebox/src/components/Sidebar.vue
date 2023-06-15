@@ -10,22 +10,27 @@ const showPlaylistContainer = ref(false);
 
 onMounted(() => {
     closeAllPlaylists();
-    let selectedPlaylistId = localStorage.getItem("selectedPlaylist") == "0" ? null : parseInt(localStorage.getItem("selectedPlaylist"));
+    let selectedPlaylistId = localStorage.getItem("selectedPlaylist");  // must not be converted
     isPlaylistOpen.value[selectedPlaylistId] = !isPlaylistOpen.value[selectedPlaylistId];
 })
 
+/**
+ * closes all Playlists
+ */
 function closeAllPlaylists() {
     isPlaylistOpen.value.fill(false);
 }
 
 function togglePlaylist(id) {
+    id--;
     // skip if user wants to close active playlist
-    if (isPlaylistOpen.value[id - 1] != true) closeAllPlaylists();
+    if (isPlaylistOpen.value[id] != true) closeAllPlaylists();
 
-    isPlaylistOpen.value[id - 1] = !isPlaylistOpen.value[id - 1];
+    isPlaylistOpen.value[id] = !isPlaylistOpen.value[id];
 
     // LS: Update LocalStorage entry
-    localStorage.setItem("selectedPlaylist", id);
+    if (localStorage.getItem("selectedPlaylist") == id) localStorage.setItem("selectedPlaylist", "null");
+    else localStorage.setItem("selectedPlaylist", id);
 }
 
 /**
