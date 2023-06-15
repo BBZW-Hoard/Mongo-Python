@@ -30,9 +30,10 @@ function togglePlaylist(id) {
 <template>
     <div class="flex min-h-screen">
         <!-- no v-if because songs will -->
-        <div class="w-screen sm:w-72 bg-gray-800 text-white p-4" :class="{ 'hidden': !sidebarOpen }">
+        <div class="relative w-screen sm:w-80 bg-gray-800 text-white p-4" :class="{ 'hidden': !sidebarOpen }">
             <div class="flex items-center mb-4">
-                <button class="mr-2 text-white hover:text-gray-300" title="Seitenleiste schliessen" @click="sidebarOpen = false">
+                <button class="mr-2 text-white hover:text-gray-300" title="Seitenleiste schliessen"
+                    @click="sidebarOpen = false">
                     <img src="../assets/arrowRight.svg" alt=">" />
                 </button>
                 <span class="font-semibold text-2xl">Playlists</span>
@@ -65,6 +66,20 @@ function togglePlaylist(id) {
                 </div>
             </div>
             <!-- Add more playlists here -->
+            
+            <!-- Fixed container for currently played songs -->
+            <div class="fixed bottom-0 left-0 w-72 bg-gray-800 p-4">
+                <div class="text-white">
+                    <span class="font-semibold">Laufendes Lied:</span>
+                    <ul class="mt-2">
+                        <!-- <li v-for="song in currentlyPlayedSongs" :key="song.id">{{ song.name }}</li> -->
+                        <audio controls>
+                            <source src="../assets/testaudio.mp3" type="audio/mpeg">
+                            Your browser does not support the audio player.
+                        </audio>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div v-if="!sidebarOpen" class="flex-grow bg-gray-800">
             <button class="mr-2 text-white hover:text-gray-300 p-2" title="Seitenleiste öffnen" @click="sidebarOpen = true">
