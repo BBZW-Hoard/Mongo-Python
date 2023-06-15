@@ -66,9 +66,9 @@ function togglePlaylist(id) {
                 </div>
             </div>
             <!-- Add more playlists here -->
-            
+
             <!-- Fixed container for currently played songs -->
-            <div class="fixed bottom-0 left-0 w-72 bg-gray-800 p-4">
+            <div class="fixed bottom-0 left-0 w-80 bg-gray-800 p-4">
                 <div class="text-white">
                     <span class="font-semibold">Laufendes Lied:</span>
                     <ul class="mt-2">
