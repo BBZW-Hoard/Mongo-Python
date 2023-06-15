@@ -5,6 +5,8 @@ import jsonPlaylists from '../assets/json/playlists.json'
 const sidebarOpen = ref(true);
 const isPlaylistOpen = ref(new Array(jsonPlaylists.length));
 const playlists = ref(jsonPlaylists);
+const currentlyPlayedSongUrl = ref("public/songs/a-call-to-the-soul.mp3");
+const showPlaylistContainer = ref(false);
 
 onMounted(() => {
     closeAllPlaylists();
@@ -24,6 +26,24 @@ function togglePlaylist(id) {
 
     // LS: Update LocalStorage entry
     localStorage.setItem("selectedPlaylist", id);
+}
+
+/**
+ * Updates the currtlyPlayedSong and stats it automaticly 
+ * @param {string} url url to song mp3 file
+ */
+async function playSong(url) {
+    showPlaylistContainer.value = false;    // for reload -> disable object and switch song
+
+    setTimeout(() => {
+        showPlaylistContainer.value = true; // enable object
+    }, await changeUrl(url));
+}
+
+async function changeUrl(url) {
+    currentlyPlayedSongUrl.value = url;
+    console.log(currentlyPlayedSongUrl.value);
+    return true;
 }
 </script>
 
@@ -54,7 +74,7 @@ function togglePlaylist(id) {
                     <div v-for="song in playlist.songs" class="flex items-center mb-2">
                         <span class="truncate">> {{ song.name }}</span>
                         <div class="ml-auto flex">
-                            <button class="p-1 hover:bg-green-500 rounded-full" title="Play">
+                            <button @click="playSong(song.url)" class="p-1 hover:bg-green-500 rounded-full" title="Play">
                                 <img src="../assets/play.svg" alt="play" />
                             </button>
                             <button class="p-1 hover:bg-red-500 rounded-full ml-2" title="Delete">
@@ -68,13 +88,13 @@ function togglePlaylist(id) {
             <!-- Add more playlists here -->
 
             <!-- Fixed container for currently played songs -->
-            <div class="fixed bottom-0 left-0 w-80 bg-gray-800 p-4">
+            <div v-if="showPlaylistContainer" class="fixed bottom-0 left-0 w-80 bg-gray-800 p-4">
                 <div class="text-white">
                     <span class="font-semibold">Laufendes Lied:</span>
                     <ul class="mt-2">
                         <!-- <li v-for="song in currentlyPlayedSongs" :key="song.id">{{ song.name }}</li> -->
                         <audio controls>
-                            <source src="../assets/testaudio.mp3" type="audio/mpeg">
+                            <source :src="currentlyPlayedSongUrl" type="audio/mpeg" />
                             Your browser does not support the audio player.
                         </audio>
                     </ul>
