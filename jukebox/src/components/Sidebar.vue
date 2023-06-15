@@ -53,6 +53,16 @@ async function changeUrl(url) {
     currentlyPlayedSongUrl.value = url;
     return true;
 }
+
+/**
+ * cuts string if its longer that 30 digits.
+ * @param {string} str song.name / long string
+ */
+function getSongLength(str) {
+    if(str.length <= 30) return str;
+    
+    return str.slice(0, 30) + '...';
+}
 </script>
 
 <template>
@@ -80,12 +90,13 @@ async function changeUrl(url) {
                 </button>
                 <div v-show="isPlaylistOpen[playlist.id - 1]">
                     <div v-for="song in playlist.songs" class="flex items-center mb-2">
-                        <span class="truncate">> {{ song.name }}</span>
+                        <span class="truncate flex-grow">> {{ getSongLength(song.name) }}</span>
                         <div class="ml-auto flex">
                             <button class="p-1 hover:bg-gray-500 rounded-full" title="Download">
                                 <img src="../assets/download.svg" alt="download" />
                             </button>
-                            <button @click="playSong(song.url)" class="p-1 hover:bg-green-500 rounded-full ml-1" title="Play">
+                            <button @click="playSong(song.url)" class="p-1 hover:bg-green-500 rounded-full ml-1"
+                                title="Play">
                                 <img src="../assets/play.svg" alt="play" />
                             </button>
                             <button class="p-1 hover:bg-red-500 rounded-full ml-1" title="Delete">
