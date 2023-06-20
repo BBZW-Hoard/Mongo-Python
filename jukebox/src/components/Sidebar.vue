@@ -123,8 +123,7 @@ function playNextSong(song) {
                                     <img src="../assets/download.svg" alt="download" />
                                 </a>
                             </button>
-                            <button @click="playSong(song)" class="p-1 hover:bg-green-500 rounded-full ml-1"
-                                title="Play">
+                            <button @click="playSong(song)" class="p-1 hover:bg-green-500 rounded-full ml-1" title="Play">
                                 <img src="../assets/play.svg" alt="play" />
                             </button>
                             <button @click="playNextSong(currentSong)" class="p-1 hover:bg-red-500 rounded-full ml-1"
@@ -142,12 +141,13 @@ function playNextSong(song) {
             <div v-if="showPlaylistContainer" class="fixed bottom-0 left-0 w-80 bg-gray-800 p-4">
                 <div class="text-white">
                     <div class="flex justify-between">
-                        <span class="font-semibold">Laufendes Lied:</span>
+                        <span class="text-xl font-semibold">Laufendes Lied:</span>
                         <button @click="showPlaylistContainer = false" class="p-2 hover:bg-red-500 rounded-full"
                             title="Song stoppen">
                             <img src="../assets/trash.svg" alt="trash" />
                         </button>
                     </div>
+                    <span>{{ currentSong.name }}</span>
                     <ul class="mt-2">
                         <!-- <li v-for="song in currentlyPlayedSongs" :key="song.id">{{ song.name }}</li> -->
                         <audio @ended="playNextSong(currentSong)" controls autoplay="true">
