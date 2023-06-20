@@ -59,8 +59,8 @@ async function changeUrl(url) {
  * @param {string} str song.name / long string
  */
 function getSongLength(str) {
-    if(str.length <= 30) return str;
-    
+    if (str.length <= 30) return str;
+
     return str.slice(0, 30) + '...';
 }
 </script>
@@ -114,7 +114,13 @@ function getSongLength(str) {
             <!-- Fixed container for currently played songs -->
             <div v-if="showPlaylistContainer" class="fixed bottom-0 left-0 w-80 bg-gray-800 p-4">
                 <div class="text-white">
-                    <span class="font-semibold">Laufendes Lied:</span>
+                    <div class="flex justify-between">
+                        <span class="font-semibold">Laufendes Lied:</span>
+                        <button @click="showPlaylistContainer = false" class="p-2 hover:bg-red-500 rounded-full"
+                            title="Song stoppen">
+                            <img src="../assets/trash.svg" alt="trash" />
+                        </button>
+                    </div>
                     <ul class="mt-2">
                         <!-- <li v-for="song in currentlyPlayedSongs" :key="song.id">{{ song.name }}</li> -->
                         <audio controls autoplay="true">
