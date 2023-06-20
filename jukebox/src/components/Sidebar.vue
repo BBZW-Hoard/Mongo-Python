@@ -32,6 +32,8 @@ function togglePlaylist(id) {
     // LS: Update LocalStorage entry
     if (localStorage.getItem("selectedPlaylist") == id) localStorage.setItem("selectedPlaylist", "null");
     else localStorage.setItem("selectedPlaylist", id);
+
+    selectedPlaylistId.value = localStorage.getItem("selectedPlaylist");
 }
 
 /**
