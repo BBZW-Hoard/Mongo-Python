@@ -7,11 +7,12 @@ const isPlaylistOpen = ref(new Array(jsonPlaylists.length));
 const playlists = ref(jsonPlaylists);
 const currentlyPlayedSongUrl = ref("public/songs/a-call-to-the-soul.mp3");
 const showPlaylistContainer = ref(false);
+const selectedPlaylistId = ref("")
 
 onMounted(() => {
     closeAllPlaylists();
-    let selectedPlaylistId = localStorage.getItem("selectedPlaylist");  // must not be converted
-    isPlaylistOpen.value[selectedPlaylistId] = !isPlaylistOpen.value[selectedPlaylistId];
+    selectedPlaylistId.value = localStorage.getItem("selectedPlaylist");  // must not be converted
+    isPlaylistOpen.value[selectedPlaylistId.value] = !isPlaylistOpen.value[selectedPlaylistId.value];
 })
 
 /**
