@@ -8,6 +8,7 @@ const playlists = ref(jsonPlaylists);
 const currentlyPlayedSongUrl = ref("public/songs/a-call-to-the-soul.mp3");
 const showPlaylistContainer = ref(false);
 const selectedPlaylistId = ref("")
+const currentSong = ref()
 
 onMounted(() => {
     closeAllPlaylists();
@@ -38,17 +39,18 @@ function togglePlaylist(id) {
 
 /**
  * Updates the currtlyPlayedSong and stats it automaticly 
- * @param {string} url url to song mp3 file; if empty -> close player
+ * @param {object} song object with url to song mp3 file; if empty -> close player
  */
-async function playSong(url) {
+async function playSong(song) {
     showPlaylistContainer.value = false;    // for reload -> disable object and switch song
 
     // no song, just close Playlist Container
-    if (url.trim().length === 0) return;
+    if (!song || song.url.trim().length === 0) return;
+    currentSong.value = song;   // for next song function
 
     setTimeout(() => {
         showPlaylistContainer.value = true; // enable object
-    }, await changeUrl(url));
+    }, await changeUrl(song.url));
 }
 
 /**
@@ -68,6 +70,24 @@ function getSongLength(str) {
     if (str.length <= 30) return str;
 
     return str.slice(0, 30) + '...';
+}
+
+/**
+ * plays the next song in a playlist based on the given current song.
+ * @param {object} song 
+ */
+function playNextSong(song) {
+    // selectedPlaylistId.value + 1, because vue v-for start with 1 & convert to int
+    let playlist = playlists.value.find(playlist => playlist.id == parseInt(selectedPlaylistId.value) + 1);
+
+    for (let i = 0; i < playlist.songs.length; i++) {
+        // find current song
+        if (playlist.songs[i].name == song.name) {
+            // last song
+            if (playlist.songs[i + 1] == null) playSong(null);
+            else playSong(playlist.songs[i + 1]);
+        }
+    }
 }
 </script>
 
@@ -103,11 +123,12 @@ function getSongLength(str) {
                                     <img src="../assets/download.svg" alt="download" />
                                 </a>
                             </button>
-                            <button @click="playSong(song.url)" class="p-1 hover:bg-green-500 rounded-full ml-1"
+                            <button @click="playSong(song)" class="p-1 hover:bg-green-500 rounded-full ml-1"
                                 title="Play">
                                 <img src="../assets/play.svg" alt="play" />
                             </button>
-                            <button class="p-1 hover:bg-red-500 rounded-full ml-1" title="Delete">
+                            <button @click="playNextSong(currentSong)" class="p-1 hover:bg-red-500 rounded-full ml-1"
+                                title="Delete">
                                 <img src="../assets/trash.svg" alt="trash" />
                             </button>
                         </div>
@@ -129,7 +150,7 @@ function getSongLength(str) {
                     </div>
                     <ul class="mt-2">
                         <!-- <li v-for="song in currentlyPlayedSongs" :key="song.id">{{ song.name }}</li> -->
-                        <audio controls autoplay="true">
+                        <audio @ended="playNextSong(currentSong)" controls autoplay="true">
                             <source :src="currentlyPlayedSongUrl" type="audio/mpeg" />
                             Your browser does not support the audio player.
                         </audio>
