@@ -44,7 +44,7 @@ async function playSong(url) {
     showPlaylistContainer.value = false;    // for reload -> disable object and switch song
 
     // no song, just close Playlist Container
-    if (str.trim().length === 0) return;
+    if (url.trim().length === 0) return;
 
     setTimeout(() => {
         showPlaylistContainer.value = true; // enable object
