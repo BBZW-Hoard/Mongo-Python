@@ -38,10 +38,13 @@ function togglePlaylist(id) {
 
 /**
  * Updates the currtlyPlayedSong and stats it automaticly 
- * @param {string} url url to song mp3 file
+ * @param {string} url url to song mp3 file; if empty -> close player
  */
 async function playSong(url) {
     showPlaylistContainer.value = false;    // for reload -> disable object and switch song
+
+    // no song, just close Playlist Container
+    if (str.trim().length === 0) return;
 
     setTimeout(() => {
         showPlaylistContainer.value = true; // enable object
