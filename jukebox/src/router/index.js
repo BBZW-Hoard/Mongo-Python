@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import ListsView from "../views/ListsView.vue";
+import ManageSongView from "../views/ManageSongView.vue";
 import testView from "../views/testView.vue";
 
 const router = createRouter({
@@ -15,6 +16,11 @@ const router = createRouter({
             path: "/lists",
             name: "lists",
             component: ListsView
+        },
+        {
+            path: "/manage-song",
+            name: "mangeSong",
+            component: ManageSongView
         },
         {
             path: "/test",
