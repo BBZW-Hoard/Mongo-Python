@@ -61,21 +61,30 @@ const _year = ref();
 const _album = ref("");
 
 function submit() {
-    if (_name.value.trim().length === 0) {
-        return "Name ist ein Pflichtfeld.";
-    } else if (_name.value.length < 3 || _name.value.length > 25) {
-        return "Der Name muss mehr als 3 und weniger als 25 Zeichen haben.";
-    } else if (_duration.value == null) {
-        return "Dauer ist ein Pflichtfeld.";
-    } else if (_duration.value == 0) {
-        return "Dauer kann nicht 0 sein.";
-    } else if (_rating.value == null) {
-        return "Rating ist ein Pflichtfeld.";
-    } else if (_rating.value < 1 || _rating.value > 5) {
-        return "Rating kann nicht weniger als 1 oder mehr als 5 sein.";
-    }
+    Error.value = true;
 
-    return false;
+    if (_name.value.trim().length === 0) errorMsg.value = "Name ist ein Pflichtfeld!";
+    else if (_name.value.length < 3 || _name.value.length > 25) errorMsg.value = "Der Name muss mehr als 3 und weniger als 25 Zeichen haben!";
+    else if (_duration.value == null) errorMsg.value = "Dauer ist ein Pflichtfeld!";
+    else if (_duration.value == 0) errorMsg.value = "Dauer muss eine Zahl sein!";
+    else if (_rating.value == null) errorMsg.value = "Rating ist ein Pflichtfeld!";
+    else if (_rating.value == 0) errorMsg.value = "Rating muss eine Zahl sein!";
+    else if (_rating.value < 1 || _rating.value > 5) errorMsg.value = "Rating kann nicht weniger als 1 oder mehr als 5 sein!";
+    else {
+        Error.value = false;
+        errorMsg.value = "validated";
+        const attributes = {
+            composer: _composer,
+            genre: _genre,
+            interpret: _interpret,
+            year: _year,
+            album: _album
+        };
+
+        console.log(_name, attributes, _duration, _rating);
+
+        //router.push("/");
+    }
 }
 </script>
 
