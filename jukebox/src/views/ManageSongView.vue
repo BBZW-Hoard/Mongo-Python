@@ -1,5 +1,7 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, defineProps } from 'vue';
+import Toast from "../components/Toast.vue";
+import router from '../router/index.js';
 
 defineProps({
     name: {
@@ -44,6 +46,10 @@ defineProps({
     album: ""
 }); */
 
+const Error = ref(false);
+const errorMsg = ref("");
+
+/* data */
 const _name = ref("");
 const _duration = ref();
 const _rating = ref();
@@ -75,6 +81,7 @@ function submit() {
 
 <template>
     <div class="container mx-auto p-4">
+        <Toast v-if="errorMsg.trim().length != 0" :isError="Error" :errorMessage="errorMsg" />
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
                 <label for="name" class="text-gray-600">Name <b>*</b></label>
