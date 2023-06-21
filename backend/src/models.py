@@ -5,31 +5,42 @@ from typing import Optional
 
 class Song(BaseModel):
     id: str = Field(default_factory=uuid.uuid4, alias="_id")
-    title: str = Field(...)
-    author: str = Field(...)
-    synopsis: str = Field(...)
+    name: str = Field(...)
+    attributes: list = Field(...)
+    duartion: int = Field(...)
+    rating: float = Field(...)
+    url: str = Field(...)
 
     class Config:
         allow_population_by_field_name = True
         schema_extra = {
             "example": {
-                "_id": "066de609-b04a-4b30-b46c-32537c7f1f6e",
-                "title": "Don Quixote",
-                "author": "Miguel de Cervantes",
-                "synopsis": "..."
+                "name": "Forest of Jnana and Vidya",
+                "attributes": [
+                    "Genshin Impact"
+                ],
+                "duartion": 65,
+                "rating": 4.5,
+                "url": "public/songs/a-call-to-the-soul.mp3"
             }
         }
 
 class SongUpdate(BaseModel):
-    title: Optional[str]
-    author: Optional[str]
-    synopsis: Optional[str]
+    name: Optional[str]
+    attributes: Optional[list]
+    duartion: Optional[int]
+    rating: Optional[float]
+    url: Optional[str]
 
     class Config:
         schema_extra = {
             "example": {
-                "title": "Don Quixote",
-                "author": "Miguel de Cervantes",
-                "synopsis": "Don Quixote is a Spanish novel by Miguel de Cervantes..."
+                "name": "Forest of Jnana and Vidya",
+                "attributes": [
+                    "Genshin Impact"
+                ],
+                "duartion": 65,
+                "rating": 4.5,
+                "url": "public/songs/a-call-to-the-soul.mp3"
             }
         }

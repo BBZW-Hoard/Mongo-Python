@@ -16,9 +16,13 @@ class MongoDb():
 		return self.collection.find_one(
         {"_id": document.inserted_id}
     	)
+	
+	def findSongById(self, id):
+		filter = {"_id": id}
+		return self.collection.find_one(filter)
 
-	def InsertToDB(self, collection, document):
-		return self.database[collection].insert_one(document)
+	def InsertToDB(self, document):
+		return self.collection.insert_one(document)
 	
 	def UpdateDB(self, id, document):
 		filter = {"_id": id}

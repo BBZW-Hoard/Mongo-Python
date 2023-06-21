@@ -7,14 +7,19 @@ router = APIRouter()
 
 @router.get("/", response_description="get list of songs", status_code=status.HTTP_200_OK, response_model=List[Song])
 def get_songs(request: Request):
-    songs = request.app.MongoDb.getDocuments("songs")
+    songs = request.app.MongoDb.getDocuments()
     return songs
+
+@router.get("/{id}", response_description="get list of songs", status_code=status.HTTP_200_OK, response_model=Song)
+def get_song(id: str, request: Request):
+    song = request.app.MongoDb.findSongById(id)
+    return song
 
 @router.post("/", response_description="Create a new song", status_code=status.HTTP_201_CREATED, response_model=Song)
 def create_song(request: Request, song: Song = Body(...)):
     song = jsonable_encoder(song)
-    new_song = request.app.MongoDb.InsertToDB("songs", song)
-    created_song = request.app.MongoDb.findDocument("songs", new_song)
+    new_song = request.app.MongoDb.InsertToDB(song)
+    created_song = request.app.MongoDb.findDocument(new_song)
     return created_song
 
 @router.put("/{id}", response_description="Edit a song", status_code=status.HTTP_201_CREATED, response_model=Song)
