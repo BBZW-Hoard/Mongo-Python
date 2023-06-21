@@ -7,7 +7,7 @@
 }
 
 .btn {
-    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+    @apply px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 font-bold rounded;
 }
 
 .search {
@@ -16,4 +16,15 @@
 
 .dropdown {
     @apply absolute min-w-[100px] z-10 -left-1 top-0 text-white mx-1 p-1 bg-gray-800 hover:bg-slate-600;
+}
+
+.input-field {
+    @apply w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+.input-field:focus~label {
+    @apply -translate-y-2 text-sm text-blue-500;
+}
+
+.input-field:valid~label {
+    @apply -translate-y-2 text-sm text-blue-500;
 }
