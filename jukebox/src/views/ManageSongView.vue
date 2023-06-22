@@ -1,7 +1,5 @@
 <script setup>
 import { ref, defineProps, onMounted, reactive } from 'vue';
-import Toast from "../components/Toast.vue";
-import router from '../router/index.js';
 
 const props = defineProps({
     id: {
@@ -49,12 +47,7 @@ onMounted(() => {
     }
 })
 
-const Error = ref(false);
-const errorMsg = ref("");
-
-function submit() {
-    Error.value = true;
-
+function submit() {    
     if (song.value.name.trim().length === 0) errorMsg.value = "Name ist ein Pflichtfeld!";
     else if (song.value.name.length < 3 || song.value.name.length > 25) errorMsg.value = "Der Name muss mehr als 3 und weniger als 25 Zeichen haben!";
     else if (song.value.duration == null) errorMsg.value = "Dauer ist ein Pflichtfeld!";
@@ -63,15 +56,14 @@ function submit() {
     else if (song.value.rating == 0) errorMsg.value = "Rating muss eine Zahl sein!";
     else if (song.value.rating < 1 || song.value.rating > 5) errorMsg.value = "Rating kann nicht weniger als 1 oder mehr als 5 sein!";
     else {
-        Error.value = false;
         errorMsg.value = "validated";
     }
+    
 }
 </script>
 
 <template>
     <div class="container mx-auto p-4">
-        <Toast v-if="errorMsg.trim().length != 0" :isError="Error" :errorMessage="errorMsg" />
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
                 <label for="name" class="text-gray-600" :class="{ 'text-red-500': errorMessages.name != null }">Name
