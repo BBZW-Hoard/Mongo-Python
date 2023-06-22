@@ -25,11 +25,24 @@ const song = ref({
     rating: null
 })
 
+const errorMessages = ref({
+    name: null,
+    attributes: {
+        composer: null,
+        genre: null,
+        interpret: null,
+        year: null,
+        album: null
+    },
+    duration: null,
+    rating: null
+})
+
 onMounted(() => {
     id = Math.round(Math.random() * 13 + 1);
-   
 
-    if(id == 0) {
+
+    if (id == 0) {
         console.log("new Song");
     } else {
         console.log("edit song with id:", id);
@@ -61,42 +74,72 @@ function submit() {
         <Toast v-if="errorMsg.trim().length != 0" :isError="Error" :errorMessage="errorMsg" />
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-                <label for="name" class="text-gray-600">Name <b>*</b></label>
-                <input id="name" type="text" v-model="song.name" class="input-field" placeholder="Name..." required />
+                <label for="name" class="text-gray-600" :class="{ 'text-red-500': errorMessages.name != null }">Name
+                    <b>*</b></label>
+                <input id="name" type="text" v-model="song.name" class="input-field"
+                    :class="{ 'focus:ring-opacity-0': errorMessages.name != null, 'border-red-500': errorMessages.name != null }"
+                    placeholder="Name..." required />
+                <label for="name" class="text-red-500 px-1">{{ errorMessages.name }}</label>
             </div>
             <div>
-                <label for="composer" class="text-gray-600">Komponist</label>
-                <input id="composer" type="text" v-model="song.composer" class="input-field" placeholder="Komponist..." />
+                <label for="composer" class="text-gray-600"
+                    :class="{ 'text-red-500': errorMessages.attributes.composer != null }">Komponist</label>
+                <input id="composer" type="text" v-model="song.composer" class="input-field"
+                    :class="{ 'focus:ring-opacity-0': errorMessages.attributes.composer != null, 'border-red-500': errorMessages.attributes.composer != null }"
+                    placeholder="Komponist..." />
+                <label for="composer" class="text-red-500 px-1">{{ errorMessages.attributes.composer }}</label>
             </div>
             <div>
-                <label for="genre" class="text-gray-600">Genre</label>
-                <input id="genre" type="text" v-model="song.genre" class="input-field" placeholder="Genre..." />
+                <label for="genre" class="text-gray-600"
+                    :class="{ 'text-red-500': errorMessages.attributes.genre != null }">Genre</label>
+                <input id="genre" type="text" v-model="song.genre" class="input-field"
+                    :class="{ 'focus:ring-opacity-0': errorMessages.attributes.genre != null, 'border-red-500': errorMessages.attributes.genre != null }"
+                    placeholder="Genre..." />
+                <label for="genre" class="text-red-500 px-1">{{ errorMessages.attributes.genre }}</label>
             </div>
             <div>
-                <label for="interpret" class="text-gray-600">Interpret</label>
-                <input id="interpret" type="text" v-model="song.interpret" class="input-field" placeholder="Interpret..." />
+                <label for="interpret" class="text-gray-600"
+                    :class="{ 'text-red-500': errorMessages.attributes.interpret != null }">Interpret</label>
+                <input id="interpret" type="text" v-model="song.interpret" class="input-field"
+                    :class="{ 'focus:ring-opacity-0': errorMessages.attributes.interpret != null, 'border-red-500': errorMessages.attributes.interpret != null }"
+                    placeholder="Interpret..." />
+                <label for="interpret" class="text-red-500 px-1">{{ errorMessages.attributes.interpret }}</label>
             </div>
             <div>
-                <label for="year" class="text-gray-600">Veröffentlichungsjahr</label>
+                <label for="year" class="text-gray-600"
+                    :class="{ 'text-red-500': errorMessages.attributes.year != null }">Veröffentlichungsjahr</label>
                 <input id="year" type="number" min="1900" :max="new Date().getFullYear()" v-model="song.year"
-                    class="input-field" :placeholder="new Date().getFullYear()" />
+                    class="input-field"
+                    :class="{ 'focus:ring-opacity-0': errorMessages.attributes.year != null, 'border-red-500': errorMessages.attributes.year != null }"
+                    :placeholder="new Date().getFullYear()" />
+                <label for="year" class="text-red-500 px-1">{{ errorMessages.attributes.year }}</label>
             </div>
             <div>
-                <label for="album" class="text-gray-600">Album</label>
-                <input id="album" type="text" v-model="song.album" class="input-field" placeholder="Album..." />
+                <label for="album" class="text-gray-600"
+                    :class="{ 'text-red-500': errorMessages.attributes.album != null }">Album</label>
+                <input id="album" type="text" v-model="song.album" class="input-field"
+                    :class="{ 'focus:ring-opacity-0': errorMessages.attributes.album != null, 'border-red-500': errorMessages.attributes.album != null }"
+                    placeholder="Album..." />
+                <label for="album" class="text-red-500 px-1">{{ errorMessages.attributes.album }}</label>
             </div>
             <div class="md:col-span-2">
                 <hr class="my-4 border-gray-200" />
             </div>
             <div>
-                <label for="duration" class="text-gray-600">Dauer in Minuten <b>*</b></label>
+                <label for="duration" class="text-gray-600"
+                    :class="{ 'text-red-500': errorMessages.duration != null }">Dauer in Minuten <b>*</b></label>
                 <input id="duration" type="number" min="1" max="65536" v-model="song.duration" class="input-field"
+                    :class="{ 'focus:ring-opacity-0': errorMessages.duration != null, 'border-red-500': errorMessages.duration != null }"
                     placeholder="6" required />
+                <label for="duration" class="text-red-500 px-1">{{ errorMessages.duration }}</label>
             </div>
             <div>
-                <label for="rating" class="text-gray-600">Rating <b>*</b></label>
+                <label for="rating" class="text-gray-600" :class="{ 'text-red-500': errorMessages.rating != null }">Rating
+                    <b>*</b></label>
                 <input id="rating" type="number" min="1" max="5" v-model="song.rating" class="input-field" placeholder="3.4"
+                    :class="{ 'focus:ring-opacity-0': errorMessages.rating != null, 'border-red-500': errorMessages.rating != null }"
                     required />
+                <label for="rating" class="text-red-500 px-1">{{ errorMessages.rating }}</label>
             </div>
             <p><b>Mit einem * versehene Felder, sind Pflichtfelder.</b></p>
             <div class="md:col-span-2">
