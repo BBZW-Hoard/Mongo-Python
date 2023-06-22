@@ -20,7 +20,7 @@ def create_song(request: Request, song: Song = Body(...)):
     song = jsonable_encoder(song)
     new_song = request.app.MongoDb.InsertToDB(song)
     created_song = request.app.MongoDb.findDocument(new_song)
-    return created_song
+    return created_song 
 
 @router.put("/{id}", response_description="Edit a song", status_code=status.HTTP_201_CREATED, response_model=Song)
 def update_song(id: str, request: Request, song: SongUpdate = Body(...)):
@@ -30,7 +30,7 @@ def update_song(id: str, request: Request, song: SongUpdate = Body(...)):
         if update_result.modified_count == 0:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Song with ID {id} not found")   
     if (
-        existing_book := request.app.MongoDB.collection.find_one({"_id": id})
+        existing_song := request.app.MongoDB.collection.find_one({"_id": id})
     ) is not None:
-        return existing_book    
+        return existing_song    
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Song with ID {id} not found")
