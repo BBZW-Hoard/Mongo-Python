@@ -35,9 +35,6 @@ const errorMessages = ref({
 })
 
 onMounted(() => {
-    id = Math.round(Math.random() * 13 + 1);
-
-
     if (id == 0) {
         console.log("new Song");
     } else {
