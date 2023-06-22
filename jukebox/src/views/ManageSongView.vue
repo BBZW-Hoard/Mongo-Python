@@ -13,14 +13,14 @@ const song = ref({
     id: 0,
     name: "",
     attributes: {
-        composer: null,
-        genre: null,
-        interpret: null,
-        year: null,
-        album: null
+        composer: "",
+        genre: "",
+        interpret: "",
+        year: new Date().getFullYear(), // number
+        album: ""
     },
-    duration: null,
-    rating: null
+    duration: 6,
+    rating: 3.4
 })
 
 const errorMessages = ref({
