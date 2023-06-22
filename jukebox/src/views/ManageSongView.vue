@@ -47,18 +47,88 @@ onMounted(() => {
     }
 })
 
-function submit() {    
-    if (song.value.name.trim().length === 0) errorMsg.value = "Name ist ein Pflichtfeld!";
-    else if (song.value.name.length < 3 || song.value.name.length > 25) errorMsg.value = "Der Name muss mehr als 3 und weniger als 25 Zeichen haben!";
-    else if (song.value.duration == null) errorMsg.value = "Dauer ist ein Pflichtfeld!";
-    else if (song.value.duration == 0) errorMsg.value = "Dauer muss eine Zahl sein!";
-    else if (song.value.rating == null) errorMsg.value = "Rating ist ein Pflichtfeld!";
-    else if (song.value.rating == 0) errorMsg.value = "Rating muss eine Zahl sein!";
-    else if (song.value.rating < 1 || song.value.rating > 5) errorMsg.value = "Rating kann nicht weniger als 1 oder mehr als 5 sein!";
-    else {
-        errorMsg.value = "validated";
+function submit() {
+    let attributesLengthMsg = " muss weniger als 30 Zeichen haben!";
+    let has2beString = " muss ein String sein!";
+    let has2beNumber = " muss eine Zahl sein!";
+    let requiredField = " ist ein Pflichtfeld!";
+
+    /* set all key-values from errorMessages to null */
+    try {
+        Object.assign(errorMessages.value, Object.fromEntries(Object.keys(errorMessages.value).map(key => [key, null])));
+    } catch (e) {
+        console.error("Could not clear values from errorMessages object", e);
     }
-    
+    debugger;
+    console.log(errorMessages.value.attributes);
+
+    // name
+    if (typeof(song.value.name) != String) {
+        errorMessages.value.name = "Name" + has2beString;
+    } else if (song.value.name.trim().length === 0) {
+        errorMessages.value.name = "Name" + requiredField
+    } else if (song.value.name.length < 3 || song.value.name.length > 25) {
+        errorMessages.value.name = "Der Name muss mehr als 3 und weniger als 25 Zeichen haben!";
+    }
+
+    // composer
+    if(typeof(song.value.attributes.composer) != String) {
+        errorMessages.value.attributes.composer = "Komponist" + has2beString; 
+    } else if (song.value.attributes.composer.length > 30) {
+        errorMessages.value.attributes.composer = "Der Komponist" + attributesLengthMsg;
+    }
+
+    // genre
+    if(typeof(song.value.attributes.genre) != String) {
+        errorMessages.value.attributes.genre = "Genre" + has2beString; 
+    } else if (song.value.attributes.genre.length > 30) {
+        errorMessages.value.attributes.genre = "Das Genre" + attributesLengthMsg;
+    }
+
+    // interpret
+    if(typeof(song.value.attributes.interpret) != String) {
+        errorMessages.value.attributes.interpret = "Interpret" + has2beString; 
+    } else if (song.value.attributes.interpret.length > 30) {
+        errorMessages.value.attributes.interpret = "Der Interpret" + attributesLengthMsg;
+    }
+
+    // year
+    if (typeof(song.value.attributes.year) != Number) {
+        errorMessages.value.attributes.year = "Jahr" + has2beNumber;
+    } else if (song.value.attributes.year > new Date().getFullYear()) {
+        errorMessages.value.attributes.year = "Das aktuelle Jahr kann nicht überstiegen werden!";
+    } else if (song.value.attributes.year < 1900) {
+        errorMessages.value.attributes.year = "Das Jahr muss über 1900 liegen!";
+    }
+
+    // album
+    if (typeof(song.value.attributes.album) != String) {
+        errorMessages.value.attributes.album = "Album" + has2beString;
+    } else if (song.value.attributes.album.length > 30) {
+        errorMessages.value.attributes.album = "Das Album" + attributesLengthMsg;
+    }
+
+    // duration
+    if (typeof(song.value.duration) != Number) {
+        errorMessages.value.duration = "Dauer" + has2beNumber;
+    } else if (song.value.duration === null) {
+        errorMessages.value.duration = "Dauer" + requiredField;
+    } else if (song.value.duration < 0) {
+        errorMessages.value.duration = "Dauer muss mind. 1 sein!";
+    } else if (song.value.duration > 65536) {
+        errorMessages.value.duration = "Dauer muss kann nicht mehr als 65536 sein!";
+    }
+
+    // rating
+    if (typeof(song.value.rating) != Number) {
+        errorMessages.value.rating = "Raiting" + has2beNumber;
+    } else if (song.value.rating === null) {
+        errorMessages.value.rating = "Rating" + requiredField;
+    } else if (song.value.rating < 0) {
+        errorMessages.value.rating = "Rating muss mind. 1 sein!";
+    } else if (song.value.rating > 5) {
+        errorMessages.value.rating = "Dauer muss kann nicht mehr als 5 sein!";
+    }
 }
 </script>
 
