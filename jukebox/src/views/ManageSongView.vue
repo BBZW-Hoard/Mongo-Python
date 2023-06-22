@@ -25,13 +25,11 @@ const song = ref({
 
 const errorMessages = ref({
     name: null,
-    attributes: {
-        composer: null,
-        genre: null,
-        interpret: null,
-        year: null,
-        album: null
-    },
+    composer: null,
+    genre: null,
+    interpret: null,
+    year: null,
+    album: null,
     duration: null,
     rating: null
 })
@@ -60,7 +58,6 @@ function submit() {
         console.error("Could not clear values from errorMessages object", e);
     }
     debugger;
-    console.log(errorMessages.value.attributes);
 
     // name
     if (typeof(song.value.name) != String) {
@@ -73,39 +70,39 @@ function submit() {
 
     // composer
     if(typeof(song.value.attributes.composer) != String) {
-        errorMessages.value.attributes.composer = "Komponist" + has2beString; 
+        errorMessages.value.composer = "Komponist" + has2beString; 
     } else if (song.value.attributes.composer.length > 30) {
-        errorMessages.value.attributes.composer = "Der Komponist" + attributesLengthMsg;
+        errorMessages.value.composer = "Der Komponist" + attributesLengthMsg;
     }
 
     // genre
     if(typeof(song.value.attributes.genre) != String) {
-        errorMessages.value.attributes.genre = "Genre" + has2beString; 
+        errorMessages.value.genre = "Genre" + has2beString; 
     } else if (song.value.attributes.genre.length > 30) {
-        errorMessages.value.attributes.genre = "Das Genre" + attributesLengthMsg;
+        errorMessages.value.genre = "Das Genre" + attributesLengthMsg;
     }
 
     // interpret
     if(typeof(song.value.attributes.interpret) != String) {
-        errorMessages.value.attributes.interpret = "Interpret" + has2beString; 
+        errorMessages.value.interpret = "Interpret" + has2beString; 
     } else if (song.value.attributes.interpret.length > 30) {
-        errorMessages.value.attributes.interpret = "Der Interpret" + attributesLengthMsg;
+        errorMessages.value.interpret = "Der Interpret" + attributesLengthMsg;
     }
 
     // year
     if (typeof(song.value.attributes.year) != Number) {
-        errorMessages.value.attributes.year = "Jahr" + has2beNumber;
+        errorMessages.value.year = "Jahr" + has2beNumber;
     } else if (song.value.attributes.year > new Date().getFullYear()) {
-        errorMessages.value.attributes.year = "Das aktuelle Jahr kann nicht überstiegen werden!";
+        errorMessages.value.year = "Das aktuelle Jahr kann nicht überstiegen werden!";
     } else if (song.value.attributes.year < 1900) {
-        errorMessages.value.attributes.year = "Das Jahr muss über 1900 liegen!";
+        errorMessages.value.year = "Das Jahr muss über 1900 liegen!";
     }
 
     // album
     if (typeof(song.value.attributes.album) != String) {
-        errorMessages.value.attributes.album = "Album" + has2beString;
+        errorMessages.value.album = "Album" + has2beString;
     } else if (song.value.attributes.album.length > 30) {
-        errorMessages.value.attributes.album = "Das Album" + attributesLengthMsg;
+        errorMessages.value.album = "Das Album" + attributesLengthMsg;
     }
 
     // duration
@@ -145,44 +142,44 @@ function submit() {
             </div>
             <div>
                 <label for="composer" class="text-gray-600"
-                    :class="{ 'text-red-500': errorMessages.attributes.composer != null }">Komponist</label>
-                <input id="composer" type="text" v-model="song.composer" class="input-field"
-                    :class="{ 'focus:ring-opacity-0': errorMessages.attributes.composer != null, 'border-red-500': errorMessages.attributes.composer != null }"
+                    :class="{ 'text-red-500': errorMessages.composer != null }">Komponist</label>
+                <input id="composer" type="text" v-model="song.attributes.composer" class="input-field"
+                    :class="{ 'focus:ring-opacity-0': errorMessages.composer != null, 'border-red-500': errorMessages.composer != null }"
                     placeholder="Komponist..." />
-                <label for="composer" class="text-red-500 px-1">{{ errorMessages.attributes.composer }}</label>
+                <label for="composer" class="text-red-500 px-1">{{ errorMessages.composer }}</label>
             </div>
             <div>
                 <label for="genre" class="text-gray-600"
-                    :class="{ 'text-red-500': errorMessages.attributes.genre != null }">Genre</label>
-                <input id="genre" type="text" v-model="song.genre" class="input-field"
-                    :class="{ 'focus:ring-opacity-0': errorMessages.attributes.genre != null, 'border-red-500': errorMessages.attributes.genre != null }"
+                    :class="{ 'text-red-500': errorMessages.genre != null }">Genre</label>
+                <input id="genre" type="text" v-model="song.attributes.genre" class="input-field"
+                    :class="{ 'focus:ring-opacity-0': errorMessages.genre != null, 'border-red-500': errorMessages.genre != null }"
                     placeholder="Genre..." />
-                <label for="genre" class="text-red-500 px-1">{{ errorMessages.attributes.genre }}</label>
+                <label for="genre" class="text-red-500 px-1">{{ errorMessages.genre }}</label>
             </div>
             <div>
                 <label for="interpret" class="text-gray-600"
-                    :class="{ 'text-red-500': errorMessages.attributes.interpret != null }">Interpret</label>
-                <input id="interpret" type="text" v-model="song.interpret" class="input-field"
-                    :class="{ 'focus:ring-opacity-0': errorMessages.attributes.interpret != null, 'border-red-500': errorMessages.attributes.interpret != null }"
+                    :class="{ 'text-red-500': errorMessages.interpret != null }">Interpret</label>
+                <input id="interpret" type="text" v-model="song.attributes.interpret" class="input-field"
+                    :class="{ 'focus:ring-opacity-0': errorMessages.interpret != null, 'border-red-500': errorMessages.interpret != null }"
                     placeholder="Interpret..." />
-                <label for="interpret" class="text-red-500 px-1">{{ errorMessages.attributes.interpret }}</label>
+                <label for="interpret" class="text-red-500 px-1">{{ errorMessages.interpret }}</label>
             </div>
             <div>
                 <label for="year" class="text-gray-600"
-                    :class="{ 'text-red-500': errorMessages.attributes.year != null }">Veröffentlichungsjahr</label>
-                <input id="year" type="number" min="1900" :max="new Date().getFullYear()" v-model="song.year"
+                    :class="{ 'text-red-500': errorMessages.year != null }">Veröffentlichungsjahr</label>
+                <input id="year" type="number" min="1900" :max="new Date().getFullYear()" v-model="song.attributes.year"
                     class="input-field"
-                    :class="{ 'focus:ring-opacity-0': errorMessages.attributes.year != null, 'border-red-500': errorMessages.attributes.year != null }"
+                    :class="{ 'focus:ring-opacity-0': errorMessages.year != null, 'border-red-500': errorMessages.year != null }"
                     :placeholder="new Date().getFullYear()" />
-                <label for="year" class="text-red-500 px-1">{{ errorMessages.attributes.year }}</label>
+                <label for="year" class="text-red-500 px-1">{{ errorMessages.year }}</label>
             </div>
             <div>
                 <label for="album" class="text-gray-600"
-                    :class="{ 'text-red-500': errorMessages.attributes.album != null }">Album</label>
-                <input id="album" type="text" v-model="song.album" class="input-field"
-                    :class="{ 'focus:ring-opacity-0': errorMessages.attributes.album != null, 'border-red-500': errorMessages.attributes.album != null }"
+                    :class="{ 'text-red-500': errorMessages.album != null }">Album</label>
+                <input id="album" type="text" v-model="song.attributes.album" class="input-field"
+                    :class="{ 'focus:ring-opacity-0': errorMessages.album != null, 'border-red-500': errorMessages.album != null }"
                     placeholder="Album..." />
-                <label for="album" class="text-red-500 px-1">{{ errorMessages.attributes.album }}</label>
+                <label for="album" class="text-red-500 px-1">{{ errorMessages.album }}</label>
             </div>
             <div class="md:col-span-2">
                 <hr class="my-4 border-gray-200" />
