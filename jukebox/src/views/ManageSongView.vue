@@ -109,7 +109,7 @@ function submit() {
         errorMessages.value.duration = "Dauer" + requiredField;
     } else if (typeof(song.value.duration) != "number") {
         errorMessages.value.duration = "Dauer" + has2beNumber;
-    } else if (song.value.duration < 0) {
+    } else if (song.value.duration < 1) {
         errorMessages.value.duration = "Dauer muss mind. 1 sein!";
     } else if (song.value.duration > 65536) {
         errorMessages.value.duration = "Dauer muss kann nicht mehr als 65536 sein!";
@@ -120,7 +120,7 @@ function submit() {
         errorMessages.value.rating = "Rating" + requiredField;
     } else if (typeof(song.value.rating) != "number") {
         errorMessages.value.rating = "Raiting" + has2beNumber;
-    } else if (song.value.rating < 0) {
+    } else if (song.value.rating < 1) {
         errorMessages.value.rating = "Rating muss mind. 1 sein!";
     } else if (song.value.rating > 5) {
         errorMessages.value.rating = "Dauer muss kann nicht mehr als 5 sein!";
