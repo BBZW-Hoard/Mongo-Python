@@ -21,10 +21,3 @@
 .input-field {
     @apply w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
 }
-.input-field:focus~label {
-    @apply -translate-y-2 text-sm text-blue-500;
-}
-
-.input-field:valid~label {
-    @apply -translate-y-2 text-sm text-blue-500;
-}
