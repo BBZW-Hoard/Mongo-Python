@@ -55,73 +55,100 @@ function submit() {
         console.error("Could not clear values from errorMessages object", e);
     }
 
-    // name
-    if (song.value.name.trim().length === 0) {
-        errorMessages.value.name = "Name" + requiredField;
-    } else if (typeof(song.value.name) != "string") {
-        errorMessages.value.name = "Name" + has2beString;
-    } else if (song.value.name.length < 3 || song.value.name.length > 25) {
-        errorMessages.value.name = "Der Name muss mehr als 3 und weniger als 25 Zeichen haben!";
-    }
+    do {
+        // name
+        if (song.value.name.trim().length === 0) {
+            errorMessages.value.name = "Name" + requiredField;
+            continue;
+        } else if (typeof (song.value.name) != "string") {
+            errorMessages.value.name = "Name" + has2beString;
+            continue;
+        } else if (song.value.name.length < 3 || song.value.name.length > 25) {
+            errorMessages.value.name = "Der Name muss mehr als 3 und weniger als 25 Zeichen haben!";
+            continue;
+        }
 
-    // composer
-    if(typeof(song.value.attributes.composer) != "string") {
-        errorMessages.value.composer = "Komponist" + has2beString; 
-    } else if (song.value.attributes.composer.length > 30) {
-        errorMessages.value.composer = "Der Komponist" + attributesLengthMsg;
-    }
+        // composer
+        if (typeof (song.value.attributes.composer) != "string") {
+            errorMessages.value.composer = "Komponist" + has2beString;
+            continue;
+        } else if (song.value.attributes.composer.length > 30) {
+            errorMessages.value.composer = "Der Komponist" + attributesLengthMsg;
+            continue;
+        }
 
-    // genre
-    if(typeof(song.value.attributes.genre) != "string") {
-        errorMessages.value.genre = "Genre" + has2beString; 
-    } else if (song.value.attributes.genre.length > 30) {
-        errorMessages.value.genre = "Das Genre" + attributesLengthMsg;
-    }
+        // genre
+        if (typeof (song.value.attributes.genre) != "string") {
+            errorMessages.value.genre = "Genre" + has2beString;
+            continue;
+        } else if (song.value.attributes.genre.length > 30) {
+            errorMessages.value.genre = "Das Genre" + attributesLengthMsg;
+            continue;
+        }
 
-    // interpret
-    if(typeof(song.value.attributes.interpret) != "string") {
-        errorMessages.value.interpret = "Interpret" + has2beString; 
-    } else if (song.value.attributes.interpret.length > 30) {
-        errorMessages.value.interpret = "Der Interpret" + attributesLengthMsg;
-    }
+        // interpret
+        if (typeof (song.value.attributes.interpret) != "string") {
+            errorMessages.value.interpret = "Interpret" + has2beString;
+            continue;
+        } else if (song.value.attributes.interpret.length > 30) {
+            errorMessages.value.interpret = "Der Interpret" + attributesLengthMsg;
+            continue;
+        }
 
-    // year
-    if (typeof(song.value.attributes.year) != "number") {
-        errorMessages.value.year = "Jahr" + has2beNumber;
-    } else if (song.value.attributes.year > new Date().getFullYear()) {
-        errorMessages.value.year = "Das aktuelle Jahr kann nicht überstiegen werden!";
-    } else if (song.value.attributes.year < 1900) {
-        errorMessages.value.year = "Das Jahr muss über 1900 liegen!";
-    }
+        // year
+        if (typeof (song.value.attributes.year) != "number") {
+            errorMessages.value.year = "Jahr" + has2beNumber;
+            continue;
+        } else if (song.value.attributes.year > new Date().getFullYear()) {
+            errorMessages.value.year = "Das aktuelle Jahr kann nicht überstiegen werden!";
+            continue;
+        } else if (song.value.attributes.year < 1900) {
+            errorMessages.value.year = "Das Jahr muss über 1900 liegen!";
+            continue;
+        }
 
-    // album
-    if (typeof(song.value.attributes.album) != "string") {
-        errorMessages.value.album = "Album" + has2beString;
-    } else if (song.value.attributes.album.length > 30) {
-        errorMessages.value.album = "Das Album" + attributesLengthMsg;
-    }
+        // album
+        if (typeof (song.value.attributes.album) != "string") {
+            errorMessages.value.album = "Album" + has2beString;
+            continue;
+        } else if (song.value.attributes.album.length > 30) {
+            errorMessages.value.album = "Das Album" + attributesLengthMsg;
+            continue;
+        }
 
-    // duration
-    if (song.value.duration === null) {
-        errorMessages.value.duration = "Dauer" + requiredField;
-    } else if (typeof(song.value.duration) != "number") {
-        errorMessages.value.duration = "Dauer" + has2beNumber;
-    } else if (song.value.duration < 1) {
-        errorMessages.value.duration = "Dauer muss mind. 1 sein!";
-    } else if (song.value.duration > 65536) {
-        errorMessages.value.duration = "Dauer muss kann nicht mehr als 65536 sein!";
-    }
+        // duration
+        if (song.value.duration === null) {
+            errorMessages.value.duration = "Dauer" + requiredField;
+            continue;
+        } else if (typeof (song.value.duration) != "number") {
+            errorMessages.value.duration = "Dauer" + has2beNumber;
+            continue;
+        } else if (song.value.duration < 1) {
+            errorMessages.value.duration = "Dauer muss mind. 1 sein!";
+            continue;
+        } else if (song.value.duration > 65536) {
+            errorMessages.value.duration = "Dauer muss kann nicht mehr als 65536 sein!";
+            continue;
+        }
 
-    // rating
-    if (song.value.rating === null) {
-        errorMessages.value.rating = "Rating" + requiredField;
-    } else if (typeof(song.value.rating) != "number") {
-        errorMessages.value.rating = "Raiting" + has2beNumber;
-    } else if (song.value.rating < 1) {
-        errorMessages.value.rating = "Rating muss mind. 1 sein!";
-    } else if (song.value.rating > 5) {
-        errorMessages.value.rating = "Dauer muss kann nicht mehr als 5 sein!";
-    }
+        // rating
+        if (song.value.rating === null) {
+            errorMessages.value.rating = "Rating" + requiredField;
+            continue;
+        } else if (typeof (song.value.rating) != "number") {
+            errorMessages.value.rating = "Raiting" + has2beNumber;
+            continue;
+        } else if (song.value.rating < 1) {
+            errorMessages.value.rating = "Rating muss mind. 1 sein!";
+            continue;
+        } else if (song.value.rating > 5) {
+            errorMessages.value.rating = "Dauer muss kann nicht mehr als 5 sein!";
+            continue;
+        }
+
+        // validated
+        alert("validated");
+    } while (false);
 }
 </script>
 
