@@ -9,6 +9,7 @@ const props = defineProps({
 })
 
 let { id } = reactive(props);
+const requestType = ref("");
 const song = ref({
     id: 0,
     name: "",
@@ -37,8 +38,10 @@ const errorMessages = ref({
 onMounted(() => {
     if (id == 0) {
         console.log("new Song");
+        requestType.value = "POST";
     } else {
         console.log("edit song with id:", id);
+        requestType.value = "PUT";
     }
 })
 
@@ -148,6 +151,13 @@ function submit() {
 
         // validated
         alert("validated");
+        if (requestType.value === "POST") {
+
+        } else if (requestType.value === "PUT") {
+
+        } else {
+            console.error("Can't make request; Unknown requestType:", requestType.value);
+        }
     } while (false);
 }
 </script>
