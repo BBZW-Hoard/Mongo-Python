@@ -28,6 +28,10 @@ class MongoDb():
 		filter = {"_id": id}
 		newvalues = {"$set": document}
 		return self.collection.update_one(filter, newvalues)
+	
+	def deleteDocument(self, id):
+		filter = {"_id": id}
+		return self.collection.delete_one(filter)
 
 	def getDatabase(self):
 		dblist = self.client.list_database_names()
