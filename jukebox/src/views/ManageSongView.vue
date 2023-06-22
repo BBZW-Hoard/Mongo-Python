@@ -66,8 +66,11 @@ function submit() {
         } else if (typeof (song.value.name) != "string") {
             errorMessages.value.name = "Name" + has2beString;
             continue;
-        } else if (song.value.name.length < 3 || song.value.name.length > 25) {
-            errorMessages.value.name = "Der Name muss mehr als 3 und weniger als 25 Zeichen haben!";
+        } else if (song.value.name.length < 3) {
+            errorMessages.value.name = "Der Name muss mehr als 3 Zeichen haben!";
+            continue;
+        } else if (song.value.name.length > 25) {
+            errorMessages.value.name = "Der Name muss weniger als 25 Zeichen haben!";
             continue;
         }
 
