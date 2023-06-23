@@ -6,7 +6,7 @@ from typing import Optional
 class Song(BaseModel):
     id: str = Field(default_factory=uuid.uuid4, alias="_id")
     name: str = Field(...)
-    attributes: list = Field(None)
+    attributes: object = Field(None)
     duartion: int = Field(...)
     rating: float = Field(...)
     url: str = Field(...)
@@ -27,7 +27,7 @@ class Song(BaseModel):
 
 class SongUpdate(BaseModel):
     name: Optional[str]
-    attributes: Optional[list]
+    attributes: Optional[object]
     duartion: Optional[int]
     rating: Optional[float]
     url: Optional[str]
