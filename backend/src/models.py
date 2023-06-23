@@ -7,7 +7,7 @@ class Song(BaseModel):
     id: str = Field(default_factory=uuid.uuid4, alias="_id")
     name: str = Field(...)
     attributes: object = Field(None)
-    duartion: int = Field(...)
+    duration: int = Field(...)
     rating: float = Field(...)
     url: str = Field(...)
 
@@ -28,7 +28,7 @@ class Song(BaseModel):
 class SongUpdate(BaseModel):
     name: Optional[str]
     attributes: Optional[object]
-    duartion: Optional[int]
+    duration: Optional[int]
     rating: Optional[float]
     url: Optional[str]
 
