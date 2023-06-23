@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from src.routes.song_routes import router as song_router
 from src.routes.playlist_routes import router as playlist_router
+from src.routes.files_routes import router as files_router
 import os
 from src.modules.MongoDb import MongoDb
 
@@ -35,4 +36,5 @@ async def root():
 
 app.include_router(song_router, tags=["songs"], prefix="/songs")
 app.include_router(playlist_router, tags=["playlists"], prefix="/playlists")
+app.include_router(files_router, tags=["files"], prefix="/files")
 

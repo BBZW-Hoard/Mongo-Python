@@ -9,7 +9,7 @@ class Song(BaseModel):
     attributes: object = Field(None)
     duration: int = Field(...)
     rating: float = Field(...)
-    url: str = Field(...)
+    url: str = Field(None)
 
     class Config:
         allow_population_by_field_name = True

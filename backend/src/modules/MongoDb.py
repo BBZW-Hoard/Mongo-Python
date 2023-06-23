@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 import bson
+import gridfs
 
 class MongoDb():
 	def __init__(self, connectionString, _id = None):
@@ -11,7 +12,8 @@ class MongoDb():
 		self.database = client["JukeBox"]
 		self.songCollection = client["JukeBox"]["songs"]
 		self.playlistCollection = client["JukeBox"]["playlists"]
-	
+		self.fs = gridfs.GridFS(client["JukeBox"])
+
 	def findSongById(self, id):
 		filter = {"_id": id}
 		return self.songCollection.find_one(filter)
@@ -19,12 +21,18 @@ class MongoDb():
 	def findPlaylistById(self, id):
 		filter = {"_id": id}
 		return self.playlistCollection.find_one(filter)
+	
+	def findFileById(self, fileId):
+		return self.fs.get(fileId)
 
 	def InsertSong(self, document):
 		return self.songCollection.insert_one(document)
 	
 	def InsertPlaylist(self, document):
 		return self.playlistCollection.insert_one(document)
+	
+	def InsertFile(self, document):
+		return self.fs.put(b"hello world")
 	
 	def UpdateSong(self, id, document):
 		filter = {"_id": id}
