@@ -1,7 +1,8 @@
 from pymongo import MongoClient
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.routes import router as book_router
+from src.song_routes import router as song_router
+from src.playlist_routes import router as playlist_router
 import os
 from src.modules.MongoDb import MongoDb
 
@@ -32,5 +33,6 @@ def shutdown_db_client():
 async def root():
     return {"message": "Welcome to the PyMongo tutorial!"}
 
-app.include_router(book_router, tags=["songs"], prefix="/songs")
+app.include_router(song_router, tags=["songs"], prefix="/songs")
+app.include_router(playlist_router, tags=["playlists"], prefix="/playlists")
 

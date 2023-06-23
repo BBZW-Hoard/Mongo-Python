@@ -10,6 +10,7 @@ class MongoDb():
 		self.client = client
 		self.database = client["JukeBox"]
 		self.collection = self.setCollection("songs")
+		self.playlist = self.database["playlists"]
 		
 
 	def findDocument(self, document):
@@ -17,17 +18,34 @@ class MongoDb():
         {"_id": document.inserted_id}
     	)
 	
+	def findPlaylistByDocument(self, document):
+		return self.playlist.find_one(
+        {"_id": document.inserted_id}
+    	)
+	
 	def findSongById(self, id):
 		filter = {"_id": id}
 		return self.collection.find_one(filter)
+	
+	def findPlaylistId(self, id):
+		filter = {"_id": id}
+		return self.playlist.find_one(filter)
 
 	def InsertToDB(self, document):
 		return self.collection.insert_one(document)
+	
+	def InsertPlaylist(self, document):
+		return self.playlist.insert_one(document)
 	
 	def UpdateDB(self, id, document):
 		filter = {"_id": id}
 		newvalues = {"$set": document}
 		return self.collection.update_one(filter, newvalues)
+	
+	def UpdatePlaylist(self, id, document):
+		filter = {"_id": id}
+		newvalues = {"$set": document}
+		return self.playlist.update_one(filter, newvalues)
 	
 	def deleteDocument(self, id):
 		filter = {"_id": id}
@@ -53,6 +71,9 @@ class MongoDb():
 		for document in self.collection.find(limit=100):
 			print(document['_id'])
 		return list(self.collection.find(limit=100))
+	
+	def getPlaylist(self):
+		return list(self.playlist.find(limit=100))
 	
 	def getDocumentFromId(self, id):
 		documentDict = []

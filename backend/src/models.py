@@ -68,7 +68,6 @@ class PlaylistUpdate(BaseModel):
         allow_population_by_field_name = True
         schema_extra = {
             "example": {
-                "id": 1,
                 "name": "Test",
                 "songs": []
             }
