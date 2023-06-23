@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from src.routes import router as book_router
 import os
 from src.modules.MongoDb import MongoDb
@@ -8,6 +9,15 @@ connectionString = os.environ["DB_CONNECTION"] if "DB_CONNECTION" in os.environ 
 dbName = os.environ["DB_NAME"] if "DB_NAME" in os.environ  else "JukeBox"
 
 app = FastAPI()
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.on_event("startup")
 def startup_db_client():
