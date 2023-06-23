@@ -12,7 +12,6 @@ const props = defineProps({
 let { id } = reactive(props);
 const requestType = ref("");
 const song = ref({
-    id: 0,
     name: "",
     attributes: {
         composer: "",
@@ -22,7 +21,8 @@ const song = ref({
         album: ""
     },
     duration: 6,
-    rating: 3.4
+    rating: 3.4,
+    url: "public/songs/a-call-to-the-soul.mp3"
 })
 
 const errorMessages = ref({
@@ -36,14 +36,17 @@ const errorMessages = ref({
     rating: null
 })
 
-onMounted(() => {
-    if (id == 0) {
-        console.log("new Song");
-        requestType.value = "POST";
-    } else {
-        console.log("edit song with id:", id);
-        requestType.value = "PUT";
+// axios headers config
+const config = {
+    headers: {
+        'content-type': 'application/json',
+        'Accept': 'application/json'
     }
+};
+
+
+onMounted(() => {
+    requestType.value = "POST";
 })
 
 async function submit() {
@@ -155,10 +158,17 @@ async function submit() {
 
         // validated
         alert("validated");
+
+        axios({
+            url: 'http://localhost:5000/songs',
+            method: requestType.value.toLowerCase(),    // POST OR PUT
+            data: JSON.stringify(song.value),   // DATA
+            headers: config.headers
+        })
+
         if (requestType.value === "POST") {
             try {
-                const response = await axios.post('http://localhost:5000/songs', JSON.stringify(song.value));
-                console.log(response.data); // Handle the response data
+                await axios.post();
             } catch (e) {
                 console.error(e); // Handle the error
             }
