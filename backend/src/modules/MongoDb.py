@@ -9,47 +9,36 @@ class MongoDb():
 		client = MongoClient(connectionString)
 		self.client = client
 		self.database = client["JukeBox"]
-		self.collection = self.setCollection("songs")
-		self.playlist = self.database["playlists"]
-		
-
-	def findDocument(self, document):
-		return self.collection.find_one(
-        {"_id": document.inserted_id}
-    	)
-	
-	def findPlaylistByDocument(self, document):
-		return self.playlist.find_one(
-        {"_id": document.inserted_id}
-    	)
+		self.songCollection = client["JukeBox"]["songs"]
+		self.playlistCollection = client["JukeBox"]["playlists"]
 	
 	def findSongById(self, id):
 		filter = {"_id": id}
-		return self.collection.find_one(filter)
+		return self.songCollection.find_one(filter)
 	
-	def findPlaylistId(self, id):
+	def findPlaylistById(self, id):
 		filter = {"_id": id}
-		return self.playlist.find_one(filter)
+		return self.playlistCollection.find_one(filter)
 
-	def InsertToDB(self, document):
-		return self.collection.insert_one(document)
+	def InsertSong(self, document):
+		return self.songCollection.insert_one(document)
 	
 	def InsertPlaylist(self, document):
-		return self.playlist.insert_one(document)
+		return self.playlistCollection.insert_one(document)
 	
-	def UpdateDB(self, id, document):
+	def UpdateSong(self, id, document):
 		filter = {"_id": id}
 		newvalues = {"$set": document}
-		return self.collection.update_one(filter, newvalues)
+		return self.songCollection.update_one(filter, newvalues)
 	
 	def UpdatePlaylist(self, id, document):
 		filter = {"_id": id}
 		newvalues = {"$set": document}
-		return self.playlist.update_one(filter, newvalues)
+		return self.playlistCollection.update_one(filter, newvalues)
 	
 	def deleteDocument(self, id):
 		filter = {"_id": id}
-		return self.collection.delete_one(filter)
+		return self.songCollection.delete_one(filter)
 
 	def getDatabase(self):
 		dblist = self.client.list_database_names()
@@ -62,23 +51,24 @@ class MongoDb():
 	def getCollection(self):
 		return self.database.list_collection_names()
 
-	def setCollection(self, collectionName):
-		self.collection = self.database[collectionName]
-		return self.collection
+	def setSongCollection(self, collectionName):
+		self.songCollection = self.database[collectionName]
+		return self.songCollection
+	
+	def setPlaylistCollection(self, collectionName):
+		self.playlistCollection = self.database[collectionName]
+		return self.songCollection
 
-	def getDocuments(self):
-		print('Documents')
-		for document in self.collection.find(limit=100):
-			print(document['_id'])
-		return list(self.collection.find(limit=100))
+	def getSongs(self):
+		return list(self.songCollection.find(limit=100))
 	
-	def getPlaylist(self):
-		return list(self.playlist.find(limit=100))
+	def getPlaylists(self):
+		return list(self.playlistCollection.find(limit=100))
 	
-	def getDocumentFromId(self, id):
+	def getSongDictFromId(self, id):
 		documentDict = []
 		query = { "_id": bson.ObjectId(id) }
-		document = self.collection.find_one(query)
+		document = self.songCollection.find_one(query)
 		if document is None:
 			return None
 		for k, v in document.items():
