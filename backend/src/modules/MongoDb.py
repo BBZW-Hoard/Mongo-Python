@@ -40,6 +40,12 @@ class MongoDb():
 		filter = {"_id": id}
 		return self.songCollection.delete_one(filter)
 
+	def getSongs(self):
+		return list(self.songCollection.find(limit=100))
+	
+	def getPlaylists(self):
+		return list(self.playlistCollection.find(limit=100))
+	
 	def getDatabase(self):
 		dblist = self.client.list_database_names()
 		return dblist
@@ -48,9 +54,6 @@ class MongoDb():
 		self.database = self.client[dbName]
 		return
 	
-	def getCollection(self):
-		return self.database.list_collection_names()
-
 	def setSongCollection(self, collectionName):
 		self.songCollection = self.database[collectionName]
 		return self.songCollection
@@ -58,12 +61,9 @@ class MongoDb():
 	def setPlaylistCollection(self, collectionName):
 		self.playlistCollection = self.database[collectionName]
 		return self.songCollection
-
-	def getSongs(self):
-		return list(self.songCollection.find(limit=100))
 	
-	def getPlaylists(self):
-		return list(self.playlistCollection.find(limit=100))
+	def getCollection(self):
+		return self.database.list_collection_names()
 	
 	def getSongDictFromId(self, id):
 		documentDict = []

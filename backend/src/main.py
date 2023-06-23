@@ -1,8 +1,8 @@
 from pymongo import MongoClient
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from src.song_routes import router as song_router
-from src.playlist_routes import router as playlist_router
+from src.routes.song_routes import router as song_router
+from src.routes.playlist_routes import router as playlist_router
 import os
 from src.modules.MongoDb import MongoDb
 

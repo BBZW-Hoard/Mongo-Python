@@ -2,7 +2,7 @@ from fastapi import APIRouter, Body, Request, Response, HTTPException, status
 from fastapi.encoders import jsonable_encoder
 from typing import List
 
-from src.models import Song, SongUpdate
+from src.models.Song import Song, SongUpdate
 router = APIRouter()
 
 @router.get("/", response_description="get list of songs", status_code=status.HTTP_200_OK, response_model=List[Song])
