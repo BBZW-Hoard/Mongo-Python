@@ -1,5 +1,6 @@
 <script setup>
 import { ref, defineProps, onMounted, reactive } from 'vue';
+import axios from 'axios';
 
 const props = defineProps({
     id: {
@@ -45,7 +46,7 @@ onMounted(() => {
     }
 })
 
-function submit() {
+async function submit() {
     let attributesLengthMsg = " muss weniger als 30 Zeichen haben!";
     let has2beString = " muss ein String sein!";
     let has2beNumber = " muss eine Zahl sein!";
@@ -155,7 +156,12 @@ function submit() {
         // validated
         alert("validated");
         if (requestType.value === "POST") {
-
+            try {
+                const response = await axios.post('http://localhost:5000/songs', JSON.stringify(song.value));
+                console.log(response.data); // Handle the response data
+            } catch (e) {
+                console.error(e); // Handle the error
+            }
         } else if (requestType.value === "PUT") {
 
         } else {
