@@ -43,7 +43,7 @@ const config = {
 
 
 onMounted(async () => {
-    if(id == 0) {   // create new entry
+    if (id == 0) {   // create new entry
         requestType.value = "POST";
     } else {
         requestType.value = "PUT";
@@ -52,7 +52,7 @@ onMounted(async () => {
             // loading entry with id from database
             let request = await axios.get(("http://localhost:5000/songs/" + id));
             song.value = request.data;
-        } catch(e) {
+        } catch (e) {
             console.error("error in request:", e);
             // weiterleiten zu 404
         }
