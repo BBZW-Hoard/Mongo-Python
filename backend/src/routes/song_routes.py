@@ -17,7 +17,7 @@ def get_song(id: str, request: Request):
 
 @router.delete("/{id}", response_description="delete song", status_code=status.HTTP_200_OK, response_model=Song)
 def delete_song(id: str, request: Request):
-    result = request.app.MongoDb.deleteDocument(id)
+    result = request.app.MongoDb.deleteSong(id)
     return result
 
 @router.post("/", response_description="Create a new song", status_code=status.HTTP_201_CREATED, response_model=Song)
