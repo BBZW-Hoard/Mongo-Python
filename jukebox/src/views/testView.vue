@@ -12,7 +12,7 @@ const config = {
     }
 };
 
-function submitFile() {
+async function submitFile() {
     let formData = new FormData();
     formData.append('file', file.value);
 
@@ -22,14 +22,7 @@ function submitFile() {
         data: formData,   // DATA
         headers: config.headers
     })
-
-    axios.post()
-        .then(function () {
-            console.log('SUCCESS!!');
-        })
-        .catch(function () {
-            console.log('FAILURE!!');
-        });
+    await axios.post();
 }
 </script>
 
