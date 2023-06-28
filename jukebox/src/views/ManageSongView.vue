@@ -54,6 +54,7 @@ async function submit() {
     let has2beString = " muss ein String sein!";
     let has2beNumber = " muss eine Zahl sein!";
     let requiredField = " ist ein Pflichtfeld!";
+    let validated = false;
 
     /* set all key-values from errorMessages to null */
     try {
@@ -62,100 +63,100 @@ async function submit() {
         console.error("Could not clear values from errorMessages object", e);
     }
 
-    do {
-        // name
-        if (song.value.name.trim().length === 0) {
-            errorMessages.value.name = "Name" + requiredField;
-            continue;
-        } else if (typeof (song.value.name) != "string") {
-            errorMessages.value.name = "Name" + has2beString;
-            continue;
-        } else if (song.value.name.length < 3) {
-            errorMessages.value.name = "Der Name muss mehr als 3 Zeichen haben!";
-            continue;
-        } else if (song.value.name.length > 25) {
-            errorMessages.value.name = "Der Name muss weniger als 25 Zeichen haben!";
-            continue;
-        }
+    // name
+    if (song.value.name.trim().length === 0) {
+        errorMessages.value.name = "Name" + requiredField;
+        validated = false;
+    } else if (typeof (song.value.name) != "string") {
+        errorMessages.value.name = "Name" + has2beString;
+        validated = false;
+    } else if (song.value.name.length < 3) {
+        errorMessages.value.name = "Der Name muss mehr als 3 Zeichen haben!";
+        validated = false;
+    } else if (song.value.name.length > 25) {
+        errorMessages.value.name = "Der Name muss weniger als 25 Zeichen haben!";
+        validated = false;
+    }
 
-        // composer
-        if (typeof (song.value.attributes.composer) != "string") {
-            errorMessages.value.composer = "Komponist" + has2beString;
-            continue;
-        } else if (song.value.attributes.composer.length > 30) {
-            errorMessages.value.composer = "Der Komponist" + attributesLengthMsg;
-            continue;
-        }
+    // composer
+    if (typeof (song.value.attributes.composer) != "string") {
+        errorMessages.value.composer = "Komponist" + has2beString;
+        validated = false;
+    } else if (song.value.attributes.composer.length > 30) {
+        errorMessages.value.composer = "Der Komponist" + attributesLengthMsg;
+        validated = false;
+    }
 
-        // genre
-        if (typeof (song.value.attributes.genre) != "string") {
-            errorMessages.value.genre = "Genre" + has2beString;
-            continue;
-        } else if (song.value.attributes.genre.length > 30) {
-            errorMessages.value.genre = "Das Genre" + attributesLengthMsg;
-            continue;
-        }
+    // genre
+    if (typeof (song.value.attributes.genre) != "string") {
+        errorMessages.value.genre = "Genre" + has2beString;
+        validated = false;
+    } else if (song.value.attributes.genre.length > 30) {
+        errorMessages.value.genre = "Das Genre" + attributesLengthMsg;
+        validated = false;
+    }
 
-        // interpret
-        if (typeof (song.value.attributes.interpret) != "string") {
-            errorMessages.value.interpret = "Interpret" + has2beString;
-            continue;
-        } else if (song.value.attributes.interpret.length > 30) {
-            errorMessages.value.interpret = "Der Interpret" + attributesLengthMsg;
-            continue;
-        }
+    // interpret
+    if (typeof (song.value.attributes.interpret) != "string") {
+        errorMessages.value.interpret = "Interpret" + has2beString;
+        validated = false;
+    } else if (song.value.attributes.interpret.length > 30) {
+        errorMessages.value.interpret = "Der Interpret" + attributesLengthMsg;
+        validated = false;
+    }
 
-        // year
-        if (typeof (song.value.attributes.year) != "number") {
-            errorMessages.value.year = "Jahr" + has2beNumber;
-            continue;
-        } else if (song.value.attributes.year > new Date().getFullYear()) {
-            errorMessages.value.year = "Das aktuelle Jahr kann nicht überstiegen werden!";
-            continue;
-        } else if (song.value.attributes.year < 1900) {
-            errorMessages.value.year = "Das Jahr muss über 1900 liegen!";
-            continue;
-        }
+    // year
+    if (typeof (song.value.attributes.year) != "number") {
+        errorMessages.value.year = "Jahr" + has2beNumber;
+        validated = false;
+    } else if (song.value.attributes.year > new Date().getFullYear()) {
+        errorMessages.value.year = "Das aktuelle Jahr kann nicht überstiegen werden!";
+        validated = false;
+    } else if (song.value.attributes.year < 1900) {
+        errorMessages.value.year = "Das Jahr muss über 1900 liegen!";
+        validated = false;
+    }
 
-        // album
-        if (typeof (song.value.attributes.album) != "string") {
-            errorMessages.value.album = "Album" + has2beString;
-            continue;
-        } else if (song.value.attributes.album.length > 30) {
-            errorMessages.value.album = "Das Album" + attributesLengthMsg;
-            continue;
-        }
+    // album
+    if (typeof (song.value.attributes.album) != "string") {
+        errorMessages.value.album = "Album" + has2beString;
+        validated = false;
+    } else if (song.value.attributes.album.length > 30) {
+        errorMessages.value.album = "Das Album" + attributesLengthMsg;
+        validated = false;
+    }
 
-        // duration
-        if (song.value.duration === null) {
-            errorMessages.value.duration = "Dauer" + requiredField;
-            continue;
-        } else if (typeof (song.value.duration) != "number") {
-            errorMessages.value.duration = "Dauer" + has2beNumber;
-            continue;
-        } else if (song.value.duration < 1) {
-            errorMessages.value.duration = "Dauer muss mind. 1 sein!";
-            continue;
-        } else if (song.value.duration > 65536) {
-            errorMessages.value.duration = "Dauer muss kann nicht mehr als 65536 sein!";
-            continue;
-        }
+    // duration
+    if (song.value.duration === null) {
+        errorMessages.value.duration = "Dauer" + requiredField;
+        validated = false;
+    } else if (typeof (song.value.duration) != "number") {
+        errorMessages.value.duration = "Dauer" + has2beNumber;
+        validated = false;
+    } else if (song.value.duration < 1) {
+        errorMessages.value.duration = "Dauer muss mind. 1 sein!";
+        validated = false;
+    } else if (song.value.duration > 65536) {
+        errorMessages.value.duration = "Dauer muss kann nicht mehr als 65536 sein!";
+        validated = false;
+    }
 
-        // rating
-        if (song.value.rating === null) {
-            errorMessages.value.rating = "Rating" + requiredField;
-            continue;
-        } else if (typeof (song.value.rating) != "number") {
-            errorMessages.value.rating = "Raiting" + has2beNumber;
-            continue;
-        } else if (song.value.rating < 1) {
-            errorMessages.value.rating = "Rating muss mind. 1 sein!";
-            continue;
-        } else if (song.value.rating > 5) {
-            errorMessages.value.rating = "Dauer muss kann nicht mehr als 5 sein!";
-            continue;
-        }
+    // rating
+    if (song.value.rating === null) {
+        errorMessages.value.rating = "Rating" + requiredField;
+        validated = false;
+    } else if (typeof (song.value.rating) != "number") {
+        errorMessages.value.rating = "Raiting" + has2beNumber;
+        validated = false;
+    } else if (song.value.rating < 1) {
+        errorMessages.value.rating = "Rating muss mind. 1 sein!";
+        validated = false;
+    } else if (song.value.rating > 5) {
+        errorMessages.value.rating = "Dauer muss kann nicht mehr als 5 sein!";
+        validated = false;
+    }
 
+    if (validated) {
         // validated
         alert("validated");
 
@@ -177,7 +178,7 @@ async function submit() {
         } else {
             console.error("Can't make request; Unknown requestType:", requestType.value);
         }
-    } while (false);
+    }
 }
 </script>
 
