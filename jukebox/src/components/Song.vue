@@ -85,7 +85,9 @@ window.addEventListener('resize', handleScreenWidthChange);
                     <router-link :to="'/manage-song/' + song._id">
                         <button class="dropdown rounded-t-sm mt-8" @click="editSong(song)">Bearbeiten</button>
                     </router-link>
-                    <button class="dropdown rounded-b-sm mt-16" @click="deleteSong(song)">Löschen</button>
+                    <router-link :to="'delete-song/' + song._id">
+                        <button class="dropdown rounded-b-sm mt-16" @click="deleteSong(song)">Löschen</button>
+                    </router-link>
                 </div>
             </span>
         </div>
@@ -102,7 +104,9 @@ window.addEventListener('resize', handleScreenWidthChange);
         <router-link :to="'/manage-song/' + song._id">
             <button class="text-blue-900 mr-1" @click="editSong(song)">Bearbeiten</button>
         </router-link>
-        <button class="text-red-600 mx-1" @click="deleteSong(song)">Löschen</button>
+        <router-link :to="'delete-song/' + song._id">
+            <button class="text-red-600 mx-1" @click="deleteSong(song)">Löschen</button>
+        </router-link>
     </div>
 </template>
 
