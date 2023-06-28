@@ -44,15 +44,24 @@ class MongoDb():
 		newvalues = {"$set": document}
 		return self.playlistCollection.update_one(filter, newvalues)
 	
-	def deleteDocument(self, id):
+	def deleteSong(self, id):
 		filter = {"_id": id}
 		return self.songCollection.delete_one(filter)
+	
+	def deletePlaylist(self, id):
+		filter = {"_id": id}
+		return self.playlistCollection.delete_one(filter)
 
 	def getSongs(self):
 		return list(self.songCollection.find(limit=100))
 	
 	def getPlaylists(self):
 		return list(self.playlistCollection.find(limit=100))
+	
+	def getSongsFromPlaylist(self, id):
+		filter = {"_id": id}
+		playlist = self.playlistCollection.find_one(filter)
+		return playlist["songs"]
 	
 	def getDatabase(self):
 		dblist = self.client.list_database_names()
