@@ -185,7 +185,18 @@ async function submit() {
                 console.error(e); // Handle the error
             }
         } else if (requestType.value === "PUT") {
+            axios({
+                url: 'http://localhost:5000/songs/' + song.value._id,
+                method: requestType.value.toLowerCase(),    // PUT
+                data: JSON.stringify(song.value),   // DATA
+                headers: config.headers
+            })
 
+            try {
+                await axios.put();
+            } catch (e) {
+                console.error(e); // Handle the error
+            }
         } else {
             console.error("Can't make request; Unknown requestType:", requestType.value);
         }
