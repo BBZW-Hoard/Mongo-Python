@@ -18,7 +18,7 @@ const router = createRouter({
             component: ListsView
         },
         {
-            path: "/manage-song",
+            path: "/manage-song/:id",
             name: "mangeSong",
             component: ManageSongView
         },

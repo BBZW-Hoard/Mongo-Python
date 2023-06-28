@@ -1,15 +1,12 @@
 <script setup>
-import { ref, defineProps, onMounted, reactive } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 import axios from 'axios';
 
-const props = defineProps({
-    id: {
-        type: Number,
-        required: true,
-    }
-})
 
-let { id } = reactive(props);
+const route = useRoute();
+const id = route.params.id;
+
 const requestType = ref("");
 const song = ref({
     name: "",
@@ -45,8 +42,22 @@ const config = {
 };
 
 
-onMounted(() => {
-    requestType.value = "POST";
+onMounted(async () => {
+    if(id == 0) {   // create new entry
+        requestType.value = "POST";
+    } else {
+        requestType.value = "PUT";
+
+        try {
+            // loading entry with id from database
+            let request = await axios.get(("http://localhost:5000/songs/" + id));
+            song.value = request.data;
+        } catch(e) {
+            console.error("error in request:", e);
+            // weiterleiten zu 404
+        }
+    }
+
 })
 
 async function submit() {
