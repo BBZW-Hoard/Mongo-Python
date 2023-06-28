@@ -16,7 +16,7 @@ def get_playlist(id: str, request: Request):
     playlists = request.app.MongoDb.findPlaylistById(id)
     return playlists
 
-@router.get("/songs/{id}", response_description="get list of songs", status_code=status.HTTP_200_OK, response_model=List[Song])
+@router.get("/{id}/songs", response_description="get list of songs", status_code=status.HTTP_200_OK, response_model=List[Song])
 def get_songsFromPlaylist(id: str, request: Request):
     songs = request.app.MongoDb.getSongsFromPlaylist(id)
     return songs
