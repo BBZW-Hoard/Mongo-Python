@@ -10,6 +10,7 @@ class Song(BaseModel):
     duration: int = Field(...)
     rating: float = Field(...)
     url: str = Field(None)
+    playlist_id: str = Field(None)
 
     class Config:
         allow_population_by_field_name = True
@@ -21,7 +22,8 @@ class Song(BaseModel):
                 ],
                 "duartion": 65,
                 "rating": 4.5,
-                "url": "public/songs/a-call-to-the-soul.mp3"
+                "url": "public/songs/a-call-to-the-soul.mp3",
+                "playlist_id": 2
             }
         }
 
@@ -31,6 +33,7 @@ class SongUpdate(BaseModel):
     duration: Optional[int]
     rating: Optional[float]
     url: Optional[str]
+    playlist_id: Optional[str]
 
     class Config:
         schema_extra = {
@@ -41,6 +44,7 @@ class SongUpdate(BaseModel):
                 ],
                 "duartion": 65,
                 "rating": 4.5,
-                "url": "public/songs/a-call-to-the-soul.mp3"
+                "url": "public/songs/a-call-to-the-soul.mp3",
+                "playlist_id": 2
             }
         }
