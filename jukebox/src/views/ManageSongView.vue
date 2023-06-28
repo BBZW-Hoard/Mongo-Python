@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import router from '../router/index.js';
 import axios from 'axios';
 
 
@@ -200,6 +201,8 @@ async function submit() {
         } else {
             console.error("Can't make request; Unknown requestType:", requestType.value);
         }
+
+        router.push({ path: '/', replace: true });
     }
 }
 </script>
