@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue'
 
 defineProps({
     song: {
+        _id: String,
         name: String,
         attributes: Array,
         duration: Number,
@@ -81,7 +82,9 @@ window.addEventListener('resize', handleScreenWidthChange);
                     <img src="../assets/threeDots.svg" alt="" />
                 </button>
                 <div v-if="showCRUDButtons && isDropdownOpen">
-                    <button class="dropdown rounded-t-sm mt-8" @click="editSong(song)">Bearbeiten</button>
+                    <router-link :to="'/manage-song/' + song._id">
+                        <button class="dropdown rounded-t-sm mt-8" @click="editSong(song)">Bearbeiten</button>
+                    </router-link>
                     <button class="dropdown rounded-b-sm mt-16" @click="deleteSong(song)">Löschen</button>
                 </div>
             </span>
@@ -96,7 +99,9 @@ window.addEventListener('resize', handleScreenWidthChange);
     </div>
     <div class="text-gray-500" :class="song.rating >= 4 ? 'text-green-600' : ''">{{ song.rating }} Rating</div>
     <div v-if="isMobileView">
-        <button class="text-blue-900 mr-1" @click="editSong(song)">Bearbeiten</button>
+        <router-link :to="'/manage-song/' + song._id">
+            <button class="text-blue-900 mr-1" @click="editSong(song)">Bearbeiten</button>
+        </router-link>
         <button class="text-red-600 mx-1" @click="deleteSong(song)">Löschen</button>
     </div>
 </template>
