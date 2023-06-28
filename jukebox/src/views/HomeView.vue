@@ -26,7 +26,7 @@ function addSong() {
 </script>
 
 <template>
-    <div class=" mx-auto p-4">
+    <div class="mx-auto p-4">
         <div class="sm:flex justify-start mb-4">
             <router-link :to="'/manage-song/' + 0">
                 <button @click="addSong()" class="btn w-full my-4 sm:w-auto sm:my-0 sm:mx-4">
