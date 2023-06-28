@@ -65,7 +65,7 @@ async function submit() {
     let has2beString = " muss ein String sein!";
     let has2beNumber = " muss eine Zahl sein!";
     let requiredField = " ist ein Pflichtfeld!";
-    let validated = false;
+    let validated = true;
 
     /* set all key-values from errorMessages to null */
     try {
