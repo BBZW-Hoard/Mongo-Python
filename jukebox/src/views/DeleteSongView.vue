@@ -37,7 +37,7 @@ onMounted(async () => {
         song.value = request.data;
     } catch (e) {
         console.error("error in request:", e);
-        // weiterleiten zu 404
+        router.push({ name: "Error404", params: { pathMatch: "/E404" }, replace: true })
     }
 })
 
