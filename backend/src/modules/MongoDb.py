@@ -48,6 +48,11 @@ class MongoDb():
 		return self.playlistCollection.insert_one(document)
 	
 	def InsertFile(self, filename: str, file):
+		try:
+			fildId = self.fs.find_one({"filename": filename})._id
+			self.fs.delete(fildId)
+		except:
+			print("File could not be deleted")	
 		fileId = self.fsBucket.upload_from_stream(filename, file)
 		return fileId
 	
