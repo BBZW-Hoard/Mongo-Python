@@ -15,10 +15,10 @@ def get_song(id: str, request: Request):
     song = request.app.MongoDb.findSongById(id)
     return song
 
-@router.delete("/{id}", response_description="delete song", status_code=status.HTTP_200_OK, response_model=Song)
+@router.delete("/{id}", response_description="delete song", status_code=status.HTTP_200_OK)
 def delete_song(id: str, request: Request):
     result = request.app.MongoDb.deleteSong(id)
-    return result
+    return {"Deleted": result.deleted_count}
 
 @router.post("/", response_description="Create a new song", status_code=status.HTTP_201_CREATED, response_model=Song)
 def create_song(request: Request, song: Song = Body(...)):
@@ -32,10 +32,8 @@ def update_song(id: str, request: Request, song: SongUpdate = Body(...)):
     song = {k: v for k, v in song.dict().items() if v is not None}
     if len(song) >= 1:
         update_result = request.app.MongoDb.UpdateSong(id, song) 
-        if update_result.modified_count == 0:
-            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Song with ID {id} not found")   
     if (
-        existing_song := request.app.MongoDB.collection.find_one({"_id": id})
+        existing_song := request.app.MongoDb.songCollection.find_one({"_id": id})
     ) is not None:
         return existing_song    
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Song with ID {id} not found")
