@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import ListsView from "../views/ListsView.vue";
 import ManageSongView from "../views/ManageSongView.vue";
+import ManagePlaylistView from "../views/ManagePlaylistView.vue";
 import DeleteSongView from "../views/DeleteView.vue";
 import testView from "../views/testView.vue";
 
@@ -22,6 +23,11 @@ const router = createRouter({
             path: "/manage-song/:id",
             name: "mangeSong",
             component: ManageSongView
+        },
+        {
+            path: "/manage-playlist/:id",
+            name: "managePlaylist",
+            component: ManagePlaylistView
         },
         {
             path: "/delete-song/:id",
