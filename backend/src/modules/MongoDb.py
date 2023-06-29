@@ -31,11 +31,15 @@ class MongoDb():
 	
 	def findFileById(self, fileId):
 		file = self.fsBucket.open_download_stream(fileId)
-		return file
+		return self.iterfile(file)
+	
+	def iterfile(self, file):
+		with file as file_like:
+			yield from file_like 	
 	
 	def findFileByName(self, fileName):
 		file = self.fs.find_one({"filename": fileName})
-		return file
+		return self.iterfile(file)
 
 	def InsertSong(self, document):
 		return self.songCollection.insert_one(document)
