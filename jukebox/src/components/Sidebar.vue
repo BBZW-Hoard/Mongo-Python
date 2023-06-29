@@ -167,7 +167,7 @@ async function removeSongFromPlaylist(playlistId, deleteSongId) {
                     </router-link>
                 </span>
             </div>
-            <div v-for="playlist in playlists" :key="playlist._id">
+            <div v-if="playlists.length != 0" v-for="playlist in playlists" :key="playlist._id">
                 <button class="flex items-center justify-between w-full mb-2 focus:outline-none"
                     @click="togglePlaylist(playlist._id)">
                     <span class="truncate text-md font-bold">
@@ -214,7 +214,10 @@ async function removeSongFromPlaylist(playlistId, deleteSongId) {
                     <!-- Add more items here -->
                 </div>
             </div>
-            <!-- Add more playlists here -->
+            <!-- No Playlists created -->
+            <div v-else>
+                <h1 class="text-xl font-semibold"><i>Keine Playlists vorhaden</i></h1>
+            </div>
 
             <!-- Fixed container for currently played songs -->
             <div v-if="showPlaylistContainer" class="fixed bottom-0 left-0 w-80 bg-gray-800 p-4">
