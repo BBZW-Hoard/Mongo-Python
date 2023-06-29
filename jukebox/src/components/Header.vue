@@ -14,9 +14,6 @@ import { ref } from 'vue'
                     <button class="headerBtn header-button">Home</button>
                 </RouterLink>
             </div>
-            <div class="search-container">
-                <input type="text" placeholder="Song suchen..." class="search-bar search">
-            </div>
         </div>
         <div class="shine-animation"></div>
     </header>
