@@ -21,19 +21,19 @@ const config = {
 
 onMounted(async () => {
     let request;
-    
+
     await axios.get("http://localhost:5000/songs/", config.headers).then(res => {
-            const parsed = res.data; // Assuming the res data is an object or JSON
-            if (parsed) {
-                // Access the expected properties or perform the desired actions
-                request = res.data;
-            } else {
-                throw new Error('Response data is undefined or null.');
-            }
-        }).catch(e => {
-            console.error("Throw error:", e);
-            // Handle the error appropriately
-        });
+        const parsed = res.data; // Assuming the res data is an object or JSON
+        if (parsed) {
+            // Access the expected properties or perform the desired actions
+            request = res.data;
+        } else {
+            throw new Error('Response data is undefined or null.');
+        }
+    }).catch(e => {
+        console.error("Throw error:", e);
+        // Handle the error appropriately
+    });
 
     console.log("request", request);
     console.log("datenyp", typeof (request));
