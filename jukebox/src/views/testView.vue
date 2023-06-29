@@ -13,11 +13,11 @@ const config = {
         'Accept': 'application/json'
     }
 };
-async function getFile() {
+async function getFile(songId) {
     let response = await axios.get("http://localhost:5000/files/" + songId);
     return response.data
 }
-async function submitFile() {
+async function submitFile(songId) {
     let formData = new FormData();
     formData.append('songId', songId);
     formData.append('file', file.value);

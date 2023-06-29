@@ -43,6 +43,28 @@ const config = {
     }
 };
 
+const file = ref();
+function handleFileUpload(event) {
+    file.value = event.target.files[0];
+}
+
+async function getFile(songId) {
+    let response = await axios.get("http://localhost:5000/files/" + songId);
+    return response.data
+}
+async function submitFile(songId) {
+    const configFile = {
+        headers: {
+            'content-type': 'multipart/form-data',
+            'Accept': 'application/json'
+        }
+    };    
+    let formData = new FormData();
+    formData.append('songId', songId);
+    formData.append('file', file.value);
+    let response = await axios.post("http://localhost:5000/files", formData, configFile.headers);
+    console.log(response.data)
+}
 
 onMounted(async () => {
     if (id == 0) {   // create new entry
@@ -82,13 +104,15 @@ async function submit() {
 
         if (requestType.value === "POST") {
             try {
-                await axios.post("http://localhost:5000/songs/", song.value, config.headers);
+                let response = await axios.post("http://localhost:5000/songs/", song.value, config.headers);
+                await submitFile(response._id)
             } catch (e) {
                 console.error("error:", e);  // Handle the error
             }
         } else if (requestType.value === "PUT") {
             try {
-                await axios.put(('http://localhost:5000/songs/' + song.value._id), song.value, config.headers);
+                let response = await axios.put(('http://localhost:5000/songs/' + song.value._id), song.value, config.headers);
+                await submitFile(response._id)
             } catch (e) {
                 console.error("error:", e); // Handle the error
             }
@@ -172,6 +196,9 @@ async function submit() {
                     required />
                 <label for="rating" class="text-red-500 px-1">{{ errorMessages.rating }}</label>
             </div>
+            <label> Song
+                <input type="file" @change="handleFileUpload($event)" />
+            </label>
             <p><b>Mit einem * versehene Felder, sind Pflichtfelder.</b></p>
             <div class="md:col-span-2">
                 <button class="btn" @click="submit()">Speichern</button>
