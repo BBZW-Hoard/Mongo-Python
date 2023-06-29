@@ -11,7 +11,7 @@ import { ref } from 'vue'
                     <img src="../assets/logo.png" alt="Logo" class="logo h-20 w-20 m-2">
                 </RouterLink>
                 <RouterLink to="/">
-                    <button class="headerBtn header-button">Song suchen</button>
+                    <button class="headerBtn header-button">Home</button>
                 </RouterLink>
             </div>
             <div class="search-container">
