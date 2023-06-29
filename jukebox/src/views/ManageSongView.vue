@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
-import { isValidated } from "../service/Valitation.ts";
+import { isValidated } from "../service/ValidationSong.ts";
 import router from '../router/index.js';
 import axios from 'axios';
 
