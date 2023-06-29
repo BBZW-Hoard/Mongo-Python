@@ -25,8 +25,7 @@ const config = {
         'content-type': 'application/json',
         'Accept': 'application/json'
     }
-};
-
+};  
 
 onMounted(async () => {
     if (id == 0) {   // create new entry
@@ -36,7 +35,7 @@ onMounted(async () => {
         try {
             // loading entry with id from database
             let request = await axios.get(("http://localhost:5000/playlists/" + id));
-            song.value = request.data;
+            playlist.value = request.data;
         } catch (e) {
             console.error("error in request:", e);
             // weiterleiten zu 404
@@ -71,7 +70,7 @@ async function submit() {
             }
         } else if (requestType.value === "PUT") {
             try {
-                await axios.put(('http://localhost:5000/playlists/' + playlist.value._id), song.value, config.headers);
+                await axios.put(('http://localhost:5000/playlists/' + playlist.value._id), playlist.value, config.headers);
             } catch (e) {
                 console.error("error:", e); // Handle the error
             }
