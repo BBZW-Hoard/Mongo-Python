@@ -38,7 +38,7 @@ function addSong() {
         <!--  -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             <div v-for="song in filteredSongs" :key="song.id" class="bg-white rounded-md shadow p-4">
-                <Song :song="song" :showCRUDButtons="true" />
+                <Song :song="song" />
             </div>
         </div>
     </div>

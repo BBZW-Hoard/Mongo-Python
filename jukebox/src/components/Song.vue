@@ -9,11 +9,7 @@ defineProps({
         duration: Number,
         rating: String,
         required: true,
-    },
-    showCRUDButtons: {
-        type: Boolean,
-        required: true
-    },
+    }
 })
 
 const isMobileView = ref(false);
@@ -81,7 +77,7 @@ window.addEventListener('resize', handleScreenWidthChange);
                 <button class="rounded-full p-1" @click="isDropdownOpen = !isDropdownOpen">
                     <img src="../assets/threeDots.svg" alt="" />
                 </button>
-                <div v-if="showCRUDButtons && isDropdownOpen">
+                <div v-if="isDropdownOpen">
                     <router-link :to="'/manage-song/' + song._id">
                         <button class="dropdown rounded-t-sm mt-8" @click="editSong(song)">Bearbeiten</button>
                     </router-link>
