@@ -167,14 +167,19 @@ function playNextSong(song) {
                             {{ isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] ? '(ausgewählt)' : '' }}
                         </i>
                     </span>
-                    <span class="ml-auto mr-2 w-6">
-                        <router-link :to="'/manage-playlist/' + playlist._id">
-                            <img src="../assets/pencil.svg" alt="E" />
-                        </router-link>
-                    </span>
-                    <img :class="{ 'rotate-180': isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] }"
-                        src="../assets/arrowDown.svg" alt=""
-                        :title="!isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] ? 'Playlist öffnen' : 'Playlist schliessen'" />
+                    <div class="flex items-center justify-end">
+                        <span class="ml-auto mr-2 w-5">
+                            <img src="../assets/trashcan.svg" alt="D" />
+                        </span>
+                        <span class="ml-auto mr-2 w-5">
+                            <router-link :to="'/manage-playlist/' + playlist._id">
+                                <img src="../assets/pencil.svg" alt="E" />
+                            </router-link>
+                        </span>
+                        <img :class="{ 'rotate-180': isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] }"
+                            src="../assets/arrowDown.svg" alt=""
+                            :title="!isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] ? 'Playlist öffnen' : 'Playlist schliessen'" />
+                    </div>
                 </button>
                 <div v-show="isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)]">
                     <div v-for="song in playlist.songs" class="flex items-center mb-2">
