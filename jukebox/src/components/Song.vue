@@ -73,7 +73,7 @@ window.addEventListener('resize', handleScreenWidthChange);
     <div class="flex justify-between mb-2">
         <div class="font-semibold">{{ song.name }}</div>
         <div class="space-x-2 relative">
-            <button class="text-green-600" @click="addToPlaylist(song)">
+            <button title="Zur ausgewählten Playlist hinzufügen" class="text-green-600" @click="addToPlaylist(song)">
                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 5v14m-7-7h14"></path>
