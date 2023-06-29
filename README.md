@@ -1,9 +1,9 @@
 # Mongo-Python
-## Installation
-npm install
 ## Start programm
-docker compose up
-## Manualy start
+docker compose up --build
+
+The website runs on http://localhost:9661/ if not configured different
+## Start without Docker
 ### On Windows
 python -m venv env-pymongo-fastapi-crud
 
@@ -11,6 +11,5 @@ python -m venv env-pymongo-fastapi-crud
 
 ### Install Dependencies
 pip install -r requirements.txt
+
 python -m uvicorn main:app --reload
-### Check entries on Database
-python DBTerminal.py
