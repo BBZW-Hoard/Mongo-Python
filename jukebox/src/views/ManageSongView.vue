@@ -105,14 +105,14 @@ async function submit() {
         if (requestType.value === "POST") {
             try {
                 let response = await axios.post("http://localhost:5000/songs/", song.value, config.headers);
-                await submitFile(response._id)
+                await submitFile(response.data._id)
             } catch (e) {
                 console.error("error:", e);  // Handle the error
             }
         } else if (requestType.value === "PUT") {
             try {
                 let response = await axios.put(('http://localhost:5000/songs/' + song.value._id), song.value, config.headers);
-                await submitFile(response._id)
+                await submitFile(response.data._id)
             } catch (e) {
                 console.error("error:", e); // Handle the error
             }
