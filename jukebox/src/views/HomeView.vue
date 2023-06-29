@@ -58,7 +58,7 @@ onMounted(async () => {
                 <Song :song="song" />
             </div>
             <div v-else class="w-full border-2 border-black p-4 rounded-xl">
-                <h1 class="text-2xl font-semibold text-center">Keine Songs vorhaden</h1>
+                <h1 class="text-2xl font-semibold text-center"><i>Keine Songs vorhaden</i></h1>
             </div>
         </div>
     </div>
