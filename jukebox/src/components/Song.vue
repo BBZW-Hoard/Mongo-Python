@@ -1,5 +1,37 @@
 <script setup>
 import { onMounted, ref } from 'vue'
+import axios from 'axios';
+
+const playlists = ref("")
+
+// axios headers config
+const config = {
+    headers: {
+        // 'content-type': 'application/x-www-form-urlencoded',
+        'content-type': 'application/json',
+        'Accept': 'application/json'
+    }
+};
+
+onMounted(async () => {
+    let request;
+    await axios.get("http://localhost:5000/playlists/", config.headers).then(res => {
+        const parsed = res.data; // Assuming the res data is an object or JSON
+        if (parsed) {
+            // Access the expected properties or perform the desired actions
+            request = res.data;
+        } else {
+            throw new Error('Response data is undefined or null.');
+        }
+    }).catch(e => {
+        console.error("Throw error:", e);
+        // Handle the error appropriately
+    });
+
+    console.log("request", request);
+    console.log("datenyp", typeof (request));
+    playlists.value = request;
+})
 
 defineProps({
     song: {
@@ -44,9 +76,12 @@ function durationValue(duration) {
     } else return duration + " min";
 }
 
-function addToPlaylist(song) {
+async function addToPlaylist(song) {
     // Add logic for adding song to playlist
+    let playlist = playlists.value[0]
+    playlist.songs = [song._id]
     console.log('Add to playlist:', song);
+    await axios.put(('http://localhost:5000/playlists/' + playlist._id), playlist, config.headers);
 }
 
 function editSong(song) {
