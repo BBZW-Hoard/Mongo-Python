@@ -53,9 +53,12 @@ onMounted(async () => {
             <input v-model="inputSearch" type="text" class="search w-full sm:w-auto sm:mx-4 bg-gray-300 text-gray-700" disabled readonly placeholder="Nicht verfügbar...">
         </div>
         <!--  -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            <div v-for="song in songs" :key="song._id" class="bg-white rounded-md shadow p-4">
+        <div :class="{ 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4': songs.length != 0 }">
+            <div v-if="songs.length != 0" v-for="song in songs" :key="song._id" class="bg-white rounded-md shadow p-4">
                 <Song :song="song" />
+            </div>
+            <div v-else class="w-full border-2 border-black p-4 rounded-xl">
+                <h1 class="text-2xl font-semibold text-center">Keine Songs vorhaden</h1>
             </div>
         </div>
     </div>
