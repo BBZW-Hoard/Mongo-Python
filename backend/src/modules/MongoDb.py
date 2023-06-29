@@ -29,7 +29,12 @@ class MongoDb():
 		return playlist
 	
 	def findFileById(self, fileId):
-		return self.fs.get(fileId)
+		file = self.fs.open_download_stream(fileId)
+		return file
+	
+	def findFileByName(self, fileName):
+		file = self.fs.find_one({"filename": fileName})
+		return file
 
 	def InsertSong(self, document):
 		return self.songCollection.insert_one(document)
@@ -37,9 +42,9 @@ class MongoDb():
 	def InsertPlaylist(self, document):
 		return self.playlistCollection.insert_one(document)
 	
-	def InsertFile(self, file):
-		fileId = self.fs.upload_from_stream("testFile", file)
-		return self.getFile(fileId)
+	def InsertFile(self, filename: str, file):
+		fileId = self.fs.upload_from_stream(filename, file)
+		return fileId
 	
 	def UpdateSong(self, id, document):
 		filter = {"_id": id}
@@ -78,11 +83,6 @@ class MongoDb():
 		songQuery = { "_id": { "$in": playlist["songs"]} }
 		songs = list(self.songCollection.find(songQuery))
 		return songs
-	
-	def getFile(self, fileId):
-		grid_out = self.fs.open_download_stream(fileId)
-		contents = grid_out.read()
-		return contents
 	
 	def getDatabase(self):
 		dblist = self.client.list_database_names()
