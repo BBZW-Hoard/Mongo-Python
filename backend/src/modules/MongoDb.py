@@ -61,7 +61,9 @@ class MongoDb():
 	def getSongsFromPlaylist(self, id):
 		filter = {"_id": id}
 		playlist = self.playlistCollection.find_one(filter)
-		return playlist["songs"]
+		songQuery = { "_id": { "$in": playlist["songs"]} }
+		songs = list(self.songCollection.find(songQuery))
+		return songs
 	
 	def getDatabase(self):
 		dblist = self.client.list_database_names()
