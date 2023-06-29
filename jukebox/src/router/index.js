@@ -4,6 +4,7 @@ import ManageSongView from "../views/ManageSongView.vue";
 import ManagePlaylistView from "../views/ManagePlaylistView.vue";
 import DeleteSongView from "../views/DeleteSongView.vue";
 import DeletePlaylistView from "../views/DeletePlaylistView.vue";
+import Error404 from "../views/E404.vue";
 import testView from "../views/testView.vue";
 
 const router = createRouter({
@@ -33,6 +34,11 @@ const router = createRouter({
             path: "/delete-playlist/:id",
             name: "deletePlaylist",
             component: DeletePlaylistView
+        },
+        {
+            path: "/:catchAll(.*)",
+            name: "Error404",
+            component: Error404
         },
         {
             path: "/test",
