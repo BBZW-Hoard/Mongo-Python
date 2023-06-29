@@ -106,16 +106,6 @@ async function changeUrl(url) {
 }
 
 /**
- * cuts string if its longer that 30 digits.
- * @param {string} str song.name / long string
- */
-function getSongLength(str) {
-    if (str.length <= 30) return str;
-
-    return str.slice(0, 30) + '...';
-}
-
-/**
  * plays the next song in a playlist based on the given current song.
  * @param {object} song 
  */
