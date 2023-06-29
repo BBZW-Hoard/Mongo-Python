@@ -147,6 +147,16 @@ function playNextSong(song) {
                 <span class="mx-2 mt-2">
                     <img src="../assets/playlist.svg" alt="" />
                 </span>
+                <span class="ml-auto">
+                    <router-link :to="'manage-playlist/' + 0 ">
+                        <button title="Neue Playlist erstellen" class="text-white">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 5v14m-7-7h14"></path>
+                        </svg>
+                    </button>
+                </router-link>
+                </span>
             </div>
             <div v-for="playlist in playlists" :key="playlist._id">
                 <button class="flex items-center justify-between w-full mb-2 focus:outline-none"
