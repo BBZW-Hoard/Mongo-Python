@@ -45,7 +45,6 @@ async function loadPlaylists() {
         }
     }).catch(e => {
         console.error("Throw error:", e);
-        // Handle the error appropriately
     });
 
     console.log("request", request);
