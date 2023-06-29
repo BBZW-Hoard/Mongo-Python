@@ -1,20 +1,57 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import jsonPlaylists from '../assets/json/playlists.json'
+import axios from 'axios';
 
 const sidebarOpen = ref(true);
-const isPlaylistOpen = ref(new Array(jsonPlaylists.length));
-const playlists = ref(jsonPlaylists);
+const playlists = ref(null);
+const isPlaylistOpen = ref(new Array());
 const currentlyPlayedSongUrl = ref("public/songs/a-call-to-the-soul.mp3");
 const showPlaylistContainer = ref(false);
 const selectedPlaylistId = ref("")
 const currentSong = ref()
 
-onMounted(() => {
+// axios headers config
+const config = {
+    headers: {
+        'content-type': 'application/json',
+        'Accept': 'application/json'
+    }
+};
+
+onMounted(async () => {
+    await loadPlaylists();
+    isPlaylistOpen.value = new Array(playlists.length);
+
     closeAllPlaylists();
     selectedPlaylistId.value = localStorage.getItem("selectedPlaylist");  // must not be converted
-    isPlaylistOpen.value[selectedPlaylistId.value] = !isPlaylistOpen.value[selectedPlaylistId.value];
+    const index = playlists.value.findIndex(x => x._id === selectedPlaylistId.value);
+    isPlaylistOpen.value[index] = !isPlaylistOpen.value[index];
 })
+
+/**
+ * get request to load all playlists and put them in playlists 
+ */
+async function loadPlaylists() {
+    let request;
+
+    await axios.get("http://localhost:5000/playlists/", config.headers).then(res => {
+        const parsed = res.data; // Assuming the res data is an object or JSON
+        if (parsed) {
+            // Access the expected properties or perform the desired actions
+            request = res.data;
+        } else {
+            throw new Error('Response data is undefined or null.');
+        }
+    }).catch(e => {
+        console.error("Throw error:", e);
+        // Handle the error appropriately
+    });
+
+    console.log("request", request);
+    console.log("datenyp", typeof (request));
+    playlists.value = request;
+}
 
 /**
  * closes all Playlists
@@ -23,17 +60,23 @@ function closeAllPlaylists() {
     isPlaylistOpen.value.fill(false);
 }
 
-function togglePlaylist(id) {
-    id--;
-    // skip if user wants to close active playlist
-    if (isPlaylistOpen.value[id] != true) closeAllPlaylists();
+async function togglePlaylist(id) {
+    // index in array
+    const index = playlists.value.findIndex(x => x._id === id);
+    console.log("index_playlist", index);
+    console.log("isPlaylistOpenValue", isPlaylistOpen.value);
 
-    isPlaylistOpen.value[id] = !isPlaylistOpen.value[id];
+    // skip if user wants to close active playlist
+    if (isPlaylistOpen.value[index] != true) closeAllPlaylists();
+
+    isPlaylistOpen.value[index] = !isPlaylistOpen.value[index];
 
     // LS: Update LocalStorage entry
     if (localStorage.getItem("selectedPlaylist") == id) localStorage.setItem("selectedPlaylist", "null");
     else localStorage.setItem("selectedPlaylist", id);
 
+
+    console.log("id von playlist", id);
     selectedPlaylistId.value = localStorage.getItem("selectedPlaylist");
 }
 
@@ -105,18 +148,23 @@ function playNextSong(song) {
                     <img src="../assets/playlist.svg" alt="" />
                 </span>
             </div>
-            <div v-for="playlist in playlists" :key="playlist.id">
+            <div v-for="playlist in playlists" :key="playlist._id">
                 <button class="flex items-center justify-between w-full mb-2 focus:outline-none"
-                    @click="togglePlaylist(playlist.id)">
+                    @click="togglePlaylist(playlist._id)">
                     <span class="truncate text-md font-bold">
-                        {{ playlist.name }} <i>{{ isPlaylistOpen[playlist.id - 1] ? '(ausgewählt)' : '' }}</i>
+                        {{ playlist.name }}
+                        <i>
+                            {{ isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] ? '(ausgewählt)' : '' }}
+                        </i>
                     </span>
-                    <img :class="{ 'rotate-180': isPlaylistOpen[playlist.id - 1] }" src="../assets/arrowDown.svg" alt=""
-                        :title="!isPlaylistOpen[playlist.id - 1] ? 'Playlist öffnen' : 'Playlist schliessen'" />
+                    <img :class="{ 'rotate-180': isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] }"
+                        src="../assets/arrowDown.svg" alt=""
+                        :title="!isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] ? 'Playlist öffnen' : 'Playlist schliessen'" />
                 </button>
-                <div v-show="isPlaylistOpen[playlist.id - 1]">
+                <div v-show="isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)]">
                     <div v-for="song in playlist.songs" class="flex items-center mb-2">
-                        <span class="truncate flex-grow">> {{ getSongLength(song.name) }}</span>
+                        {{ console.log("song id ", song) }}
+                        <span class="truncate flex-grow">> {{ song.name }}</span>
                         <div class="ml-auto flex">
                             <button class="p-1 hover:bg-gray-500 rounded-full" title="Download">
                                 <a :href="song.url" download target="_blank" class="w-full h-full">
