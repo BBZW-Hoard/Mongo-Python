@@ -121,6 +121,26 @@ function playNextSong(song) {
         }
     }
 }
+
+async function removeSongFromPlaylist(playlistId, deleteSongId) {
+    let putRequest = new Array();
+    let thisPlaylistObject;
+    
+    // select current playlist object
+    thisPlaylistObject = playlists.value.find(x => x._id == playlistId);
+
+    // do not delete the parameters
+    thisPlaylistObject.songs.forEach((song, index, array) => {
+        if (song._id != deleteSongId) putRequest.push(song._id);
+    });
+
+    // convert to post-request format
+    putRequest = { "name": thisPlaylistObject.name, "songs": putRequest };    
+    await axios.put(("http://localhost:5000/playlists/" + playlistId), putRequest, config.headers);
+
+    // reload page, to show changes
+    window.location.href = window.location.href;
+}
 </script>
 
 <template>
@@ -185,8 +205,8 @@ function playNextSong(song) {
                             <button @click="playSong(song)" class="p-1 hover:bg-green-500 rounded-full ml-1" title="Play">
                                 <img src="../assets/play.svg" alt="play" />
                             </button>
-                            <button @click="playNextSong(currentSong)" class="p-1 hover:bg-red-500 rounded-full ml-1"
-                                title="Delete">
+                            <button @click="removeSongFromPlaylist(playlist._id, song._id)" class="p-1 hover:bg-red-500 rounded-full ml-1"
+                                title="Aus Playlist entfernen">
                                 <img src="../assets/trash.svg" alt="trash" />
                             </button>
                         </div>
