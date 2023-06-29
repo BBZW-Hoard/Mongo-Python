@@ -50,7 +50,7 @@ onMounted(async () => {
                     Song hinzufügen
                 </button>
             </router-link>
-            <input v-model="inputSearch" type="text" class="search w-full sm:w-auto sm:mx-4" placeholder="Song suchen...">
+            <input v-model="inputSearch" type="text" class="search w-full sm:w-auto sm:mx-4 bg-gray-300 text-gray-700" disabled readonly placeholder="Nicht verfügbar...">
         </div>
         <!--  -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
