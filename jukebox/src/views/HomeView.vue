@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import Song from '../components/Song.vue';
-import jsonSongs from '../assets/json/songs.json';
 import axios from 'axios';
 
 const inputSearch = ref('');
