@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Body, Request, Response, HTTPException, status
 from fastapi.encoders import jsonable_encoder
 from typing import List
-from src.models.Playlist import Playlist, PlaylistUpdate
+from src.models.Playlist import Playlist, PlaylistCreate, PlaylistUpdate
 from src.models.Song import Song
 
 router = APIRouter()
@@ -26,7 +26,7 @@ def delete_playlist(id: str, request: Request):
     result = request.app.MongoDb.deletePlaylist(id)
     return {"Deleted": result.deleted_count}
 
-@router.post("/", response_description="Create a new song", status_code=status.HTTP_201_CREATED, response_model=Playlist)
+@router.post("/", response_description="Create a new song", status_code=status.HTTP_201_CREATED, response_model=PlaylistCreate)
 def create_playlist(request: Request, playlists: Playlist = Body(...)):
     playlists = jsonable_encoder(playlists)
     new_playlists = request.app.MongoDb.InsertPlaylist(playlists)

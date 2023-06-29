@@ -20,7 +20,13 @@ class MongoDb():
 	
 	def findPlaylistById(self, id):
 		filter = {"_id": id}
-		return self.playlistCollection.find_one(filter)
+		playlist = self.playlistCollection.find_one(filter)
+		if playlist.get("songs") is None:
+			return playlist
+		songQuery = { "_id": { "$in": playlist["songs"]} }
+		songs = list(self.songCollection.find(songQuery))
+		playlist["songs"] = songs
+		return playlist
 	
 	def findFileById(self, fileId):
 		return self.fs.get(fileId)
@@ -56,7 +62,14 @@ class MongoDb():
 		return list(self.songCollection.find(limit=100))
 	
 	def getPlaylists(self):
-		return list(self.playlistCollection.find(limit=100))
+		playlists = list(self.playlistCollection.find(limit=100))
+		for playlist in playlists:
+			if playlist.get("songs") is None:
+				continue
+			songQuery = { "_id": { "$in": playlist["songs"]} }
+			songs = list(self.songCollection.find(songQuery))
+			playlist["songs"] = songs
+		return playlists
 	
 	def getSongsFromPlaylist(self, id):
 		filter = {"_id": id}
