@@ -78,8 +78,8 @@ async function submit() {
         } else {
             console.error("Can't make request; Unknown requestType:", requestType.value);
         }
-
-        router.push({ path: '/', replace: true });
+        
+        window.location.href = "http://localhost:5173/";
     }
 }
 </script>
