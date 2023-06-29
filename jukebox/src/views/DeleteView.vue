@@ -43,14 +43,8 @@ onMounted(async () => {
 
 
 async function submit() {
-    axios({
-        url: 'http://localhost:5000/songs/' + song.value._id,
-        method: "delete",
-        headers: config.headers
-    })
-
     try {
-        await axios.delete();
+        await axios.delete(('http://localhost:5000/songs/' + song.value._id), config.headers);
     } catch (e) {
         console.error(e); // Handle the error
     }
