@@ -169,7 +169,9 @@ function playNextSong(song) {
                     </span>
                     <div class="flex items-center justify-end">
                         <span class="ml-auto mr-2 w-5">
-                            <img src="../assets/trashcan.svg" alt="D" />
+                            <router-link :to="'/delete-playlist/' + playlist._id">
+                                <img src="../assets/trashcan.svg" alt="D" />
+                            </router-link>
                         </span>
                         <span class="ml-auto mr-2 w-5">
                             <router-link :to="'/manage-playlist/' + playlist._id">
