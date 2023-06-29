@@ -4,7 +4,7 @@ import jsonPlaylists from '../assets/json/playlists.json'
 import axios from 'axios';
 
 const sidebarOpen = ref(true);
-const playlists = ref(null);
+const playlists = ref("");
 const isPlaylistOpen = ref(new Array());
 const currentlyPlayedSongUrl = ref("public/songs/a-call-to-the-soul.mp3");
 const showPlaylistContainer = ref(false);
