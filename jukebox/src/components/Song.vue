@@ -5,7 +5,13 @@ defineProps({
     song: {
         _id: String,
         name: String,
-        attributes: Array,
+        attributes: {
+            composer: String,
+            genre: String,
+            year: Number,
+            album: String,
+            required: false
+        },
         duration: Number,
         rating: String,
         required: true,
@@ -89,10 +95,14 @@ window.addEventListener('resize', handleScreenWidthChange);
         </div>
     </div>
     <div class="text-gray-600 mb-2">
-        <span v-for="attribute in song.attributes" :key="attribute">
-            {{ attribute }} |
+        <span>
+            {{ song.attributes.composer != "" && song.attributes.composer != undefined ? song.attributes.composer + " |" : '' }}
+            {{ song.attributes.genre != "" && song.attributes.genre != undefined ? song.attributes.genre + " |" : '' }}
+            {{ song.attributes.interpret != "" && song.attributes.interpret != undefined ? song.attributes.interpret + " |" : '' }}
+            {{ song.attributes.year != "" && song.attributes.year != undefined ? song.attributes.year + " |" : '' }}
+            {{ song.attributes.album != "" && song.attributes.album != undefined ? song.attributes.album : '' }}
             <!-- last objects in line is duration -->
-            <span v-if="isLastAttribute(attribute, song.attributes)">{{ durationValue(song.duartion) }}</span>
+            <span>{{ durationValue(song.duartion) }}</span>
         </span>
     </div>
     <div class="text-gray-500" :class="song.rating >= 4 ? 'text-green-600' : ''">{{ song.rating }} Rating</div>
