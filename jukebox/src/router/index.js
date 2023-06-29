@@ -36,9 +36,10 @@ const router = createRouter({
             component: DeletePlaylistView
         },
         {
-            path: "/:catchAll(.*)",
+            path: "/:pathMatch(.*)*",
             name: "Error404",
-            component: Error404
+            component: Error404,
+            props: true
         },
         {
             path: "/test",
