@@ -7,9 +7,9 @@ import axios from 'axios';
 const inputSearch = ref('');
 const songs = ref("");
 
-const filteredSongs = computed(() => {
+/* const filteredSongs = computed(() => {
     return songs.value.filter(x => x.name.toLowerCase().includes(inputSearch.value.toLowerCase()))
-})
+}) */
 
 // axios headers config
 const config = {
