@@ -167,6 +167,9 @@ function playNextSong(song) {
                             {{ isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] ? '(ausgewählt)' : '' }}
                         </i>
                     </span>
+                    <span class="ml-auto mr-2 w-6">
+                        <img src="../assets/pencil.svg" alt="E" />
+                    </span>
                     <img :class="{ 'rotate-180': isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] }"
                         src="../assets/arrowDown.svg" alt=""
                         :title="!isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] ? 'Playlist öffnen' : 'Playlist schliessen'" />
