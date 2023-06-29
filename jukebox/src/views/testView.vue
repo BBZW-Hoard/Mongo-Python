@@ -15,14 +15,8 @@ const config = {
 async function submitFile() {
     let formData = new FormData();
     formData.append('file', file.value);
-
-    axios({
-        url: 'http://localhost:5000/files',
-        method: "post",
-        data: formData,   // DATA
-        headers: config.headers
-    })
-    await axios.post();
+    let response = await axios.post("http://localhost:5000/files", formData, config.headers);
+    console.log(response.data)
 }
 </script>
 

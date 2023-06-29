@@ -5,5 +5,6 @@ from typing import List, Annotated
 router = APIRouter()
 
 @router.post("/", response_description="upload file", status_code=status.HTTP_200_OK)
-async def create_file(file: Annotated[bytes, File()]):
-    return {"file_size": len(file)}
+async def create_file(request: Request, file: Annotated[bytes, File()]):
+    fileId = request.app.MongoDb.InsertFile(file)
+    return {"content": fileId}

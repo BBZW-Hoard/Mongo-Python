@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 import bson
-import gridfs
+from gridfs import GridFSBucket
 
 class MongoDb():
 	def __init__(self, connectionString, _id = None):
@@ -12,7 +12,7 @@ class MongoDb():
 		self.database = client["JukeBox"]
 		self.songCollection = client["JukeBox"]["songs"]
 		self.playlistCollection = client["JukeBox"]["playlists"]
-		self.fs = gridfs.GridFS(client["JukeBox"])
+		self.fs = GridFSBucket(client["JukeBox"])
 
 	def findSongById(self, id):
 		filter = {"_id": id}
@@ -37,8 +37,9 @@ class MongoDb():
 	def InsertPlaylist(self, document):
 		return self.playlistCollection.insert_one(document)
 	
-	def InsertFile(self, document):
-		return self.fs.put(b"hello world")
+	def InsertFile(self, file):
+		fileId = self.fs.upload_from_stream("testFile", file)
+		return self.getFile(fileId)
 	
 	def UpdateSong(self, id, document):
 		filter = {"_id": id}
@@ -77,6 +78,11 @@ class MongoDb():
 		songQuery = { "_id": { "$in": playlist["songs"]} }
 		songs = list(self.songCollection.find(songQuery))
 		return songs
+	
+	def getFile(self, fileId):
+		grid_out = self.fs.open_download_stream(fileId)
+		contents = grid_out.read()
+		return contents
 	
 	def getDatabase(self):
 		dblist = self.client.list_database_names()
