@@ -3,7 +3,7 @@ import HomeView from "../views/HomeView.vue";
 import ListsView from "../views/ListsView.vue";
 import ManageSongView from "../views/ManageSongView.vue";
 import ManagePlaylistView from "../views/ManagePlaylistView.vue";
-import DeleteSongView from "../views/DeleteView.vue";
+import DeleteSongView from "../views/DeleteSongView.vue";
 import testView from "../views/testView.vue";
 
 const router = createRouter({
