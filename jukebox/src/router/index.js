@@ -4,6 +4,7 @@ import ListsView from "../views/ListsView.vue";
 import ManageSongView from "../views/ManageSongView.vue";
 import ManagePlaylistView from "../views/ManagePlaylistView.vue";
 import DeleteSongView from "../views/DeleteSongView.vue";
+import DeletePlaylistView from "../views/DeletePlaylistView.vue";
 import testView from "../views/testView.vue";
 
 const router = createRouter({
@@ -33,6 +34,11 @@ const router = createRouter({
             path: "/delete-song/:id",
             name: "deleteSong",
             component: DeleteSongView
+        },
+        {
+            path: "/delete-playlist/:id",
+            name: "deletePlaylist",
+            component: DeletePlaylistView
         },
         {
             path: "/test",
