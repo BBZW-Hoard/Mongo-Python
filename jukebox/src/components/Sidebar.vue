@@ -79,11 +79,17 @@ async function togglePlaylist(id) {
     selectedPlaylistId.value = localStorage.getItem("selectedPlaylist");
 }
 
+async function getFile(songId) {
+    let response = await axios.get("http://localhost:5000/files/" + songId);
+    return response.data
+}
+
 /**
  * Updates the currtlyPlayedSong and stats it automaticly 
  * @param {object} song object with url to song mp3 file; if empty -> close player
  */
 async function playSong(song) {
+    song.url = "http://localhost:5000/files/" + song._id
     showPlaylistContainer.value = false;    // for reload -> disable object and switch song
 
     // no song, just close Playlist Container
