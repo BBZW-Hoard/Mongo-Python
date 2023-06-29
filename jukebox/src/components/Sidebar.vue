@@ -168,7 +168,9 @@ function playNextSong(song) {
                         </i>
                     </span>
                     <span class="ml-auto mr-2 w-6">
-                        <img src="../assets/pencil.svg" alt="E" />
+                        <router-link :to="'/manage-playlist/' + playlist._id">
+                            <img src="../assets/pencil.svg" alt="E" />
+                        </router-link>
                     </span>
                     <img :class="{ 'rotate-180': isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] }"
                         src="../assets/arrowDown.svg" alt=""
