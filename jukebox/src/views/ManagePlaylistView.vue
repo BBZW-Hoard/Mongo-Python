@@ -79,7 +79,7 @@ async function submit() {
             console.error("Can't make request; Unknown requestType:", requestType.value);
         }
         
-        window.location.href = "http://localhost:5173/";
+        window.location.href = "/";
     }
 }
 </script>
