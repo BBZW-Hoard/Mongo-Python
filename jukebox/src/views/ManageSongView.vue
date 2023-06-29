@@ -80,31 +80,17 @@ async function submit() {
         // validated
         alert("validated");
 
-        axios({
-            url: 'http://localhost:5000/songs',
-            method: requestType.value.toLowerCase(),    // POST OR PUT
-            data: JSON.stringify(song.value),   // DATA
-            headers: config.headers
-        })
-
         if (requestType.value === "POST") {
             try {
-                await axios.post();
+                await axios.post("http://localhost:5000/songs/", song.value, config.headers);
             } catch (e) {
-                console.error(e); // Handle the error
+                console.error("error:", e);  // Handle the error
             }
         } else if (requestType.value === "PUT") {
-            axios({
-                url: 'http://localhost:5000/songs/' + song.value._id,
-                method: requestType.value.toLowerCase(),    // PUT
-                data: JSON.stringify(song.value),   // DATA
-                headers: config.headers
-            })
-
             try {
-                await axios.put();
+                await axios.put(('http://localhost:5000/songs/' + song.value._id), song.value, config.headers);
             } catch (e) {
-                console.error(e); // Handle the error
+                console.error("error:", e); // Handle the error
             }
         } else {
             console.error("Can't make request; Unknown requestType:", requestType.value);
