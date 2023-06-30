@@ -4,11 +4,12 @@ import { useRoute } from 'vue-router';
 import { isValidated } from "../service/ValidationSong.ts";
 import router from '../router/index.js';
 import axios from 'axios';
-import { submitFile, prepareForEdit, handleFileUpload, config } from "../service/api.ts"
+import { submit, prepareForEdit, handleFileUpload, config } from "../service/api.ts"
 
 
 const route = useRoute();
 const id = route.params.id;
+const urlParam = "songs"
 
 const requestType = ref("");
 const song = ref({
@@ -39,49 +40,14 @@ const errorMessages = ref({
 
 
 onMounted(async () => {
-    prepareForEdit(id, song, requestType, route, "songs")
+    prepareForEdit(id, song, requestType, route, urlParam)
 })
 
-async function submit() {
-    let validated = true;
+async function submitSong() {
     let el = document.getElementById("loadingBar");
     el.classList.toggle("hidden")
 
-    /* set all key-values from errorMessages to null */
-    try {
-        Object.assign(errorMessages.value, Object.fromEntries(Object.keys(errorMessages.value).map(key => [key, null])));
-    } catch (e) {
-        console.error("Could not clear values from errorMessages object", e);
-    }
-
-    let result = isValidated(song.value);
-    validated = result[0];
-    errorMessages.value = result[1];
-
-    if (validated) {
-        // validated
-        alert("validated");
-
-        if (requestType.value === "POST") {
-            try {
-                let response = await axios.post("http://localhost:5000/songs/", song.value, config.headers);
-                await submitFile(response.data._id)
-            } catch (e) {
-                console.error("error:", e);  // Handle the error
-            }
-        } else if (requestType.value === "PUT") {
-            try {
-                let response = await axios.put(('http://localhost:5000/songs/' + song.value._id), song.value, config.headers);
-                await submitFile(response.data._id)
-            } catch (e) {
-                console.error("error:", e); // Handle the error
-            }
-        } else {
-            console.error("Can't make request; Unknown requestType:", requestType.value);
-        }
-
-        router.push({ path: '/', replace: true });
-    }
+    await submit(errorMessages, requestType, song, router, urlParam)
 }
 </script>
 
@@ -161,7 +127,7 @@ async function submit() {
             </label>
             <p><b>Mit einem * versehene Felder, sind Pflichtfelder.</b></p>
             <div class="md:col-span-2">
-                <button class="btn" @click="submit()">Speichern</button>
+                <button class="btn" @click="submitSong()">Speichern</button>
             </div>
             <div id="loadingBar" role="status"
                 class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
