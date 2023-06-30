@@ -1,11 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
-import { isValidated } from "../service/ValidationPlaylist.ts";
 import router from '../router/index.js';
-import axios from 'axios';
-import { submit, prepareForEdit, config } from "../service/api.ts"
-
+import { submit, prepareForEdit } from "../service/api.ts"
 
 const route = useRoute();
 const id = route.params.id;

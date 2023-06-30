@@ -1,11 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
-import { isValidated } from "../service/ValidationSong.ts";
 import router from '../router/index.js';
-import axios from 'axios';
-import { submit, prepareForEdit, handleFileUpload, config } from "../service/api.ts"
-
+import { submit, prepareForEdit, handleFileUpload } from "../service/api.ts"
 
 const route = useRoute();
 const id = route.params.id;
@@ -36,8 +33,6 @@ const errorMessages = ref({
     duration: null,
     rating: null
 })
-
-
 
 onMounted(async () => {
     prepareForEdit(id, song, requestType, route, urlParam)
