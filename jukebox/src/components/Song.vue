@@ -1,17 +1,9 @@
 <script setup>
 import { onMounted, ref } from 'vue'
+import { config } from "../service/api.ts"
 import axios from 'axios';
 
 const playlists = ref("")
-
-// axios headers config
-const config = {
-    headers: {
-        // 'content-type': 'application/x-www-form-urlencoded',
-        'content-type': 'application/json',
-        'Accept': 'application/json'
-    }
-};
 
 onMounted(async () => {
     let request;
@@ -131,9 +123,11 @@ window.addEventListener('resize', handleScreenWidthChange);
     </div>
     <div class="text-gray-600 mb-2">
         <span>
-            {{ song.attributes.composer != "" && song.attributes.composer != undefined ? song.attributes.composer + " |" : '' }}
+            {{ song.attributes.composer != "" && song.attributes.composer != undefined ? song.attributes.composer + " |" :
+                '' }}
             {{ song.attributes.genre != "" && song.attributes.genre != undefined ? song.attributes.genre + " |" : '' }}
-            {{ song.attributes.interpret != "" && song.attributes.interpret != undefined ? song.attributes.interpret + " |" : '' }}
+            {{ song.attributes.interpret != "" && song.attributes.interpret != undefined ? song.attributes.interpret + " |"
+                : '' }}
             {{ song.attributes.year != "" && song.attributes.year != undefined ? song.attributes.year + " |" : '' }}
             {{ song.attributes.album != "" && song.attributes.album != undefined ? song.attributes.album : '' }}
             <!-- last objects in line is duration -->

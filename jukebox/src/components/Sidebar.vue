@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import jsonPlaylists from '../assets/json/playlists.json'
+import { config } from "../service/api.ts"
 import axios from 'axios';
 
 const sidebarOpen = ref(true);
@@ -10,14 +11,6 @@ const currentlyPlayedSongUrl = ref("public/songs/a-call-to-the-soul.mp3");
 const showPlaylistContainer = ref(false);
 const selectedPlaylistId = ref("")
 const currentSong = ref()
-
-// axios headers config
-const config = {
-    headers: {
-        'content-type': 'application/json',
-        'Accept': 'application/json'
-    }
-};
 
 onMounted(async () => {
     await loadPlaylists();
@@ -131,7 +124,7 @@ function playNextSong(song) {
 async function removeSongFromPlaylist(playlistId, deleteSongId) {
     let putRequest = new Array();
     let thisPlaylistObject;
-    
+
     // select current playlist object
     thisPlaylistObject = playlists.value.find(x => x._id == playlistId);
 
@@ -141,7 +134,7 @@ async function removeSongFromPlaylist(playlistId, deleteSongId) {
     });
 
     // convert to post-request format
-    putRequest = { "name": thisPlaylistObject.name, "songs": putRequest };    
+    putRequest = { "name": thisPlaylistObject.name, "songs": putRequest };
     await axios.put(("http://localhost:5000/playlists/" + playlistId), putRequest, config.headers);
 
     // reload page, to show changes
@@ -211,8 +204,8 @@ async function removeSongFromPlaylist(playlistId, deleteSongId) {
                             <button @click="playSong(song)" class="p-1 hover:bg-green-500 rounded-full ml-1" title="Play">
                                 <img src="../assets/play.svg" alt="play" />
                             </button>
-                            <button @click="removeSongFromPlaylist(playlist._id, song._id)" class="p-1 hover:bg-red-500 rounded-full ml-1"
-                                title="Aus Playlist entfernen">
+                            <button @click="removeSongFromPlaylist(playlist._id, song._id)"
+                                class="p-1 hover:bg-red-500 rounded-full ml-1" title="Aus Playlist entfernen">
                                 <img src="../assets/trash.svg" alt="trash" />
                             </button>
                         </div>

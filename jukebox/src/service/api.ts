@@ -96,6 +96,6 @@ export async function submit(errorMessages: any, requestType: any, object: any, 
             console.error("Can't make request; Unknown requestType:", requestType.value);
         }
 
-        router.push({ path: '/', replace: true });
+        window.location.href = "/";
     }
 }
