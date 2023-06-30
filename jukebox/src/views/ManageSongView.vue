@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router';
 import { isValidated } from "../service/ValidationSong.ts";
 import router from '../router/index.js';
 import axios from 'axios';
+import { submitFile, handleFileUpload, config } from "../service/api.ts"
 
 
 const route = useRoute();
@@ -35,36 +36,7 @@ const errorMessages = ref({
     rating: null
 })
 
-// axios headers config
-const config = {
-    headers: {
-        'content-type': 'application/json',
-        'Accept': 'application/json'
-    }
-};
 
-const file = ref();
-function handleFileUpload(event) {
-    file.value = event.target.files[0];
-}
-
-async function getFile(songId) {
-    let response = await axios.get("http://localhost:5000/files/" + songId);
-    return response.data
-}
-async function submitFile(songId) {
-    const configFile = {
-        headers: {
-            'content-type': 'multipart/form-data',
-            'Accept': 'application/json'
-        }
-    };
-    let formData = new FormData();
-    formData.append('songId', songId);
-    formData.append('file', file.value);
-    let response = await axios.post("http://localhost:5000/files", formData, configFile.headers);
-    console.log(response.data)
-}
 
 onMounted(async () => {
     if (id == 0) {   // create new entry
