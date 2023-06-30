@@ -34,3 +34,19 @@ export async function submitFile(songId) {
     let response = await axios.post("http://localhost:5000/files", formData, configFile.headers);
     console.log(response.data)
 }
+
+export async function prepareForEdit(id: number, object: any, requestType: any, router: any, url: string) {
+    if (id == 0) {   // create new entry
+        requestType.value = "POST";
+    } else {
+        requestType.value = "PUT";
+        try {
+            // loading entry with id from database
+            let request = await axios.get((`http://localhost:5000/${url}/${id}`));
+            object.value = request.data;
+        } catch (e) {
+            console.error("error in request:", e);
+            router.push({ name: "Error404", params: { pathMatch: "/E404" }, replace: true })
+        }
+    }
+}

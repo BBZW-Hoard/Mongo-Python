@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router';
 import { isValidated } from "../service/ValidationSong.ts";
 import router from '../router/index.js';
 import axios from 'axios';
-import { submitFile, handleFileUpload, config } from "../service/api.ts"
+import { submitFile, prepareForEdit, handleFileUpload, config } from "../service/api.ts"
 
 
 const route = useRoute();
@@ -39,22 +39,7 @@ const errorMessages = ref({
 
 
 onMounted(async () => {
-    if (id == 0) {   // create new entry
-        requestType.value = "POST";
-    } else {
-        requestType.value = "PUT";
-
-        try {
-            // loading entry with id from database
-            let request = await axios.get(("http://localhost:5000/songs/" + id));
-            song.value = request.data;
-        } catch (e) {
-            console.error("error in request:", e);
-            debugger;
-            router.push({ name: "Error404", params: { pathMatch: "/E404" }, replace: true })
-        }
-    }
-
+    prepareForEdit(id, song, requestType, route, "songs")
 })
 
 async function submit() {

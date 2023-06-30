@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router';
 import { isValidated } from "../service/ValidationPlaylist.ts";
 import router from '../router/index.js';
 import axios from 'axios';
+import { prepareForEdit, config } from "../service/api.ts"
 
 
 const route = useRoute();
@@ -19,29 +20,8 @@ const errorMessages = ref({
     name: null
 })
 
-// axios headers config
-const config = {
-    headers: {
-        'content-type': 'application/json',
-        'Accept': 'application/json'
-    }
-};  
-
 onMounted(async () => {
-    if (id == 0) {   // create new entry
-        requestType.value = "POST";
-    } else {
-        requestType.value = "PUT";
-        try {
-            // loading entry with id from database
-            let request = await axios.get(("http://localhost:5000/playlists/" + id));
-            playlist.value = request.data;
-        } catch (e) {
-            console.error("error in request:", e);
-            router.push({ name: "Error404", params: { pathMatch: "/E404" }, replace: true })
-        }
-    }
-
+    prepareForEdit(id, playlist, requestType, route, "playlists")
 })
 
 async function submit() {
@@ -77,7 +57,7 @@ async function submit() {
         } else {
             console.error("Can't make request; Unknown requestType:", requestType.value);
         }
-        
+
         window.location.href = "/";
     }
 }
