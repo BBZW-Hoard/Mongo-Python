@@ -71,12 +71,16 @@ function durationValue(duration) {
 async function addToPlaylist(song) {
     // Add logic for adding song to playlist
     let playlist = playlists.value[0]
+    var res = playlist.songs.map(s=>s._id);
     if(!Array.isArray(playlist.songs)){
         console.log("No array: " + playlist.songs)
         playlist.songs = [song._id]
+    }else{
+        playlist.songs = res
     }
-    if (!playlist.songs.includes(song._id)) {
+    if (!res.includes(song._id)) {
         console.log("Pushed to array: " + playlist.songs)
+        playlist.songs = res
         playlist.songs.push(song._id)
     }
     console.log('Add to playlist:', song);
