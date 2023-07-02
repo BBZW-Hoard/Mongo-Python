@@ -71,7 +71,14 @@ function durationValue(duration) {
 async function addToPlaylist(song) {
     // Add logic for adding song to playlist
     let playlist = playlists.value[0]
-    playlist.songs = [song._id]
+    if(!Array.isArray(playlist.songs)){
+        console.log("No array: " + playlist.songs)
+        playlist.songs = [song._id]
+    }
+    if (!playlist.songs.includes(song._id)) {
+        console.log("Pushed to array: " + playlist.songs)
+        playlist.songs.push(song._id)
+    }
     console.log('Add to playlist:', song);
     await axios.put(('http://localhost:5000/playlists/' + playlist._id), playlist, config.headers);
 }
