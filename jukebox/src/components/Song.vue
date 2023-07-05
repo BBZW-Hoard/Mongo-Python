@@ -89,6 +89,8 @@ async function addToPlaylist(song) {
 
     console.log('Add to playlist:', song);
     await axios.put(('http://localhost:5000/playlists/' + playlist._id), playlist, config.headers);
+
+    window.location.href = "/";
 }
 
 /* even listeners */
