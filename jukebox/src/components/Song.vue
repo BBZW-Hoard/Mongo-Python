@@ -91,22 +91,6 @@ async function addToPlaylist(song) {
     await axios.put(('http://localhost:5000/playlists/' + playlist._id), playlist, config.headers);
 }
 
-function editSong(song) {
-    // Add logic for editing the song
-    console.log('Edit song:', song);
-}
-
-function deleteSong(song) {
-    // Add logic for deleting the song
-    console.log('Delete song:', song);
-}
-
-function isLastAttribute(attribute, attributes) {
-    // Check if the attribute is the last one in the list
-    return attribute === attributes[attributes.length - 1];
-}
-
-
 /* even listeners */
 window.addEventListener('resize', handleScreenWidthChange);
 </script>
@@ -127,10 +111,10 @@ window.addEventListener('resize', handleScreenWidthChange);
                 </button>
                 <div v-if="isDropdownOpen">
                     <router-link :to="'/manage-song/' + song._id">
-                        <button class="dropdown rounded-t-sm mt-8" @click="editSong(song)">Bearbeiten</button>
+                        <button class="dropdown rounded-t-sm mt-8">Bearbeiten</button>
                     </router-link>
                     <router-link :to="'delete-song/' + song._id">
-                        <button class="dropdown rounded-b-sm mt-16" @click="deleteSong(song)">Löschen</button>
+                        <button class="dropdown rounded-b-sm mt-16">Löschen</button>
                     </router-link>
                 </div>
             </span>
