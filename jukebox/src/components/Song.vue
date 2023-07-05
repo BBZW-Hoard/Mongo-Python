@@ -139,10 +139,10 @@ window.addEventListener('resize', handleScreenWidthChange);
     <div class="text-gray-500" :class="song.rating >= 4 ? 'text-green-600' : ''">{{ song.rating }} Rating</div>
     <div v-if="isMobileView">
         <router-link :to="'/manage-song/' + song._id">
-            <button class="text-blue-900 mr-1" @click="editSong(song)">Bearbeiten</button>
+            <button class="text-blue-900 mr-1">Bearbeiten</button>
         </router-link>
         <router-link :to="'delete-song/' + song._id">
-            <button class="text-red-600 mx-1" @click="deleteSong(song)">Löschen</button>
+            <button class="text-red-600 mx-1">Löschen</button>
         </router-link>
     </div>
 </template>
