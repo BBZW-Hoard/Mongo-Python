@@ -2,9 +2,11 @@
 import { ref, onMounted } from 'vue'
 import Song from '../components/Song.vue';
 import axios from 'axios';
+import LoadingGrid from '../components/LoadingGrid.vue';
 
 const inputSearch = ref('');
 const songs = ref("");
+const isLoading = ref(true);
 
 /* const filteredSongs = computed(() => {
     return songs.value.filter(x => x.name.toLowerCase().includes(inputSearch.value.toLowerCase()))
@@ -20,6 +22,12 @@ const config = {
 };
 
 onMounted(async () => {
+    await getSongs().then(() => {
+        isLoading.value = false;
+    });
+})
+
+async function getSongs() {
     let request;
 
     await axios.get("http://localhost:5000/songs/", config.headers).then(res => {
@@ -38,12 +46,12 @@ onMounted(async () => {
     console.log("request", request);
     console.log("datenyp", typeof (request));
     songs.value = request;
-})
+}
 
 </script>
 
 <template>
-    <div class="mx-auto p-4">
+    <div v-if="!isLoading" class="mx-auto p-4">
         <div class="sm:flex justify-start mb-4">
             <router-link :to="'/manage-song/' + 0">
                 <button class="btn w-full my-4 sm:w-auto sm:my-0 sm:mx-4">
@@ -61,6 +69,9 @@ onMounted(async () => {
                 <h1 class="text-2xl font-semibold text-center"><i>Keine Songs vorhaden</i></h1>
             </div>
         </div>
+    </div>
+    <div v-else>
+        <LoadingGrid />
     </div>
 </template>
 
