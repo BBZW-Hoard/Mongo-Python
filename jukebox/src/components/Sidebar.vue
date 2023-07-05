@@ -1,7 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import jsonPlaylists from '../assets/json/playlists.json'
-import { config } from "../service/api.ts"
+import { config } from "../service/api.ts";
 import axios from 'axios';
 
 const sidebarOpen = ref(true);

@@ -1,6 +1,6 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-import { config } from "../service/api.ts"
+import { onMounted, ref } from 'vue';
+import { config } from "../service/api.ts";
 import axios from 'axios';
 
 const playlists = ref("")
