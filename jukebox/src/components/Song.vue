@@ -71,19 +71,22 @@ function durationValue(duration) {
 async function addToPlaylist(song) {
     let selectedPlaylistId = localStorage.getItem("selectedPlaylist");
     const index = playlists.value.findIndex(x => x._id === selectedPlaylistId);
-    let playlist = playlists.value[index]
-    var res = playlist.songs.map(s=>s._id);
-    if(!Array.isArray(playlist.songs)){
-        console.log("No array: " + playlist.songs)
-        playlist.songs = [song._id]
-    }else{
-        playlist.songs = res
+    let playlist = playlists.value[index];
+    let res = playlist.songs.map(s => s._id);
+    
+    if (!Array.isArray(playlist.songs)) {
+        console.log("No array: " + playlist.songs);
+        playlist.songs = [song._id];
+    } else {
+        playlist.songs = res;
     }
+
     if (!res.includes(song._id)) {
-        console.log("Pushed to array: " + playlist.songs)
-        playlist.songs = res
-        playlist.songs.push(song._id)
+        console.log("Pushed to array: " + playlist.songs);
+        playlist.songs = res;
+        playlist.songs.push(song._id);
     }
+
     console.log('Add to playlist:', song);
     await axios.put(('http://localhost:5000/playlists/' + playlist._id), playlist, config.headers);
 }
@@ -135,13 +138,16 @@ window.addEventListener('resize', handleScreenWidthChange);
     </div>
     <div class="text-gray-600 mb-2">
         <span>
-            {{ song.attributes.composer != "" && song.attributes.composer != undefined ? song.attributes.composer + " |" :
-                '' }}
-            {{ song.attributes.genre != "" && song.attributes.genre != undefined ? song.attributes.genre + " |" : '' }}
-            {{ song.attributes.interpret != "" && song.attributes.interpret != undefined ? song.attributes.interpret + " |"
-                : '' }}
-            {{ song.attributes.year != "" && song.attributes.year != undefined ? song.attributes.year + " |" : '' }}
-            {{ song.attributes.album != "" && song.attributes.album != undefined ? song.attributes.album : '' }}
+            {{ song.attributes.composer != "" && song.attributes.composer != undefined ? 
+                song.attributes.composer + " |" : '' }}
+            {{ song.attributes.genre != "" && song.attributes.genre != undefined ?
+                song.attributes.genre + " |" : '' }}
+            {{ song.attributes.interpret != "" && song.attributes.interpret != undefined ?
+                song.attributes.interpret + " |" : '' }}
+            {{ song.attributes.year != "" && song.attributes.year != undefined ?
+                song.attributes.year + " |" : '' }}
+            {{ song.attributes.album != "" && song.attributes.album != undefined ?
+            song.attributes.album : '' }}
             <!-- last objects in line is duration -->
             <span>{{ durationValue(song.duartion) }}</span>
         </span>
