@@ -231,7 +231,6 @@ async function removeSongFromPlaylist(playlistId, deleteSongId) {
                         </div>
                         <span>{{ currentSong.name }}</span>
                         <ul class="mt-2">
-                            <!-- <li v-for="song in currentlyPlayedSongs" :key="song.id">{{ song.name }}</li> -->
                             <audio @ended="playNextSong(currentSong)" controls autoplay="true">
                                 <source :src="currentlyPlayedSongUrl" type="audio/mpeg" />
                                 Your browser does not support the audio player.
