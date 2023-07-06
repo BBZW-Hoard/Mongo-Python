@@ -46,7 +46,7 @@ async function submit() {
         console.error(e); // Handle the error
     }
 
-    window.location.href = "/";
+    router.push({ path: '/', replace: true });
 }
 </script>
 
