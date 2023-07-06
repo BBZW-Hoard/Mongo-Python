@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, inject } from 'vue';
 import { useRoute } from 'vue-router';
 import router from '../router/index.js';
 import { submit, prepareForEdit } from "../service/api.ts"
@@ -7,6 +7,7 @@ import { submit, prepareForEdit } from "../service/api.ts"
 const route = useRoute();
 const id = route.params.id;
 const urlParam = "playlists"
+const { playlists, getPlaylists } = inject('playlists')
 
 const requestType = ref("");
 const playlist = ref({
@@ -27,7 +28,7 @@ const errorMessages = ref({
 })
 
 onMounted(async () => {
-    prepareForEdit(id, playlist, requestType, urlParam)
+    await prepareForEdit(id, playlist, requestType, urlParam)
 })
 
 /**
@@ -35,6 +36,7 @@ onMounted(async () => {
  */
 async function submitPlaylist() {
     await submit(errorMessages, requestType, playlist, urlParam)
+    await getPlaylists()
 }
 </script>
 

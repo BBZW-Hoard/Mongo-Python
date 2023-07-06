@@ -55,6 +55,7 @@ export async function submitFile(songId: string): Promise<void> {
     formData.append('file', file.value);
 
     await axios.post("http://localhost:5000/files", formData, configFile.headers);
+    file.value = null;
 }
 
 /**

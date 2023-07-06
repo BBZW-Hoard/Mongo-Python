@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, inject } from 'vue';
 import { useRoute } from 'vue-router';
 import { getLocalStorageItems, setLocalStorageItems } from '../service/LocalStorage.ts';
 import { config } from '../service/api.ts';
@@ -9,6 +9,7 @@ import axios from 'axios';
 
 const route = useRoute();
 const id = ref(route.params.id);
+const { playlists, getPlaylists } = inject('playlists')
 
 watch(
   () => route.params.id,
@@ -64,7 +65,7 @@ async function submit() {
     } catch (e) {
         console.error(e); // Handle the error
     }
-
+    await getPlaylists();
     router.push({ path: '/', replace: true });
 }
 </script>
