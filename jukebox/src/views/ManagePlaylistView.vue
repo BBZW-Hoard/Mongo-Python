@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import router from '../router/index.js';
 import { submit, prepareForEdit } from "../service/api.ts"
@@ -13,6 +13,14 @@ const playlist = ref({
     name: "",
     songs: []
 })
+
+watch(
+  () => route.params.id,
+  async (newId, oldId) => {
+    console.log(route.params.id)
+    location.reload(); 
+  }
+)
 
 const errorMessages = ref({
     name: null

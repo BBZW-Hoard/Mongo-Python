@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { setLocalStorageItems } from '../service/LocalStorage.ts';
 import router from '../router/index.js';
@@ -7,7 +7,15 @@ import axios from 'axios';
 
 
 const route = useRoute();
-const id = route.params.id;
+const id = ref(route.params.id);
+
+watch(
+  () => route.params.id,
+  async (newId, oldId) => {
+    console.log(route.params.id)
+    location.reload(); 
+  }
+)
 
 const playlist = ref({
     name: "",
@@ -22,18 +30,22 @@ const config = {
     }
 };
 
-/**
- * get playlist object form database, to show all the data to the user
- */
-onMounted(async () => {
+async function loadPlaylist(){
     try {
         // loading entry with id from database
-        let request = await axios.get(("http://localhost:5000/playlists/" + id));
+        let request = await axios.get(("http://localhost:5000/playlists/" + id.value));
         playlist.value = request.data;
     } catch (e) {
         console.error("error in request:", e);
         router.push({ name: "Error404", params: { pathMatch: "/E404" }, replace: true })
     }
+}
+
+/**
+ * get playlist object form database, to show all the data to the user
+ */
+onMounted(async () => {
+    await loadPlaylist()
 })
 
 /**
