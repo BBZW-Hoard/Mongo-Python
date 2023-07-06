@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import { setLocalStorageItems } from '../service/LocalStorage.ts';
 import router from '../router/index.js';
 import axios from 'axios';
 
@@ -41,6 +42,7 @@ onMounted(async () => {
  */
 async function submit() {
     try {
+        await setLocalStorageItems("selectedPlaylist", "null");
         await axios.delete(('http://localhost:5000/playlists/' + playlist.value._id), config.headers);
     } catch (e) {
         console.error(e); // Handle the error
