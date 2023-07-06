@@ -14,7 +14,7 @@ const currentSong = ref();
 const loaded = ref(false);
 
 onMounted(async () => {
-    await loadPlaylists().then(() => {
+    await loadPlaylists().then(async () => {
         loaded.value = true;
         isPlaylistOpen.value = new Array(playlists.length);
     
