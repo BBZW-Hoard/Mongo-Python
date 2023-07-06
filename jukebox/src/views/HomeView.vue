@@ -83,7 +83,7 @@ function search() {
                     Song hinzufügen
                 </button>
             </router-link>
-            <input v-model="inputSearch" @keyup="search()" type="text" class="search w-full sm:w-auto sm:mx-4 text-gray-700" />
+            <input v-model="inputSearch" @keyup="search()" type="text" class="search w-full sm:w-auto sm:mx-4 text-gray-700" placeholder="Nach Songnamen suchen..." />
         </div>
         <!--  -->
         <div :class="{ 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4': songs.length != 0 }">
