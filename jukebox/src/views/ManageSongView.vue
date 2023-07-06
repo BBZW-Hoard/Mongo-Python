@@ -38,6 +38,9 @@ onMounted(async () => {
     prepareForEdit(id, song, requestType, route, urlParam)
 })
 
+/**
+ * activates the loading bar and calles the submit func of the api service
+ */
 async function submitSong() {
     let el = document.getElementById("loadingBar");
     el.classList.toggle("hidden")

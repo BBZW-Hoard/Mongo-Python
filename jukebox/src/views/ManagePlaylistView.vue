@@ -22,6 +22,9 @@ onMounted(async () => {
     prepareForEdit(id, playlist, requestType, route, urlParam)
 })
 
+/**
+ * calls submit function of the api service
+ */
 async function submitPlaylist() {
     await submit(errorMessages, requestType, playlist, router, urlParam)
 }
