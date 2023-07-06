@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import { config } from "../service/api.ts";
+import { getLocalStorageItems, setLocalStorageItems } from '../service/LocalStorage.ts';
 import axios from 'axios';
 import LoadingGridPlaylist from "../components/LoadingGridPlaylist.vue";
 
@@ -19,7 +20,7 @@ onMounted(async () => {
         isPlaylistOpen.value = new Array(playlists.length);
     
         closeAllPlaylists();
-        selectedPlaylistId.value = localStorage.getItem("selectedPlaylist");  // must not be converted
+        selectedPlaylistId.value = await getLocalStorageItems("selectedPlaylist");  // must not be converted
         const index = playlists.value.findIndex(x => x._id === selectedPlaylistId.value);
         isPlaylistOpen.value[index] = !isPlaylistOpen.value[index];
     });
@@ -67,12 +68,12 @@ async function togglePlaylist(id) {
     isPlaylistOpen.value[index] = !isPlaylistOpen.value[index];
 
     // LS: Update LocalStorage entry
-    if (localStorage.getItem("selectedPlaylist") == id) localStorage.setItem("selectedPlaylist", "null");
-    else localStorage.setItem("selectedPlaylist", id);
+    if (await getLocalStorageItems("selectedPlaylist") == id) await setLocalStorageItems("selectedPlaylist", "null");
+    else await setLocalStorageItems("selectedPlaylist", id);
 
 
     console.log("id von playlist", id);
-    selectedPlaylistId.value = localStorage.getItem("selectedPlaylist");
+    selectedPlaylistId.value = await getLocalStorageItems("selectedPlaylist");
 }
 
 /**

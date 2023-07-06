@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted, ref } from 'vue';
 import { config } from "../service/api.ts";
+import { getLocalStorageItems } from '../service/LocalStorage.ts';
 import axios from 'axios';
 
 defineProps({
@@ -66,7 +67,7 @@ function durationValue(duration) {
 }
 
 async function addToPlaylist(song) {
-    let selectedPlaylistId = localStorage.getItem("selectedPlaylist");
+    let selectedPlaylistId = await getLocalStorageItems("selectedPlaylist");
     const index = playlists.value.findIndex(x => x._id === selectedPlaylistId);
     let playlist = playlists.value[index];
     let res = playlist.songs.map(s => s._id);

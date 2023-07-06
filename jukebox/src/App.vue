@@ -1,12 +1,16 @@
 <script setup>
 import Header from './components/Header.vue'
 import Sidebar from './components/Sidebar.vue';
-import CreateLocalStorage from './components/CreateLocalStorage.vue';
+import { getLocalStorageItems } from './service/LocalStorage.ts';
+import { onMounted } from 'vue';
+
+onMounted(async () => {
+  await getLocalStorageItems("selectedPlaylist");
+})
 </script>
 
 <template>
   <div>
-    <CreateLocalStorage />
     <Header />
     <div class="flex">
       <Sidebar />
