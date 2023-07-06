@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue'
 import Song from '../components/Song.vue';
 import axios from 'axios';
-import LoadingGrid from '../components/LoadingGrid.vue';
+import LoadingGrid from '../components/LoadingGridSong.vue';
 
 const inputSearch = ref('');
 const songs = ref("");
