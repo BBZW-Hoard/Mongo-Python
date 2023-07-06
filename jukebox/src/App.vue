@@ -3,15 +3,13 @@ import Header from './components/Header.vue'
 import Sidebar from './components/Sidebar.vue';
 import { getLocalStorageItems } from './service/LocalStorage.ts';
 import { onMounted } from 'vue';
-
-// SHOULD BE DIFFERENT FILE
 import { provide, ref } from 'vue'
 import { config } from "./service/api.ts"
 import axios from 'axios';
 const songs = ref();
 const playlists = ref("");
 
-provide(/* key */ 'songs', /* value */ { songs, getSongs })
+provide('songs', { songs, getSongs })
 provide('playlists', { playlists, getPlaylists })
 
 /**
@@ -60,7 +58,6 @@ async function getPlaylists() {
   console.log("datenyp", typeof (request));
   playlists.value = request;
 }
-// END OF SHOULD BE DIFFERENT FILE
 
 onMounted(async () => {
   await getLocalStorageItems("selectedPlaylist");
