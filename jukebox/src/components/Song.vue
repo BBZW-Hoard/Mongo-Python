@@ -142,10 +142,12 @@ window.addEventListener('resize', handleScreenWidthChange);
             {{ song.attributes.album != "" && song.attributes.album != undefined ?
             song.attributes.album : '' }}
             <!-- last objects in line is duration -->
-            <span>{{ durationValue(song.duartion) }}</span>
+            <span>{{ durationValue(song.duration) }}</span>
         </span>
     </div>
+    
     <div class="text-gray-500" :class="song.rating >= 4 ? 'text-green-600' : ''">{{ song.rating }} Rating</div>
+
     <div v-if="isMobileView">
         <router-link :to="'/manage-song/' + song._id">
             <button class="text-blue-900 mr-1">Bearbeiten</button>
