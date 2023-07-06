@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, inject } from 'vue';
 import { config } from "../service/api.ts";
 import { getLocalStorageItems } from '../service/LocalStorage.ts';
 import axios from 'axios';
@@ -20,8 +20,7 @@ defineProps({
         required: true,
     }
 })
-
-const playlists = ref("")
+const { playlists, getPlaylists } = inject('playlists')
 const isMobileView = ref(false);
 const isDropdownOpen = ref(false);
 
@@ -80,7 +79,7 @@ async function addToPlaylist(song) {
     const index = playlists.value.findIndex(x => x._id === selectedPlaylistId);
     let playlist = playlists.value[index];
     let res = playlist.songs.map(s => s._id);
-    
+
     if (!Array.isArray(playlist.songs)) {
         console.log("No array: " + playlist.songs);
         playlist.songs = [song._id];
@@ -96,8 +95,7 @@ async function addToPlaylist(song) {
 
     console.log('Add to playlist:', song);
     await axios.put(('http://localhost:5000/playlists/' + playlist._id), playlist, config.headers);
-
-    window.location.href = "/";
+    await getPlaylists();
 }
 
 /* even listeners */
@@ -131,7 +129,7 @@ window.addEventListener('resize', handleScreenWidthChange);
     </div>
     <div class="text-gray-600 mb-2">
         <span>
-            {{ song.attributes.composer != "" && song.attributes.composer != undefined ? 
+            {{ song.attributes.composer != "" && song.attributes.composer != undefined ?
                 song.attributes.composer + " |" : '' }}
             {{ song.attributes.genre != "" && song.attributes.genre != undefined ?
                 song.attributes.genre + " |" : '' }}
@@ -140,12 +138,12 @@ window.addEventListener('resize', handleScreenWidthChange);
             {{ song.attributes.year != "" && song.attributes.year != undefined ?
                 song.attributes.year + " |" : '' }}
             {{ song.attributes.album != "" && song.attributes.album != undefined ?
-            song.attributes.album : '' }}
+                song.attributes.album : '' }}
             <!-- last objects in line is duration -->
             <span>{{ durationValue(song.duration) }}</span>
         </span>
     </div>
-    
+
     <div class="text-gray-500" :class="song.rating >= 4 ? 'text-green-600' : ''">{{ song.rating }} Rating</div>
 
     <div v-if="isMobileView">

@@ -1,22 +1,12 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, inject } from 'vue'
 import Song from '../components/Song.vue';
-import axios from 'axios';
 import LoadingGrid from '../components/LoadingGridSong.vue';
 
 const inputSearch = ref('');
-const songs = ref("");
+const { songs, getSongs } = inject('songs')
 const filteredSongs = ref("");
 const isLoading = ref(true);
-
-// axios headers config
-const config = {
-    headers: {
-        // 'content-type': 'application/x-www-form-urlencoded',
-        'content-type': 'application/json',
-        'Accept': 'application/json'
-    }
-};
 
 /**
  * loads song, if loading is fin, disable loading grid
@@ -28,37 +18,13 @@ onMounted(async () => {
     });
 })
 
-/**
- * get all songs from backend
- */
-async function getSongs() {
-    let request;
-
-    await axios.get("http://localhost:5000/songs/", config.headers).then(res => {
-        const parsed = res.data; // Assuming the res data is an object or JSON
-        if (parsed) {
-            // Access the expected properties or perform the desired actions
-            request = res.data;
-        } else {
-            throw new Error('Response data is undefined or null.');
-        }
-    }).catch(e => {
-        console.error("Throw error:", e);
-        // Handle the error appropriately
-    });
-
-    console.log("request", request);
-    console.log("datenyp", typeof (request));
-    songs.value = request;
-}
-
 function search() {
     let results = [];
 
     // Convert the input search string to lowercase for case-insensitive search
     let searchQuery = inputSearch.value.toLowerCase();
 
-    if(searchQuery == "") {
+    if (searchQuery == "") {
         filteredSongs.value = songs.value;
         return;
     }
@@ -83,11 +49,13 @@ function search() {
                     Song hinzufügen
                 </button>
             </router-link>
-            <input v-model="inputSearch" @keyup="search()" type="text" class="search w-full sm:w-auto sm:mx-4 text-gray-700" placeholder="Nach Songnamen suchen..." />
+            <input v-model="inputSearch" @keyup="search()" type="text" class="search w-full sm:w-auto sm:mx-4 text-gray-700"
+                placeholder="Nach Songnamen suchen..." />
         </div>
         <!--  -->
         <div :class="{ 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4': songs.length != 0 }">
-            <div v-if="songs.length != 0" v-for="song in filteredSongs" :key="song._id" class="bg-white rounded-md shadow p-4">
+            <div v-if="songs.length != 0" v-for="song in filteredSongs" :key="song._id"
+                class="bg-white rounded-md shadow p-4">
                 <Song :song="song" />
             </div>
             <div v-else class="w-full border-2 border-black p-4 rounded-xl">

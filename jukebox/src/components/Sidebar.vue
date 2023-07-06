@@ -1,12 +1,12 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, inject } from 'vue';
 import { config } from "../service/api.ts";
 import { getLocalStorageItems, setLocalStorageItems } from '../service/LocalStorage.ts';
 import axios from 'axios';
 import LoadingGridPlaylist from "../components/LoadingGridPlaylist.vue";
 
+const { playlists, getPlaylists } = inject('playlists')
 const sidebarOpen = ref(true);
-const playlists = ref("");
 const isPlaylistOpen = ref(new Array());
 const currentlyPlayedSongUrl = ref("public/songs/a-call-to-the-soul.mp3");
 const showPlaylistContainer = ref(false);
@@ -15,39 +15,16 @@ const currentSong = ref();
 const loaded = ref(false);
 
 onMounted(async () => {
-    await loadPlaylists().then(async () => {
+    await getPlaylists().then(async () => {
         loaded.value = true;
         isPlaylistOpen.value = new Array(playlists.length);
-    
+
         closeAllPlaylists();
         selectedPlaylistId.value = await getLocalStorageItems("selectedPlaylist");  // must not be converted
         const index = playlists.value.findIndex(x => x._id === selectedPlaylistId.value);
         isPlaylistOpen.value[index] = !isPlaylistOpen.value[index];
     });
 })
-
-/**
- * get request to load all playlists and put them in playlists 
- */
-async function loadPlaylists() {
-    let request;
-
-    await axios.get("http://localhost:5000/playlists/", config.headers).then(res => {
-        const parsed = res.data; // Assuming the res data is an object or JSON
-        if (parsed) {
-            // Access the expected properties or perform the desired actions
-            request = res.data;
-        } else {
-            throw new Error('Response data is undefined or null.');
-        }
-    }).catch(e => {
-        console.error("Throw error:", e);
-    });
-
-    console.log("request", request);
-    console.log("datenyp", typeof (request));
-    playlists.value = request;
-}
 
 /**
  * closes all Playlists
@@ -146,9 +123,7 @@ async function removeSongFromPlaylist(playlistId, deleteSongId) {
     // convert to post-request format
     putRequest = { "name": thisPlaylistObject.name, "songs": putRequest };
     await axios.put(("http://localhost:5000/playlists/" + playlistId), putRequest, config.headers);
-
-    // reload page, to show changes
-    window.location.href = window.location.href;
+    await getPlaylists()
 }
 </script>
 

@@ -35,7 +35,7 @@ export function handleFileUpload(event: any): void {
  */
 export async function getFile(songId: string): Promise<any> {
     let response = await axios.get("http://localhost:5000/files/" + songId);
-    
+
     return response.data;
 }
 
@@ -48,7 +48,7 @@ export async function submitFile(songId: string): Promise<void> {
 
     formData.append('songId', songId);
     formData.append('file', file.value);
-    
+
     let response = await axios.post("http://localhost:5000/files", formData, configFile.headers);
     console.log(response.data);
 }
@@ -128,6 +128,6 @@ export async function submit(errorMessages: any, requestType: any, object: any, 
             console.error("Can't make request; Unknown requestType:", requestType.value);
         }
 
-        window.location.href = "/";
+        router.push({ path: '/' })
     }
 }
