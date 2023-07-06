@@ -56,6 +56,11 @@ function closeAllPlaylists() {
     isPlaylistOpen.value.fill(false);
 }
 
+/**
+ * closes the other active playlist (if available)
+ * opens the selected playlist and saves the id in LocalStorage
+ * @param {string} id id of the toggled playlist
+ */
 async function togglePlaylist(id) {
     // index in array
     const index = playlists.value.findIndex(x => x._id === id);
@@ -120,6 +125,12 @@ function playNextSong(song) {
     }
 }
 
+/**
+ * selects playlist with id and creates a new song array, without the song and creates a put request
+ * reloads the page, to see the changes
+ * @param {string} playlistId id of the playlist to remove the song from 
+ * @param {string} deleteSongId id of the song, which has to be removed
+ */
 async function removeSongFromPlaylist(playlistId, deleteSongId) {
     let putRequest = new Array();
     let thisPlaylistObject;
