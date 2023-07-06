@@ -4,6 +4,8 @@ import Song from '../components/Song.vue';
 import LoadingGrid from '../components/LoadingGridSong.vue';
 
 const inputSearch = ref('');
+const interpretSearch = ref('');
+const dropdownOpen = ref(false)
 const { songs, getSongs } = inject('songs')
 const filteredSongs = ref("");
 const isLoading = ref(true);
@@ -45,8 +47,10 @@ function search() {
 
     // Convert the input search string to lowercase for case-insensitive search
     let searchQuery = inputSearch.value.toLowerCase();
+    let searchIntepret = interpretSearch.value.toLowerCase();
 
-    if (searchQuery == "") {
+
+    if (searchQuery == "" && searchIntepret == "") {
         filteredSongs.value = songs.value;
         return;
     }
@@ -55,10 +59,17 @@ function search() {
         let song = songs.value[i];
 
         // Check if the search query matches the song's title or artist
-        if (song.name.toLowerCase().includes(searchQuery)) results.push(song);
+        if (song.name.toLowerCase().includes(searchQuery) &&
+            song.attributes.composer.toLowerCase().includes(searchIntepret)) {
+            results.push(song);
+        }
     }
 
     filteredSongs.value = results;
+}
+
+function toggleDropdown() {
+    dropdownOpen.value = !dropdownOpen.value;
 }
 </script>
 
@@ -72,6 +83,16 @@ function search() {
             </router-link>
             <input v-model="inputSearch" @keyup="search()" type="text" class="search w-full sm:w-auto sm:mx-4 text-gray-700"
                 placeholder="Nach Songnamen suchen..." />
+            <div class="relative">
+                <button class="bg-gray-300 text-gray-700 py-2 px-4 rounded-md cursor-pointer" @click="toggleDropdown">
+                    Weitere Filter
+                </button>
+                <div class="absolute bg-white shadow-md py-2 w-64 mt-2 z-20 rounded-md" v-show="dropdownOpen">
+                    <input v-model="interpretSearch" @keyup="search()" type="text"
+                        class="search block w-full px-4 py-2 text-gray-700" placeholder="Nach Interpret suchen..." />
+                </div>
+            </div>
+
         </div>
         <!--  -->
         <div :class="{ 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4': songs.length != 0 }">
