@@ -117,13 +117,17 @@ async function submitSong() {
                     required />
                 <label for="rating" class="text-red-500 px-1">{{ errorMessages.rating }}</label>
             </div>
-            <label> Song
+
+            <label>
+                <span>Song</span>
                 <input type="file" @change="handleFileUpload($event)" />
             </label>
+
             <p><b>Mit einem * versehene Felder, sind Pflichtfelder.</b></p>
             <div class="md:col-span-2">
                 <button class="btn" @click="submitSong()">Speichern</button>
             </div>
+            
             <div id="loadingBar" role="status"
                 class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <svg aria-hidden="true" class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
