@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import { config } from '../service/api.ts';
 import router from '../router/index.js';
 import axios from 'axios';
 
@@ -21,14 +22,6 @@ const song = ref({
     rating: 0,
     url: ""
 })
-
-// axios headers config
-const config = {
-    headers: {
-        'content-type': 'application/json',
-        'Accept': 'application/json'
-    }
-};
 
 /**
  * get playlist object form database, to show all the data to the user

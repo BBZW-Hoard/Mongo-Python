@@ -2,6 +2,7 @@
 import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { setLocalStorageItems } from '../service/LocalStorage.ts';
+import { config } from '../service/api.ts';
 import router from '../router/index.js';
 import axios from 'axios';
 
