@@ -44,12 +44,16 @@ export async function getFile(songId: string): Promise<any> {
  * @param {string} songId - The Id of the song to submit the file for.
  */
 export async function submitFile(songId: string): Promise<void> {
+    if (file.value == null) {
+        return
+    }
+
     let formData = new FormData();
 
     formData.append('songId', songId);
     formData.append('file', file.value);
 
-    let response = await axios.post("http://localhost:5000/files", formData, configFile.headers);
+    await axios.post("http://localhost:5000/files", formData, configFile.headers);
 }
 
 /**
