@@ -19,17 +19,30 @@ const configFile: any = {
 };
 
 const file = ref();
-export function handleFileUpload(event) {
+
+/**
+ * Sets the value of the file reference based on the uploaded file from the event.
+ * @param {Event} event - The file upload event containing the selected file.
+ */
+export function handleFileUpload(event: any): void {
     file.value = event.target.files[0];
 }
 
-export async function getFile(songId) {
+/**
+ * Retrieves the file associated with the specified song Id from the backend.
+ * @param {string} songId - The Id of the song to fetch the file for.
+ * @returns {Promise<any>} - A promise that resolves to the fetched file data.
+ */
+export async function getFile(songId: string): Promise<any> {
     let response = await axios.get("http://localhost:5000/files/" + songId);
     return response.data
 }
 
-export async function submitFile(songId) {
-
+/**
+ * Submits the file associated with the specified song Id to the backend.
+ * @param {string} songId - The Id of the song to submit the file for.
+ */
+export async function submitFile(songId: string): Promise<void> {
     let formData = new FormData();
     formData.append('songId', songId);
     formData.append('file', file.value);
@@ -37,7 +50,16 @@ export async function submitFile(songId) {
     console.log(response.data)
 }
 
-export async function prepareForEdit(id: number, object: any, requestType: any, router: any, url: string) {
+/**
+ * returns the song / playlist object that will be edited
+ * if the song can't be found in database, redirect to E404 page
+ * @param id id of the object or 0 -> if 0, a new object will be generated
+ * @param object edited object
+ * @param requestType POST or PUT request (defined by id)
+ * @param router vue router class
+ * @param url url of the request (songs / playlists)
+ */
+export async function prepareForEdit(id: number, object: any, requestType: any, router: any, url: string): Promise<void> {
     if (id == 0) {   // create new entry
         requestType.value = "POST";
     } else {
@@ -53,7 +75,18 @@ export async function prepareForEdit(id: number, object: any, requestType: any, 
     }
 }
 
-export async function submit(errorMessages: any, requestType: any, object: any, router: any, url: string) {
+/**
+ * Submits a POST or PUT request with the provided object data.
+ * Performs validation on the object data and updates error messages accordingly.
+ * Navigates to the root URL ("/") after successful submission.
+ * @param errorMessages error messages array with strings
+ * @param requestType POST or PUT request (defined by Id)
+ * @param object submited object
+ * @param router vue router class
+ * @param url url of the request (songs / playlists)
+ * @returns {Promise<void>} - A promise that resolves once the submission process is complete.
+ */
+export async function submit(errorMessages: any, requestType: any, object: any, router: any, url: string): Promise<void> {
     let validated: any = true;
 
     /* set all key-values from errorMessages to null */
