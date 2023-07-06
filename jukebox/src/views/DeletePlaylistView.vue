@@ -21,6 +21,9 @@ const config = {
     }
 };
 
+/**
+ * get playlist object form database, to show all the data to the user
+ */
 onMounted(async () => {
     try {
         // loading entry with id from database
@@ -32,7 +35,10 @@ onMounted(async () => {
     }
 })
 
-
+/**
+ * deletes playlist from backend
+ * redirect the homepage with reload to show the changes
+ */
 async function submit() {
     try {
         await axios.delete(('http://localhost:5000/playlists/' + playlist.value._id), config.headers);
