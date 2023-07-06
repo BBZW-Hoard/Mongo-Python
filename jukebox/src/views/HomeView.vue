@@ -21,12 +21,18 @@ const config = {
     }
 };
 
+/**
+ * loads song, if loading is fin, disable loading grid
+ */
 onMounted(async () => {
     await getSongs().then(() => {
         isLoading.value = false;
     });
 })
 
+/**
+ * get all songs from backend
+ */
 async function getSongs() {
     let request;
 
