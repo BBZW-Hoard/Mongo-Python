@@ -35,7 +35,8 @@ export function handleFileUpload(event: any): void {
  */
 export async function getFile(songId: string): Promise<any> {
     let response = await axios.get("http://localhost:5000/files/" + songId);
-    return response.data
+    
+    return response.data;
 }
 
 /**
@@ -44,10 +45,12 @@ export async function getFile(songId: string): Promise<any> {
  */
 export async function submitFile(songId: string): Promise<void> {
     let formData = new FormData();
+
     formData.append('songId', songId);
     formData.append('file', file.value);
+    
     let response = await axios.post("http://localhost:5000/files", formData, configFile.headers);
-    console.log(response.data)
+    console.log(response.data);
 }
 
 /**
@@ -96,11 +99,9 @@ export async function submit(errorMessages: any, requestType: any, object: any, 
         console.error("Could not clear values from errorMessages object", e);
     }
 
-    let result
-    if (url == "songs")
-        result = isValidatedSong(object.value);
-    else
-        result = isValidatedPlaylist(object.value);
+    let result: any = "";
+    if (url == "songs") result = isValidatedSong(object.value);
+    else result = isValidatedPlaylist(object.value);
 
     validated = result[0];
     errorMessages.value = result[1];
@@ -112,16 +113,14 @@ export async function submit(errorMessages: any, requestType: any, object: any, 
         if (requestType.value === "POST") {
             try {
                 let response = await axios.post(`http://localhost:5000/${url}/`, object.value, config.headers);
-                if (url == "songs")
-                    await submitFile(response.data._id)
+                if (url == "songs") await submitFile(response.data._id)
             } catch (e) {
                 console.error("error:", e);  // Handle the error
             }
         } else if (requestType.value === "PUT") {
             try {
                 let response = await axios.put((`http://localhost:5000/${url}/${object.value._id}`), object.value, config.headers);
-                if (url == "songs")
-                    await submitFile(response.data._id)
+                if (url == "songs") await submitFile(response.data._id)
             } catch (e) {
                 console.error("error:", e); // Handle the error
             }
