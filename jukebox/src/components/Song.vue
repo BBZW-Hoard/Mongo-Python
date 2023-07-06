@@ -26,7 +26,7 @@ const isMobileView = ref(false);
 const isDropdownOpen = ref(false);
 
 onMounted(async () => {
-    await handleScreenWidthChange();    // toggle mobile view
+    await handleScreenWidthChange();
 
     let request;
     await axios.get("http://localhost:5000/playlists/", config.headers).then(res => {
@@ -48,6 +48,10 @@ onMounted(async () => {
 })
 
 /* functions */
+
+/**
+ * toggles mobile view (mobile view is active under 768 px width)
+ */
 async function handleScreenWidthChange() {
     let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
@@ -66,6 +70,11 @@ function durationValue(duration) {
     } else return duration + " min";
 }
 
+/**
+ * Pushes song object (only id in request to backend) to the selected Playlist
+ * reloads the page, to show the changes
+ * @param {Song} song song object for playlist 
+ */
 async function addToPlaylist(song) {
     let selectedPlaylistId = await getLocalStorageItems("selectedPlaylist");
     const index = playlists.value.findIndex(x => x._id === selectedPlaylistId);
