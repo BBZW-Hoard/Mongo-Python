@@ -50,7 +50,6 @@ export async function submitFile(songId: string): Promise<void> {
     formData.append('file', file.value);
 
     let response = await axios.post("http://localhost:5000/files", formData, configFile.headers);
-    console.log(response.data);
 }
 
 /**
@@ -107,9 +106,6 @@ export async function submit(errorMessages: any, requestType: any, object: any, 
     errorMessages.value = result[1];
 
     if (validated) {
-        // validated
-        alert("validated");
-
         if (requestType.value === "POST") {
             try {
                 let response = await axios.post(`http://localhost:5000/${url}/`, object.value, config.headers);

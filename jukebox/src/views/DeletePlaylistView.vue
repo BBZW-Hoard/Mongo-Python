@@ -65,7 +65,6 @@ async function submit() {
             <ul v-for="song in playlist.songs" class="pb-4 border-black border-b-2">
                 <li><b>Name:</b> {{ song.name }}</li>
                 <ul>
-                    {{ console.log("songAttribute", song.attributes) }}
                     <li class="list-none text-lg"><b>Attribute:</b></li>
                     <li class="ml-4"><b>Komponist:</b> {{ song.attributes.composer }}</li>
                     <li class="ml-4"><b>Genre:</b> {{ song.attributes.genre }}</li>

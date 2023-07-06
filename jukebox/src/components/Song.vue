@@ -41,8 +41,6 @@ onMounted(async () => {
         // Handle the error appropriately
     });
 
-    console.log("request", request);
-    console.log("datenyp", typeof (request));
     playlists.value = request;
 })
 
@@ -81,19 +79,16 @@ async function addToPlaylist(song) {
     let res = playlist.songs.map(s => s._id);
 
     if (!Array.isArray(playlist.songs)) {
-        console.log("No array: " + playlist.songs);
         playlist.songs = [song._id];
     } else {
         playlist.songs = res;
     }
 
     if (!res.includes(song._id)) {
-        console.log("Pushed to array: " + playlist.songs);
         playlist.songs = res;
         playlist.songs.push(song._id);
     }
 
-    console.log('Add to playlist:', song);
     await axios.put(('http://localhost:5000/playlists/' + playlist._id), playlist, config.headers);
     await getPlaylists();
 }
