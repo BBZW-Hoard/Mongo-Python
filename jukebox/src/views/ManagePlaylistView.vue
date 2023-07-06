@@ -19,14 +19,14 @@ const errorMessages = ref({
 })
 
 onMounted(async () => {
-    prepareForEdit(id, playlist, requestType, route, urlParam)
+    prepareForEdit(id, playlist, requestType, urlParam)
 })
 
 /**
  * calls submit function of the api service
  */
 async function submitPlaylist() {
-    await submit(errorMessages, requestType, playlist, router, urlParam)
+    await submit(errorMessages, requestType, playlist, urlParam)
 }
 </script>
 

@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import router from '../router/index.js';
 import axios from 'axios';
 import { isValidated as isValidatedSong } from "./ValidationSong";
 import { isValidated as isValidatedPlaylist } from "./ValidationPlaylist";
@@ -62,10 +63,9 @@ export async function submitFile(songId: string): Promise<void> {
  * @param id id of the object or 0 -> if 0, a new object will be generated
  * @param object edited object
  * @param requestType POST or PUT request (defined by id)
- * @param router vue router class
  * @param url url of the request (songs / playlists)
  */
-export async function prepareForEdit(id: number, object: any, requestType: any, router: any, url: string): Promise<void> {
+export async function prepareForEdit(id: number, object: any, requestType: any, url: string): Promise<void> {
     if (id == 0) {   // create new entry
         requestType.value = "POST";
     } else {
@@ -92,7 +92,7 @@ export async function prepareForEdit(id: number, object: any, requestType: any, 
  * @param url url of the request (songs / playlists)
  * @returns {Promise<void>} - A promise that resolves once the submission process is complete.
  */
-export async function submit(errorMessages: any, requestType: any, object: any, router: any, url: string): Promise<void> {
+export async function submit(errorMessages: any, requestType: any, object: any, url: string): Promise<void> {
     let validated: any = true;
 
     /* set all key-values from errorMessages to null */

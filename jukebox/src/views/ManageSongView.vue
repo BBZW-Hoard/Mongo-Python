@@ -35,7 +35,7 @@ const errorMessages = ref({
 })
 
 onMounted(async () => {
-    prepareForEdit(id, song, requestType, route, urlParam)
+    prepareForEdit(id, song, requestType, urlParam)
 })
 
 /**
@@ -45,7 +45,7 @@ async function submitSong() {
     let el = document.getElementById("loadingBar");
     el.classList.toggle("hidden")
 
-    await submit(errorMessages, requestType, song, router, urlParam)
+    await submit(errorMessages, requestType, song, urlParam)
 }
 </script>
 
@@ -130,7 +130,7 @@ async function submitSong() {
             <div class="md:col-span-2">
                 <button class="btn" @click="submitSong()">Speichern</button>
             </div>
-            
+
             <div id="loadingBar" role="status"
                 class="hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <svg aria-hidden="true" class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
