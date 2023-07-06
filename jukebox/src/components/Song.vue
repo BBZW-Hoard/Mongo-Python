@@ -3,9 +3,30 @@ import { onMounted, ref } from 'vue';
 import { config } from "../service/api.ts";
 import axios from 'axios';
 
+defineProps({
+    song: {
+        _id: String,
+        name: String,
+        attributes: {
+            composer: String,
+            genre: String,
+            year: Number,
+            album: String,
+            required: false
+        },
+        duration: Number,
+        rating: String,
+        required: true,
+    }
+})
+
 const playlists = ref("")
+const isMobileView = ref(false);
+const isDropdownOpen = ref(false);
 
 onMounted(async () => {
+    await handleScreenWidthChange();    // toggle mobile view
+
     let request;
     await axios.get("http://localhost:5000/playlists/", config.headers).then(res => {
         const parsed = res.data; // Assuming the res data is an object or JSON
@@ -25,32 +46,8 @@ onMounted(async () => {
     playlists.value = request;
 })
 
-defineProps({
-    song: {
-        _id: String,
-        name: String,
-        attributes: {
-            composer: String,
-            genre: String,
-            year: Number,
-            album: String,
-            required: false
-        },
-        duration: Number,
-        rating: String,
-        required: true,
-    }
-})
-
-const isMobileView = ref(false);
-const isDropdownOpen = ref(false);
-
-onMounted(() => {
-    handleScreenWidthChange();
-})
-
 /* functions */
-function handleScreenWidthChange() {
+async function handleScreenWidthChange() {
     let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
     if (screenWidth < 768) isMobileView.value = true;
