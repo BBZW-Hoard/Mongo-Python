@@ -2,23 +2,27 @@
 import { onMounted, ref } from 'vue';
 import { config } from "../service/api.ts";
 import axios from 'axios';
+import LoadingGridPlaylist from "../components/LoadingGridPlaylist.vue";
 
 const sidebarOpen = ref(true);
 const playlists = ref("");
 const isPlaylistOpen = ref(new Array());
 const currentlyPlayedSongUrl = ref("public/songs/a-call-to-the-soul.mp3");
 const showPlaylistContainer = ref(false);
-const selectedPlaylistId = ref("")
-const currentSong = ref()
+const selectedPlaylistId = ref("");
+const currentSong = ref();
+const loaded = ref(false);
 
 onMounted(async () => {
-    await loadPlaylists();
-    isPlaylistOpen.value = new Array(playlists.length);
-
-    closeAllPlaylists();
-    selectedPlaylistId.value = localStorage.getItem("selectedPlaylist");  // must not be converted
-    const index = playlists.value.findIndex(x => x._id === selectedPlaylistId.value);
-    isPlaylistOpen.value[index] = !isPlaylistOpen.value[index];
+    await loadPlaylists().then(() => {
+        loaded.value = true;
+        isPlaylistOpen.value = new Array(playlists.length);
+    
+        closeAllPlaylists();
+        selectedPlaylistId.value = localStorage.getItem("selectedPlaylist");  // must not be converted
+        const index = playlists.value.findIndex(x => x._id === selectedPlaylistId.value);
+        isPlaylistOpen.value[index] = !isPlaylistOpen.value[index];
+    });
 })
 
 /**
@@ -160,77 +164,83 @@ async function removeSongFromPlaylist(playlistId, deleteSongId) {
                     </router-link>
                 </span>
             </div>
-            <div v-if="playlists.length != 0" v-for="playlist in playlists" :key="playlist._id">
-                <button class="flex items-center justify-between w-full mb-2 focus:outline-none"
-                    @click="togglePlaylist(playlist._id)">
-                    <span class="truncate text-md font-bold">
-                        {{ playlist.name }}
-                        <i>
-                            {{ isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] ? '(ausgewählt)' : '' }}
-                        </i>
-                    </span>
-                    <div class="flex items-center justify-end">
-                        <span class="ml-auto mr-2 w-5">
-                            <router-link :to="'/delete-playlist/' + playlist._id" title="Playlist löschen">
-                                <img src="../assets/trashcan.svg" alt="D" />
-                            </router-link>
+            <div v-if="loaded">
+                <div v-if="playlists.length != 0" v-for="playlist in playlists" :key="playlist._id">
+                    <button class="flex items-center justify-between w-full mb-2 focus:outline-none"
+                        @click="togglePlaylist(playlist._id)">
+                        <span class="truncate text-md font-bold">
+                            {{ playlist.name }}
+                            <i>
+                                {{ isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] ? '(ausgewählt)' : '' }}
+                            </i>
                         </span>
-                        <span class="ml-auto mr-2 w-5">
-                            <router-link :to="'/manage-playlist/' + playlist._id" title="Playlist bearbeiten">
-                                <img src="../assets/pencil.svg" alt="E" />
-                            </router-link>
-                        </span>
-                        <img :class="{ 'rotate-180': isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] }"
-                            src="../assets/arrowDown.svg" alt=""
-                            :title="!isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] ? 'Playlist öffnen' : 'Playlist schliessen'" />
+                        <div class="flex items-center justify-end">
+                            <span class="ml-auto mr-2 w-5">
+                                <router-link :to="'/delete-playlist/' + playlist._id" title="Playlist löschen">
+                                    <img src="../assets/trashcan.svg" alt="D" />
+                                </router-link>
+                            </span>
+                            <span class="ml-auto mr-2 w-5">
+                                <router-link :to="'/manage-playlist/' + playlist._id" title="Playlist bearbeiten">
+                                    <img src="../assets/pencil.svg" alt="E" />
+                                </router-link>
+                            </span>
+                            <img :class="{ 'rotate-180': isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] }"
+                                src="../assets/arrowDown.svg" alt=""
+                                :title="!isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)] ? 'Playlist öffnen' : 'Playlist schliessen'" />
+                        </div>
+                    </button>
+                    <div v-show="isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)]">
+                        <div v-for="song in playlist.songs" class="flex items-center mb-2">
+                            {{ console.log("song id ", song) }}
+                            <span class="truncate flex-grow">> {{ song.name }}</span>
+                            <div class="ml-auto flex">
+                                <button class="p-1 hover:bg-gray-500 rounded-full" title="Download">
+                                    <a :href="song.url" download target="_blank" class="w-full h-full">
+                                        <img src="../assets/download.svg" alt="download" />
+                                    </a>
+                                </button>
+                                <button @click="playSong(song)" class="p-1 hover:bg-green-500 rounded-full ml-1"
+                                    title="Play">
+                                    <img src="../assets/play.svg" alt="play" />
+                                </button>
+                                <button @click="removeSongFromPlaylist(playlist._id, song._id)"
+                                    class="p-1 hover:bg-red-500 rounded-full ml-1" title="Aus Playlist entfernen">
+                                    <img src="../assets/trash.svg" alt="trash" />
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Add more items here -->
                     </div>
-                </button>
-                <div v-show="isPlaylistOpen[playlists.findIndex(x => x._id === playlist._id)]">
-                    <div v-for="song in playlist.songs" class="flex items-center mb-2">
-                        {{ console.log("song id ", song) }}
-                        <span class="truncate flex-grow">> {{ song.name }}</span>
-                        <div class="ml-auto flex">
-                            <button class="p-1 hover:bg-gray-500 rounded-full" title="Download">
-                                <a :href="song.url" download target="_blank" class="w-full h-full">
-                                    <img src="../assets/download.svg" alt="download" />
-                                </a>
-                            </button>
-                            <button @click="playSong(song)" class="p-1 hover:bg-green-500 rounded-full ml-1" title="Play">
-                                <img src="../assets/play.svg" alt="play" />
-                            </button>
-                            <button @click="removeSongFromPlaylist(playlist._id, song._id)"
-                                class="p-1 hover:bg-red-500 rounded-full ml-1" title="Aus Playlist entfernen">
+                </div>
+                <!-- No Playlists created -->
+                <div v-else>
+                    <h1 class="text-xl font-semibold"><i>Keine Playlists vorhaden</i></h1>
+                </div>
+
+                <!-- Fixed container for currently played songs -->
+                <div v-if="showPlaylistContainer" class="fixed bottom-0 left-0 w-80 bg-gray-800 p-4">
+                    <div class="text-white">
+                        <div class="flex justify-between">
+                            <span class="text-xl font-semibold">Laufendes Lied:</span>
+                            <button @click="showPlaylistContainer = false" class="p-2 hover:bg-red-500 rounded-full"
+                                title="Song stoppen">
                                 <img src="../assets/trash.svg" alt="trash" />
                             </button>
                         </div>
+                        <span>{{ currentSong.name }}</span>
+                        <ul class="mt-2">
+                            <!-- <li v-for="song in currentlyPlayedSongs" :key="song.id">{{ song.name }}</li> -->
+                            <audio @ended="playNextSong(currentSong)" controls autoplay="true">
+                                <source :src="currentlyPlayedSongUrl" type="audio/mpeg" />
+                                Your browser does not support the audio player.
+                            </audio>
+                        </ul>
                     </div>
-                    <!-- Add more items here -->
                 </div>
             </div>
-            <!-- No Playlists created -->
             <div v-else>
-                <h1 class="text-xl font-semibold"><i>Keine Playlists vorhaden</i></h1>
-            </div>
-
-            <!-- Fixed container for currently played songs -->
-            <div v-if="showPlaylistContainer" class="fixed bottom-0 left-0 w-80 bg-gray-800 p-4">
-                <div class="text-white">
-                    <div class="flex justify-between">
-                        <span class="text-xl font-semibold">Laufendes Lied:</span>
-                        <button @click="showPlaylistContainer = false" class="p-2 hover:bg-red-500 rounded-full"
-                            title="Song stoppen">
-                            <img src="../assets/trash.svg" alt="trash" />
-                        </button>
-                    </div>
-                    <span>{{ currentSong.name }}</span>
-                    <ul class="mt-2">
-                        <!-- <li v-for="song in currentlyPlayedSongs" :key="song.id">{{ song.name }}</li> -->
-                        <audio @ended="playNextSong(currentSong)" controls autoplay="true">
-                            <source :src="currentlyPlayedSongUrl" type="audio/mpeg" />
-                            Your browser does not support the audio player.
-                        </audio>
-                    </ul>
-                </div>
+                <LoadingGridPlaylist />
             </div>
         </div>
         <div v-if="!sidebarOpen" class="flex-grow bg-gray-800">
