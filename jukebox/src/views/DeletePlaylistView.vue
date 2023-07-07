@@ -14,8 +14,8 @@ const { playlists, getPlaylists } = inject('playlists')
 watch(
   () => route.params.id,
   async (newId, oldId) => {
-    console.log(route.params.id)
-    location.reload(); 
+    id.value = route.params.id
+    await loadPlaylist()
   }
 )
 

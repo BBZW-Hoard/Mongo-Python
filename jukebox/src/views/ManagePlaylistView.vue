@@ -5,7 +5,7 @@ import router from '../router/index.js';
 import { submit, prepareForEdit } from "../service/api.ts"
 
 const route = useRoute();
-const id = route.params.id;
+const id = ref(route.params.id);
 const urlParam = "playlists"
 const { playlists, getPlaylists } = inject('playlists')
 
@@ -18,8 +18,8 @@ const playlist = ref({
 watch(
   () => route.params.id,
   async (newId, oldId) => {
-    console.log(route.params.id)
-    location.reload(); 
+    id.value = route.params.id
+    await prepareForEdit(id.value, playlist, requestType, urlParam)
   }
 )
 
@@ -28,7 +28,7 @@ const errorMessages = ref({
 })
 
 onMounted(async () => {
-    await prepareForEdit(id, playlist, requestType, urlParam)
+    await prepareForEdit(id.value, playlist, requestType, urlParam)
 })
 
 /**
